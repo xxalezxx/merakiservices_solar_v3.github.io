@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meraki Services Solar Energy</title>
+<meta name="description" content="Paneles solares, termotanques solares y baterías portátiles para hogares, comercios e industrias. Canning, Provincia de Buenos Aires.">
+<meta property="og:title" content="Meraki Services Solar Energy">
+<meta property="og:description" content="Sistemas fotovoltaicos on-grid, híbridos y off-grid para industria, comercio y vivienda.">
+<meta property="og:image" content="assets/solar-techo.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0F1A1F">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F4F3EF;
+    --paper-2: #EAE9E3;
+    --ink: #0F1A1F;
+    --petrol: #10272D;
+    --petrol-2: #163239;
+    --steel: #56656C;
+    --line: #CDD0CA;
+    --grid: #E1E1DA;
+    --brand: #22453D;
+    --amber: #E8A317;
+    --on-dark: #E9ECEA;
+    --on-dark-2: #A9B5B8;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; }
+  p { margin: 0; text-wrap: pretty; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .tick { display: inline-flex; align-items: center; gap: 10px; color: var(--steel); }
+  .tick::before { content: ""; width: 18px; height: 1px; background: currentColor; }
+  .tick.on-dark { color: var(--on-dark-2); }
+  .amb { color: var(--amber); }
+  @media (max-width: 760px) { .wrap { padding: 0 18px; } }
+
+  /* ---------- Barra superior y navegación ---------- */
+  .util { background: var(--ink); color: var(--on-dark-2); }
+  .util .wrap { display: flex; justify-content: space-between; gap: 16px; padding-top: 9px; padding-bottom: 9px; flex-wrap: wrap; }
+  .util .mono { font-size: 11px; }
+  .util .live { display: inline-flex; align-items: center; gap: 8px; }
+  .util .live::before { content: ""; width: 6px; height: 6px; background: var(--amber); }
+  @media (max-width: 760px) { .util .hide-m { display: none; } }
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(244,243,239,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; gap: 28px; min-height: 72px; }
+  .nav img { height: 24px; width: auto; }
+  .nav-links { display: flex; gap: 4px; margin-left: auto; }
+  .nav-links a { padding: 10px 14px; font-size: 14.5px; color: var(--steel); position: relative; transition: color .2s; }
+  .nav-links a::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 4px; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .btn { display: inline-flex; align-items: center; gap: 14px; padding: 15px 22px; border-radius: 2px; font-size: 15px; font-weight: 500; border: 1px solid transparent; transition: background .25s, color .25s, border-color .25s; white-space: nowrap; }
+  .btn .arr { display: inline-block; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+  .btn:hover .arr { transform: translateX(5px); }
+  .btn-ink { background: var(--ink); color: var(--paper); }
+  .btn-ink:hover { background: var(--brand); color: #fff; }
+  .btn-line { border-color: var(--ink); color: var(--ink); }
+  .btn-line:hover { background: var(--ink); color: var(--paper); }
+  .btn-amber { background: var(--amber); color: var(--ink); }
+  .btn-amber:hover { background: #F5B937; color: var(--ink); }
+  .btn-line-d { border-color: rgba(233,236,234,0.4); color: var(--on-dark); }
+  .btn-line-d:hover { background: var(--on-dark); color: var(--ink); }
+  @media (max-width: 960px) { .nav-links { display: none; } .nav .btn { margin-left: auto; } }
+
+  /* ---------- Portada ---------- */
+  .hero { position: relative; padding: 64px 0 72px; border-bottom: 1px solid var(--line); overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr); gap: 56px; align-items: center; }
+  @media (max-width: 1080px) { .hero-grid { grid-template-columns: 1fr; } }
+  .hero h1 { font-size: clamp(42px, 5.2vw, 76px); margin-top: 26px; max-width: 14ch; }
+  .hero h1 em { font-style: normal; color: var(--brand); }
+  .hero .lead { margin-top: 26px; font-size: clamp(17px, 1.35vw, 19px); line-height: 1.65; color: var(--steel); max-width: 50ch; }
+  .hero .ctas { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+  .disc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; }
+  .disc span { padding: 8px 12px; border: 1px solid var(--line); color: var(--steel); }
+
+  .sheet { position: relative; border: 1px solid var(--ink); background: var(--paper); }
+  .sheet-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--ink); flex-wrap: wrap; }
+  .seg { display: inline-flex; border: 1px solid var(--ink); }
+  .seg button { background: none; border: 0; padding: 7px 14px; font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); transition: background .25s, color .25s; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .canvas { position: relative; aspect-ratio: 880 / 500; overflow: hidden;
+    background-color: var(--paper);
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), linear-gradient(#D6D7CF 1px, transparent 1px), linear-gradient(90deg, #D6D7CF 1px, transparent 1px);
+    background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px; }
+  .canvas svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .bp .d { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.3s cubic-bezier(.45,.05,.25,1); }
+  .bp .d.thin { stroke-width: 0.8; stroke: var(--steel); }
+  .bp .d.dim { stroke: var(--steel); stroke-width: 0.8; stroke-dasharray: 1; }
+  .bp.go .d { stroke-dashoffset: 0; }
+  .bp .lab { opacity: 0; transform: translateY(6px); transition: opacity .6s ease, transform .6s ease; transform-box: fill-box; }
+  .bp.go .lab { opacity: 1; transform: none; }
+  .bp .lab circle { fill: var(--amber); }
+  .bp .lab text { font-family: "IBM Plex Mono", monospace; font-size: 12px; fill: var(--ink); letter-spacing: 0.04em; }
+  .bp .lab .n { font-size: 11px; font-weight: 500; text-anchor: middle; dominant-baseline: central; }
+  .photo { position: absolute; inset: 0; clip-path: inset(0 0 100% 0); transition: clip-path 1.4s cubic-bezier(.7,0,.2,1); }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 62%; transform: scale(1.08); transition: transform 2.4s cubic-bezier(.2,.8,.2,1); }
+  .sheet.is-photo .photo { clip-path: inset(0 0 0 0); }
+  .sheet.is-photo .photo img { transform: scale(1); }
+  .scan { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--amber); box-shadow: 0 0 18px 2px rgba(232,163,23,0.55); opacity: 0; pointer-events: none; }
+  .sheet.scanning .scan { animation: scan 1.4s cubic-bezier(.7,0,.2,1) forwards; }
+  @keyframes scan { 0% { top: 0; opacity: 1; } 92% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+  .tblock { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+  .tblock div { padding: 9px 12px; border-left: 1px solid var(--ink); }
+  .tblock div:first-child { border-left: 0; }
+  .tblock .k { display: block; font-size: 10px; color: var(--steel); }
+  .tblock .v { display: block; margin-top: 3px; font-size: 12.5px; color: var(--ink); text-transform: none; letter-spacing: 0.02em; }
+  @media (max-width: 620px) { .tblock { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tblock div:nth-child(3) { border-left: 0; } .tblock div:nth-child(n+3) { border-top: 1px solid var(--ink); } .bp .lab text { font-size: 15px; } }
+
+  /* ---------- Cifras ---------- */
+  .facts { border-bottom: 1px solid var(--line); }
+  .facts .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .fact { padding: 34px 28px 34px 0; border-right: 1px solid var(--line); }
+  .fact + .fact { padding-left: 28px; }
+  .fact:last-child { border-right: 0; }
+  .fact .big { font-size: clamp(36px, 3.6vw, 52px); font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+  .fact .big sup { font-size: 0.45em; vertical-align: top; margin-left: 2px; color: var(--brand); }
+  .fact p { margin-top: 12px; font-size: 14.5px; line-height: 1.5; color: var(--steel); max-width: 26ch; }
+  @media (max-width: 860px) { .facts .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fact:nth-child(2) { border-right: 0; } .fact:nth-child(3) { padding-left: 0; } .fact:nth-child(n+3) { border-top: 1px solid var(--line); } }
+
+  /* ---------- Unidades (índice) ---------- */
+  .sec { padding: 120px 0; }
+  .sec-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 64px; align-items: end; }
+  .sec-head h2 { font-size: clamp(34px, 4vw, 58px); margin-top: 20px; max-width: 18ch; }
+  .sec-head p { font-size: 17px; line-height: 1.65; color: var(--steel); max-width: 48ch; }
+  @media (max-width: 860px) { .sec-head { grid-template-columns: 1fr; } .sec { padding: 84px 0; } }
+  .index { margin-top: 64px; border-top: 1px solid var(--ink); }
+  .row { position: relative; display: grid; grid-template-columns: 90px minmax(0, 1.1fr) minmax(0, 1.4fr) 200px 40px; gap: 24px; align-items: center; padding: 30px 0; border-bottom: 1px solid var(--line); transition: background .35s, padding .45s cubic-bezier(.2,.8,.2,1); }
+  .row:hover { padding-left: 20px; padding-right: 20px; background: var(--ink); color: var(--paper); }
+  .row .num { color: var(--steel); }
+  .row:hover .num { color: var(--amber); }
+  .row h3 { font-size: clamp(26px, 2.6vw, 38px); }
+  .row p { font-size: 15.5px; line-height: 1.55; color: var(--steel); }
+  .row:hover p { color: var(--on-dark-2); }
+  .row .thumb { height: 92px; overflow: hidden; clip-path: inset(0 100% 0 0); transition: clip-path .6s cubic-bezier(.2,.8,.2,1); }
+  .row:hover .thumb { clip-path: inset(0 0 0 0); }
+  .row .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .row .go { font-size: 22px; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+  .row:hover .go { transform: translateX(6px); color: var(--amber); }
+  @media (max-width: 960px) { .row { grid-template-columns: 56px minmax(0, 1fr) 30px; } .row p, .row .thumb { display: none; } }
+
+  /* ---------- Portuario: relato con scroll ---------- */
+  .story { position: relative; height: 420vh; background: var(--petrol); color: var(--on-dark);
+    --stk: #C9D3D4; --stk2: rgba(201,211,212,0.45); --stk3: rgba(201,211,212,0.28); --fillp: rgba(233,236,234,0.04); --gridc: rgba(233,236,234,0.05); --sep: rgba(233,236,234,0.12); --txt2: var(--on-dark-2); --txt1: var(--on-dark); --key: var(--amber); }
+  .story.ink { background: #0B1418; }
+  .story.light { background: var(--paper-2); color: var(--ink);
+    --stk: #24343A; --stk2: rgba(15,26,31,0.38); --stk3: rgba(15,26,31,0.22); --fillp: rgba(15,26,31,0.035); --gridc: rgba(15,26,31,0.055); --sep: var(--line); --txt2: var(--steel); --txt1: var(--ink); --key: var(--brand); }
+  .stage { position: sticky; top: 0; height: 100vh; min-height: 620px; overflow: hidden; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.3fr); }
+  .stage-grid { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(var(--gridc) 1px, transparent 1px), linear-gradient(90deg, var(--gridc) 1px, transparent 1px); background-size: 40px 40px; }
+  .copy { position: relative; padding: 110px 40px 48px max(40px, calc((100vw - 1400px) / 2 + 40px)); display: flex; flex-direction: column; border-right: 1px solid var(--sep); }
+  .copy .tick { color: var(--txt2); }
+  .copy h2 { font-size: clamp(30px, 3.2vw, 46px); margin-top: 18px; max-width: 16ch; }
+  .steps { position: relative; flex: 1; margin-top: 36px; min-height: 240px; }
+  .step { position: absolute; inset: 0; opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .6s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
+  .step.on { opacity: 1; transform: none; pointer-events: auto; }
+  .step .k { color: var(--key); }
+  .step h3 { font-size: clamp(24px, 2.2vw, 32px); margin-top: 12px; }
+  .step p { margin-top: 14px; font-size: 16.5px; line-height: 1.65; color: var(--txt2); max-width: 44ch; }
+  .step .ph { margin-top: 24px; width: min(100%, 360px); aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid var(--sep); }
+  .step .ph img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); transition: transform 1.6s cubic-bezier(.2,.8,.2,1); }
+  .step.on .ph img { transform: scale(1); }
+  .rail { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 24px; }
+  .rail span { height: 3px; background: var(--stk3); position: relative; overflow: hidden; }
+  .rail span i { position: absolute; inset: 0; background: var(--amber); transform-origin: left; transform: scaleX(0); }
+  .rail-l { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 10px; color: var(--txt2); }
+  .rail-l span { font-size: 10.5px; }
+  .viz { position: relative; display: flex; align-items: center; justify-content: center; padding: 80px 40px 40px; }
+  .viz svg { width: 100%; height: auto; max-height: 78vh; overflow: visible; }
+  .scene .s { fill: none; stroke: var(--stk); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; transition: stroke .5s, opacity .6s; }
+  .scene .s.t { stroke-width: 1; stroke: var(--stk2); }
+  .scene .f { fill: var(--fillp); transition: fill .5s; }
+  .scene .cont { fill: var(--fillp); stroke: var(--stk2); stroke-width: 1; }
+  .scene .cont-l { stroke: var(--stk3); stroke-width: 1; }
+  .scene .ground, .scene .arc { fill: none; stroke: var(--stk2); stroke-width: 1; stroke-dasharray: 6 6; }
+  .scene .lbl { font-family: "IBM Plex Mono", monospace; font-size: 11px; fill: var(--stk2); letter-spacing: 0.06em; }
+  .scene .lbl.dig { font-size: 15px; fill: var(--amber); }
+  .scene .part { transition: opacity .7s; }
+  .scene .part.ghost { opacity: 0.12; }
+  .scene .part.hot .s { stroke: var(--amber); }
+  .scene .part.hot .f { fill: rgba(232,163,23,0.10); }
+  .scene .part.hot .lbl { fill: var(--amber); }
+  .story.light .scene .part.hot .lbl { fill: #8A5A00; }
+  .scene #box rect.c { fill: rgba(232,163,23,0.14); stroke: var(--amber); stroke-width: 1.5; }
+  .scene #box line { stroke: rgba(232,163,23,0.6); stroke-width: 1; }
+  .scene .wire { stroke-dasharray: 1; stroke-dashoffset: 1; transition: none; }
+  .scene .sig { fill: none; stroke: var(--amber); stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 8 14; opacity: 0; transition: opacity .4s; animation: flow 1s linear infinite; }
+  .scene .sig.on { opacity: 1; }
+  .scene .sig.rev { animation-direction: reverse; }
+  @keyframes flow { to { stroke-dashoffset: -22; } }
+  .scene .led { fill: transparent; stroke: var(--stk2); stroke-width: 1; }
+  .scene .led.on { fill: var(--amber); stroke: var(--amber); animation: blink 1.4s steps(2, jump-none) infinite; }
+  @keyframes blink { 50% { opacity: 0.25; } }
+  .scene .bar { fill: var(--amber); opacity: 0.85; }
+  .scene .panel { fill: rgba(16,39,45,0.06); stroke: var(--stk); stroke-width: 1.3; stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .scene .sun { fill: var(--amber); }
+  .scene .ray { stroke: var(--amber); stroke-width: 2; stroke-linecap: round; }
+  .scene .tag { opacity: 0; transition: opacity .45s; }
+  .scene .tag.on { opacity: 1; }
+  .scene .tag rect { fill: var(--amber); }
+  .scene .tag text { font-family: "IBM Plex Mono", monospace; font-size: 13px; fill: var(--ink); letter-spacing: 0.04em; }
+  .scene .tag line { stroke: var(--amber); stroke-width: 1; }
+  .hud { position: absolute; top: 96px; right: 40px; text-align: right; color: var(--txt2); line-height: 1.8; }
+  .hud b { color: var(--txt1); font-weight: 500; }
+  @media (max-width: 960px) {
+    .stage { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+    .viz { order: -1; padding: 84px 18px 0; }
+    .viz svg { max-height: 40vh; }
+    .copy { padding: 18px 18px 28px; border-right: 0; }
+    .copy h2, .copy > .tick { display: none; }
+    .steps { margin-top: 0; }
+    .step .ph { display: none; }
+    .hud { display: none; }
+  }
+
+  /* ---------- Pestañas de alcance ---------- */
+  .tabs { display: flex; flex-wrap: wrap; gap: 0; margin-top: 48px; border: 1px solid var(--ink); width: fit-content; max-width: 100%; }
+  .tabs button { background: none; border: 0; border-left: 1px solid var(--ink); padding: 12px 18px; font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); transition: background .25s, color .25s; }
+  .tabs button:first-child { border-left: 0; }
+  .tabs button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+  .tabs button:hover:not([aria-selected="true"]) { color: var(--ink); background: var(--paper-2); }
+  .tabp[hidden] { display: none; }
+
+  /* ---------- Alcance técnico ---------- */
+  .scope-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px 80px; margin-top: 64px; align-items: start; }
+  @media (max-width: 960px) { .scope-grid { grid-template-columns: 1fr; } }
+  .spec { border-top: 1px solid var(--ink); }
+  .spec li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); font-size: 16.5px; line-height: 1.6; }
+  .spec li .mono { color: var(--steel); padding-top: 3px; }
+  .spec li b { font-weight: 500; }
+  .spec li span.d { color: var(--steel); }
+  .shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .shot { position: relative; height: 260px; overflow: hidden; background: var(--ink); }
+  .shot.wide { grid-column: 1 / -1; height: 300px; }
+  .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); transition: transform 1.8s cubic-bezier(.2,.8,.2,1); }
+  .shot .cap { position: absolute; left: 0; bottom: 0; background: var(--paper); color: var(--ink); padding: 8px 12px; }
+  .shot { clip-path: inset(100% 0 0 0); transition: clip-path 1.1s cubic-bezier(.7,0,.2,1); }
+  .shot.in { clip-path: inset(0 0 0 0); }
+  .shot.in img { transform: scale(1); }
+
+  /* ---------- Proceso ---------- */
+  .proc { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .wo { margin-top: 64px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--ink); background: var(--paper); }
+  .wo > div { padding: 28px 24px 30px; border-left: 1px solid var(--ink); position: relative; }
+  .wo > div:first-child { border-left: 0; }
+  .wo .st { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border: 1px solid var(--line); color: var(--steel); transition: all .4s; }
+  .wo .st::before { content: ""; width: 7px; height: 7px; border: 1px solid currentColor; }
+  .wo > div.done .st { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .wo > div.done .st::before { background: var(--amber); border-color: var(--amber); }
+  .wo h4 { font-size: 24px; margin-top: 22px; }
+  .wo p { margin-top: 10px; font-size: 15.5px; line-height: 1.6; color: var(--steel); }
+  .wo .n { position: absolute; top: 24px; right: 22px; color: var(--steel); }
+  @media (max-width: 960px) { .wo { grid-template-columns: 1fr 1fr; } .wo > div:nth-child(3) { border-left: 0; } .wo > div:nth-child(n+3) { border-top: 1px solid var(--ink); } }
+  @media (max-width: 560px) { .wo { grid-template-columns: 1fr; } .wo > div { border-left: 0; } .wo > div + div { border-top: 1px solid var(--ink); } }
+
+  /* ---------- Contacto y pie ---------- */
+  .contact { background: var(--ink); color: var(--on-dark); }
+  .contact .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px 80px; padding-top: 110px; padding-bottom: 110px; }
+  @media (max-width: 960px) { .contact .wrap { grid-template-columns: 1fr; padding-top: 80px; padding-bottom: 80px; } }
+  .contact h2 { font-size: clamp(36px, 4.4vw, 64px); margin-top: 20px; max-width: 14ch; }
+  .contact .lead { margin-top: 22px; font-size: 17px; line-height: 1.65; color: var(--on-dark-2); max-width: 46ch; }
+  .kv { border-top: 1px solid rgba(233,236,234,0.2); }
+  .kv div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-bottom: 1px solid rgba(233,236,234,0.2); font-size: 16.5px; }
+  .kv .mono { color: var(--on-dark-2); padding-top: 3px; }
+  .kv a, .kv span { min-width: 0; overflow-wrap: anywhere; }
+  @media (max-width: 560px) { .kv div { grid-template-columns: 1fr; gap: 6px; } }
+  .kv a:hover { color: var(--amber); }
+  .foot { background: var(--ink); color: var(--on-dark-2); border-top: 1px solid rgba(233,236,234,0.12); }
+  .foot .wrap { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding-top: 28px; padding-bottom: 28px; font-size: 13.5px; }
+  .foot img { height: 22px; width: auto; filter: brightness(0) invert(1); opacity: 0.85; }
+  .foot nav { display: flex; gap: 20px; flex-wrap: wrap; }
+  .foot a:hover { color: var(--on-dark); }
+
+  /* ---------- Aparición ---------- */
+  [data-rv] { opacity: 0; transform: translateY(22px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+  [data-rv].in { opacity: 1; transform: none; }
+  .line-rv { transform: scaleX(0); transform-origin: left; transition: transform 1.2s cubic-bezier(.7,0,.2,1); }
+  .line-rv.in { transform: scaleX(1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: 0s !important; animation: none !important; }
+    [data-rv], .shot { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+  }
+
+  /* ---------- Solar Energy: agregados ---------- */
+  .util a.live:hover { color: var(--on-dark); }
+  .brand { display: inline-flex; align-items: center; gap: 12px; }
+  .brand-sub { padding: 5px 8px; background: var(--amber); color: var(--ink); font-size: 11px; }
+  .uni { margin-top: 56px; border: 1px solid var(--ink); background: var(--paper); }
+  .uni-top { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--ink); }
+  .uni-body { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
+  .uni-body svg { width: 100%; height: auto; padding: 28px 24px; overflow: visible; }
+  .uni-cap { border-left: 1px solid var(--ink); padding: 28px 28px 32px; display: flex; flex-direction: column; justify-content: center; }
+  .uni-cap .k { color: var(--brand); }
+  .uni-cap p { margin-top: 14px; font-size: 16.5px; line-height: 1.65; color: var(--steel); }
+  @media (max-width: 960px) { .uni-body { grid-template-columns: 1fr; } .uni-cap { border-left: 0; border-top: 1px solid var(--ink); } }
+  .uni-svg { --stk: #24343A; --stk2: rgba(15,26,31,0.4); --stk3: rgba(15,26,31,0.22); --fillp: rgba(15,26,31,0.035); }
+  .uni-svg .u-n, .uni-svg .bat-n { transition: opacity .5s; }
+  .uni-svg.no-bat .bat-n { opacity: 0.14; }
+  .uni-svg .u-n.hot .s { stroke: var(--amber); }
+  .uni-svg .u-n.hot .f { fill: rgba(232,163,23,0.12); }
+  .uni-svg .u-n.hot .lbl { fill: #8A5A00; }
+  .scene .soc { fill: rgba(232,163,23,0.4); }
+  .mant { background: var(--ink); color: var(--on-dark); }
+  .mant-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px 80px; align-items: start; }
+  @media (max-width: 960px) { .mant-grid { grid-template-columns: 1fr; } }
+  .mant h2 { font-size: clamp(34px, 4vw, 58px); margin-top: 20px; max-width: 16ch; }
+  .mant .lead { margin-top: 22px; font-size: 17px; line-height: 1.65; color: var(--on-dark-2); max-width: 46ch; }
+  .check { border-top: 1px solid rgba(233,236,234,0.2); }
+  .check li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 16px; padding: 20px 0; border-bottom: 1px solid rgba(233,236,234,0.2); }
+  .check b { display: block; font-weight: 500; font-size: 18px; }
+  .check .d { display: block; margin-top: 4px; color: var(--on-dark-2); font-size: 15.5px; line-height: 1.55; }
+  .check .bx { width: 22px; height: 22px; margin-top: 2px; border: 1px solid rgba(233,236,234,0.45); position: relative; transition: background .35s, border-color .35s; }
+  .check .bx::after { content: ""; position: absolute; left: 7px; top: 3px; width: 6px; height: 11px; border: solid var(--ink); border-width: 0 2px 2px 0; transform: rotate(45deg) scale(0); transition: transform .35s cubic-bezier(.2,.8,.2,1) .1s; }
+  .check li.done .bx { background: var(--amber); border-color: var(--amber); }
+  .check li.done .bx::after { transform: rotate(45deg) scale(1); }
+
+  /* ---------- ¿Qué sistema necesito? ---------- */
+  #que-sistema { transition: background-color .8s; }
+  #que-sistema.night { background-color: #04080A; }
+  .sysv .moon { fill: #E9ECEA; opacity: 0; transition: opacity .8s; }
+  .sysv .sunS { transition: opacity .8s; }
+  .sysv .rural, .sysv .gridG, .sysv .sceneG, .sysv .batd, .sysv .banner, .sysv .batP { transition: opacity .7s; }
+  .sysv .cutx { fill: none; stroke: #E5484D; stroke-width: 3; stroke-linecap: round; opacity: 0; transition: opacity .3s; }
+  .sysv .gwire.cut { stroke-dasharray: 6 8; stroke: rgba(229,72,77,0.8); }
+  .sysv .win { fill: transparent; transition: fill .4s; }
+  .sysv .win.lit { fill: rgba(232,163,23,0.55); }
+  .sysv .wlbl { opacity: 0; transition: opacity .4s; }
+  .sysv .wlbl.on { opacity: 1; fill: var(--amber); }
+  .sysv .soc2 { fill: rgba(232,163,23,0.55); }
+  .sysv .banner rect { fill: var(--amber); transition: fill .3s; }
+  .sysv .banner text { font-family: "IBM Plex Mono", monospace; font-size: 13px; letter-spacing: 0.06em; fill: var(--ink); }
+  .sysv .banner.alert rect { fill: #B42318; }
+  .sysv .banner.alert text { fill: #FFFFFF; }
+  .sysv .bigsoc { fill: rgba(232,163,23,0.45); }
+  .sysv .bigpct { font-family: "IBM Plex Sans", sans-serif; font-weight: 500; font-size: 64px; fill: var(--on-dark); letter-spacing: -0.03em; }
+  .sysv .bigst { font-size: 12px; fill: var(--amber); }
+  .sysv .bl line { stroke: var(--amber); stroke-width: 1; }
+  .sysv .bl text { font-family: "IBM Plex Sans", sans-serif; font-size: 18px; fill: var(--on-dark); }
+  .sysv .bl text.sm { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; fill: var(--on-dark-2); letter-spacing: 0.04em; }
+  .sysv .invst.off { fill: #F97066; }
+
+  /* ---------- Comparativa ---------- */
+  .cmp-wrap { margin-top: 56px; overflow-x: auto; border: 1px solid var(--ink); background: var(--paper); }
+  .cmp { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 16px; }
+  .cmp th, .cmp td { text-align: left; padding: 18px 20px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.5; }
+  .cmp thead th { background: var(--ink); color: var(--paper); font-weight: 500; font-size: 18px; border-bottom: 0; }
+  .cmp thead th .mono { color: var(--on-dark-2); }
+  .cmp tbody th { font-weight: 500; width: 28%; }
+  .cmp td { color: var(--steel); }
+  .cmp tbody tr:last-child th, .cmp tbody tr:last-child td { border-bottom: 0; }
+  .cmp tbody tr { transition: background .25s; }
+  .cmp tbody tr:hover { background: var(--paper-2); }
+  .cmp .y, .cmp .n { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; color: var(--ink); }
+  .cmp .y::before, .cmp .n::before { content: ""; width: 9px; height: 9px; }
+  .cmp .y::before { background: var(--amber); }
+  .cmp .n::before { border: 1px solid var(--steel); }
+  .note { margin-top: 14px; color: var(--steel); font-size: 11px; text-transform: none; letter-spacing: 0.02em; }
+
+  /* ---------- Relatos: fijos (.pin) o automáticos ---------- */
+  .story.pin { height: 300vh; }
+  .story:not(.pin) { height: auto; }
+  .story:not(.pin) .stage { position: relative; height: auto; min-height: 720px; }
+  .story:not(.pin) .steps { min-height: 480px; }
+  .rail-l button { background: none; border: 0; padding: 8px 0 4px; text-align: left; font: inherit; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--txt2); cursor: pointer; transition: color .25s; }
+  .rail-l button:hover, .rail-l button.on { color: var(--txt1); }
+  .rail-l button.on { text-decoration: underline; text-decoration-color: var(--amber); text-underline-offset: 6px; text-decoration-thickness: 2px; }
+  .ctrl { display: flex; align-items: center; gap: 14px; margin-top: 18px; }
+  .ctrl .pp { width: 40px; height: 40px; flex: 0 0 auto; border: 1px solid var(--txt1); background: none; color: var(--txt1); font-size: 13px; display: grid; place-items: center; transition: background .25s, color .25s; }
+  .ctrl .pp:hover { background: var(--txt1); color: var(--paper); }
+  .ctrl input[type="range"] { flex: 1; accent-color: var(--amber); }
+  @media (max-width: 960px) {
+    .story.pin { height: auto; }
+    .story .stage { position: relative; height: auto; min-height: 0; }
+    .story .steps { min-height: 250px; }
+  }
+
+  /* ---------- Ajustes de revisión ---------- */
+  .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); }
+  .hero h1 { font-size: clamp(40px, 4.3vw, 64px); max-width: 17ch; }
+  @media (max-width: 1080px) { .hero-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) {
+    .nav .wrap { gap: 10px; min-height: 64px; }
+    .nav img { height: 20px; }
+    .nav .btn { padding: 11px 12px; font-size: 13.5px; }
+    .nav .btn .arr { display: none; }
+    .brand { gap: 8px; }
+    .brand-sub { font-size: 9.5px; padding: 4px 6px; }
+    .cmp { min-width: 0; font-size: 13px; table-layout: fixed; }
+    .cmp th, .cmp td { padding: 12px 8px; overflow-wrap: anywhere; }
+    .cmp thead th { font-size: 13.5px; }
+    .cmp tbody th { width: 31%; }
+    .cmp .y, .cmp .n { gap: 5px; }
+    .uni-body svg { padding: 16px 8px; }
+  }
+  .wa-fab { position: fixed; right: 20px; bottom: 20px; z-index: 70; display: inline-flex; align-items: center; gap: 10px; padding: 13px 18px 13px 14px; background: var(--ink); color: var(--paper); border: 1px solid rgba(233,236,234,0.25); border-radius: 2px; font-size: 14.5px; font-weight: 500; box-shadow: 0 14px 34px -14px rgba(0,0,0,0.55); transition: background .25s, transform .3s cubic-bezier(.2,.8,.2,1); }
+  .wa-fab:hover { background: var(--brand); color: #fff; transform: translateY(-3px); }
+  .wa-fab svg { width: 20px; height: 20px; fill: var(--amber); flex: 0 0 auto; }
+  @media (max-width: 560px) { .wa-fab { right: 14px; bottom: 14px; padding: 12px 14px; } }
+
+  /* ---------- Versión para público general ---------- */
+  .wo.wo3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 960px) { .wo.wo3 { grid-template-columns: 1fr; } .wo.wo3 > div { border-left: 0; } .wo.wo3 > div + div { border-top: 1px solid var(--ink); } }
+  .works { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 56px; }
+  .works .shot { height: 340px; }
+  @media (max-width: 860px) { .works { grid-template-columns: 1fr; } .works .shot { height: 260px; } }
+  .faq-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 48px 80px; align-items: start; }
+  @media (max-width: 960px) { .faq-grid { grid-template-columns: 1fr; } }
+  .faq-h { font-size: clamp(34px, 4vw, 58px); margin-top: 20px; max-width: 12ch; }
+  .faq-p { margin-top: 20px; font-size: 17px; line-height: 1.65; color: var(--steel); max-width: 34ch; }
+  .faq { border-top: 1px solid var(--ink); }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; font-size: 19px; font-weight: 500; letter-spacing: -0.01em; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; flex: 0 0 auto; width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid var(--ink); font-family: "IBM Plex Mono", monospace; font-size: 16px; transition: background .25s, color .25s, transform .3s; }
+  .faq details[open] summary::after { content: "–"; background: var(--amber); border-color: var(--amber); }
+  .faq summary:hover::after { background: var(--ink); color: var(--paper); }
+  .faq details p { padding: 0 50px 24px 0; font-size: 16.5px; line-height: 1.7; color: var(--steel); max-width: 62ch; }
+  .tech { border-top: 1px solid var(--line); background: var(--paper-2); }
+  .tech > summary { list-style: none; cursor: pointer; max-width: 1400px; margin: 0 auto; padding: 30px 40px; display: flex; justify-content: space-between; align-items: center; gap: 20px; font-size: 19px; font-weight: 500; }
+  .tech > summary::-webkit-details-marker { display: none; }
+  .tech > summary .mono { color: var(--steel); display: block; margin-bottom: 6px; }
+  .tech > summary::after { content: "Ver +"; font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 14px; border: 1px solid var(--ink); white-space: nowrap; }
+  .tech[open] > summary::after { content: "Cerrar –"; background: var(--ink); color: var(--paper); }
+  @media (max-width: 760px) { .tech > summary { padding: 24px 18px; } }
+  .cmp thead th small { display: block; margin-top: 3px; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; color: var(--on-dark-2); }
+
+  /* ---------- Animaciones: pulido ---------- */
+  .scene .sig { stroke-width: 4.5; stroke-linecap: round; stroke-dasharray: 1 25; animation: flow 1.25s linear infinite; filter: drop-shadow(0 0 5px rgba(232,163,23,0.95)); }
+  @keyframes flow { to { stroke-dashoffset: -26; } }
+  .scene .trk { fill: none; stroke: var(--amber); stroke-width: 1.5; opacity: 0; transition: opacity .6s; }
+  .scene .sig.on + .trk { opacity: 0.38; }
+  .scene.swap { animation: sceneIn .75s cubic-bezier(.2,.8,.2,1); }
+  @keyframes sceneIn { from { opacity: 0; transform: translateY(12px) scale(0.985); } to { opacity: 1; transform: none; } }
+  .scene .part { transition: opacity .7s, filter .6s; }
+  .scene .part.hot { filter: drop-shadow(0 0 10px rgba(232,163,23,0.32)); }
+  .scene .sun { filter: drop-shadow(0 0 12px rgba(232,163,23,0.75)); animation: sunPulse 3.2s ease-in-out infinite; }
+  @keyframes sunPulse { 50% { filter: drop-shadow(0 0 24px rgba(232,163,23,0.95)); } }
+  .scene .win.lit, .sysv .win.lit { filter: drop-shadow(0 0 8px rgba(232,163,23,0.6)); }
+  .scene .led.on { filter: drop-shadow(0 0 4px rgba(232,163,23,0.9)); }
+  .sysv .moon { filter: drop-shadow(0 0 10px rgba(233,236,234,0.5)); }
+  .sysv .cutx { filter: drop-shadow(0 0 6px rgba(229,72,77,0.8)); }
+  .step .ph { clip-path: inset(0 100% 0 0); transition: clip-path .9s cubic-bezier(.7,0,.2,1) .15s; }
+  .step.on .ph { clip-path: inset(0 0 0 0); }
+
+  /* ---------- Simulador ---------- */
+  .hero.sim { padding-top: 52px; }
+  .hero.sim .hero-grid { align-items: start; }
+  .hero.sim h1 { font-size: clamp(38px, 4vw, 60px); }
+  .hero.sim .lead { margin-top: 20px; }
+  .sim-ctl { margin-top: 30px; border-top: 1px solid var(--ink); }
+  .sim-row { padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .sim-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
+  @media (max-width: 560px) { .sim-two { grid-template-columns: 1fr; } }
+  .sim-l { display: block; color: var(--steel); margin-bottom: 12px; }
+  .sim .seg { flex-wrap: wrap; }
+  .sim .seg button { padding: 11px 16px; font-size: 12px; cursor: pointer; }
+  .sim .seg button:hover:not([aria-pressed="true"]) { background: var(--paper-2); color: var(--ink); }
+  .sim-val { font-size: 17px; color: var(--steel); }
+  .sim-val b { font-size: 40px; font-weight: 500; letter-spacing: -0.03em; color: var(--ink); margin-right: 6px; }
+  .sim input[type="range"] { width: 100%; margin-top: 10px; accent-color: var(--amber); height: 28px; }
+  .sim-h { display: block; margin-top: 4px; font-size: 13.5px; color: var(--steel); }
+  #row-cortes.off { opacity: 0.4; pointer-events: none; }
+  .sim-badge { padding: 6px 10px; background: var(--amber); color: var(--ink); }
+  .sim-out { margin-top: 18px; font-size: 17px; line-height: 1.6; color: var(--ink); }
+  .sim-out b { font-weight: 600; }
+  .simv { --stk: #24343A; --stk2: rgba(15,26,31,0.4); --stk3: rgba(15,26,31,0.22); --fillp: rgba(15,26,31,0.035); }
+  .simv .lbl.dk { fill: var(--ink); font-size: 13px; }
+  .simv .lbl.dim { fill: var(--steel); font-size: 12px; }
+  .simv .pc { fill: #163239; stroke: #0F1A1F; stroke-width: 1; transform-box: fill-box; transform-origin: center; animation: pcIn .45s cubic-bezier(.2,.8,.2,1) both; }
+  .simv .pcl { stroke: rgba(233,236,234,0.35); stroke-width: 0.8; pointer-events: none; }
+  @keyframes pcIn { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: none; } }
+  .simv .bm { fill: rgba(232,163,23,0.35); stroke: var(--stk); stroke-width: 1.3; animation: pcIn .4s cubic-bezier(.2,.8,.2,1) both; transform-box: fill-box; transform-origin: center; }
+  .simv #sim-batg, .simv #sim-grid, .simv #sim-wb, .simv #sim-wg { transition: opacity .5s; }
+
+  /* ---------- Explorador de sistemas ---------- */
+  .sec.xp .sec-head p { font-size: 18px; }
+  .xp-sheet { margin-top: 40px; border: 1px solid var(--ink); background: var(--paper); }
+  .xp-top { display: flex; flex-wrap: wrap; gap: 14px 36px; padding: 14px 16px; border-bottom: 1px solid var(--ink); }
+  .xp-g { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .xp-g > .mono { color: var(--steel); }
+  .xp .seg button { padding: 11px 16px; font-size: 12px; cursor: pointer; }
+  .xp .seg button:hover:not([aria-pressed="true"]):not(:disabled) { background: var(--paper-2); color: var(--ink); }
+  .xp .seg button:disabled { opacity: 0.35; cursor: not-allowed; }
+  .xp-body { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); }
+  .xp-canvas { position: relative; transition: background-color .7s;
+    background-color: var(--paper);
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 20px 20px; }
+  .xp-canvas.night { background-color: #D5D7D4; }
+  .xp-canvas svg { display: block; width: 100%; height: auto; }
+  .xp-info { border-left: 1px solid var(--ink); padding: 28px 28px 30px; display: flex; flex-direction: column; }
+  .xp-info .k { color: var(--brand); }
+  .xp-info h2 { font-size: clamp(24px, 2.2vw, 32px); margin-top: 12px; }
+  .xp-info > p { margin-top: 14px; font-size: 16.5px; line-height: 1.65; color: var(--steel); }
+  .xp-cmp { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line); }
+  .xp-cmp .mono { color: var(--ink); display: inline-flex; align-items: center; gap: 10px; }
+  .xp-cmp .mono::before { content: ""; width: 9px; height: 9px; background: var(--amber); }
+  .xp-cmp p { margin-top: 10px; font-size: 15.5px; line-height: 1.6; color: var(--steel); }
+  .xp-cmp p.st { color: var(--ink); font-weight: 500; }
+  .xp-cmp p.st:empty { display: none; }
+  .sec.xp .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  @media (max-width: 1000px) { .xp-body { grid-template-columns: 1fr; } .xp-info { border-left: 0; border-top: 1px solid var(--ink); } }
+  .xpv { --stk: #24343A; --stk2: rgba(15,26,31,0.42); --stk3: rgba(15,26,31,0.22); --fillp: rgba(15,26,31,0.035); }
+  .xpv .banner rect { fill: var(--amber); transition: fill .3s; }
+  .xpv .banner text { font-family: "IBM Plex Mono", monospace; font-size: 13px; letter-spacing: 0.06em; fill: var(--ink); }
+  .xpv .banner.alert rect { fill: #B42318; } .xpv .banner.alert text { fill: #fff; }
+  .xpv #xp-moon { fill: #FFFFFF; stroke: var(--stk); stroke-width: 1.2; opacity: 0; transition: opacity .6s; }
+  .xpv #xp-sun { transition: opacity .6s; }
+  .xpv .xcut { fill: none; stroke: #D92D20; stroke-width: 4; stroke-linecap: round; opacity: 0; transition: opacity .3s; }
+  .xpv #xw-grid.cut { stroke: #D92D20; stroke-dasharray: 6 8; }
+  .xpv .cmp { cursor: pointer; transition: opacity .5s; outline: none; }
+  .xpv .cmp .hit { fill: transparent; stroke: none; }
+  .xpv .cmp:hover .s, .xpv .cmp:focus-visible .s { stroke: #8A5A00; }
+  .xpv .cmp.sel .s { stroke: var(--amber); stroke-width: 2.4; }
+  .xpv .cmp.sel .f { fill: rgba(232,163,23,0.14); }
+  .xpv .cmp.gone { opacity: 0.1; pointer-events: none; }
+  .xpv .cmp.off .ld { fill: rgba(15,26,31,0.03); }
+  .xpv .cmp .ld { fill: rgba(232,163,23,0.4); transition: fill .4s; }
+  .xpv .cmp:not(.off) .bulb { fill: var(--amber); filter: drop-shadow(0 0 8px rgba(232,163,23,0.9)); }
+  .xpv .hs circle { fill: var(--amber); stroke: var(--paper); stroke-width: 2; transition: transform .25s; transform-box: fill-box; transform-origin: center; }
+  .xpv .cmp:hover .hs circle, .xpv .cmp.sel .hs circle { transform: scale(1.25); }
+  .xpv .hs text { font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 500; fill: var(--ink); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+  .xpv .pnl { fill: #163239; stroke: #0F1A1F; stroke-width: 1; transition: fill .5s; }
+  .xpv .pnl.gen { fill: #1F4A52; }
+  .xpv #xp-soc { fill: rgba(232,163,23,0.55); transition: y .8s, height .8s; }
+  .xpv #xp-inv.off { fill: #D92D20; }
+  .xpv .lbl { font-size: 12px; }
+  @media (max-width: 700px) { .xpv .lbl { display: none; } .xpv .lbl.dig { display: block; font-size: 22px; } .xpv .hs circle { r: 20px; } .xpv .hs text { font-size: 20px; } .xpv .banner text { font-size: 20px; } .xpv .banner rect { x: 160px; width: 720px; height: 44px; y: 10px; } }
+
+  /* ---------- Portada con foto ---------- */
+  .hero-ph { margin: 0; position: relative; border: 1px solid var(--ink); overflow: hidden; aspect-ratio: 5 / 4; background: var(--ink); }
+  .hero-ph img { width: 100%; height: 100%; object-fit: cover; animation: heroZoom 18s ease-out both; }
+  @keyframes heroZoom { from { transform: scale(1.12); } to { transform: scale(1); } }
+  .hero-ph figcaption { position: absolute; left: 0; bottom: 0; background: var(--paper); color: var(--ink); padding: 9px 13px; border-top: 1px solid var(--ink); border-right: 1px solid var(--ink); }
+
+  /* ---------- Carrusel de la portada ---------- */
+  .car .car-s { position: absolute; inset: 0; clip-path: inset(0 0 0 100%); z-index: 0; }
+  .car .car-s img { width: 100%; height: 100%; object-fit: cover; animation: none; transform: scale(1.16); }
+  .car .car-s.prev { clip-path: inset(0); z-index: 1; }
+  .car .car-s.prev img { transform: scale(1); }
+  .car .car-s.on { clip-path: inset(0); z-index: 2; transition: clip-path 1.1s cubic-bezier(.7,0,.2,1); }
+  .car .car-s.on img { transform: scale(1); transition: transform 6.5s cubic-bezier(.2,.7,.2,1); }
+  .car .car-s.on::after { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 3px; background: var(--amber); box-shadow: 0 0 18px 3px rgba(232,163,23,0.7); animation: carLine 1.1s cubic-bezier(.7,0,.2,1) both; }
+  @keyframes carLine { 0% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; } }
+  .car figcaption, .car .car-nav, .car .car-bars { z-index: 3; }
+  .car .car-bars { position: absolute; left: 14px; right: 14px; top: 14px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .car .car-bars i { height: 3px; background: rgba(255,255,255,0.4); overflow: hidden; }
+  .car .car-bars b { display: block; height: 100%; width: 0; background: var(--amber); }
+  .car .car-bars i.done b { width: 100%; }
+  .car .car-bars i.run b { animation: carBar 5.5s linear forwards; }
+  .car.hold .car-bars i.run b { animation-play-state: paused; }
+  @keyframes carBar { to { width: 100%; } }
+  .car .car-nav { position: absolute; right: 0; bottom: 0; display: flex; align-items: center; background: var(--paper); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+  .car .car-nav span { padding: 0 12px; }
+  .car .car-nav button { width: 40px; height: 36px; background: none; border: 0; font-size: 16px; transition: background .25s, color .25s; }
+  .car .car-nav button:hover { background: var(--ink); color: var(--paper); }
+  @media (prefers-reduced-motion: reduce) { .car .car-s.on, .car .car-s.on img { transition: none; } .car .car-s.on::after { display: none; } }
+
+  /* ---------- Trabajos: galería ---------- */
+  .works.works7 { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 240px; }
+  .works.works7 .shot { height: auto; }
+  .works.works7 .g22 { grid-column: span 2; grid-row: span 2; }
+  .works.works7 .g21 { grid-column: span 2; }
+  .works.works7 .shot:hover img { transform: scale(1.06); transition-duration: 1.2s; }
+  @media (max-width: 860px) { .works.works7 { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 170px; } }
+
+  /* ---------- Mapa de ubicación ---------- */
+  .contact .map { grid-column: 1 / -1; position: relative; border: 1px solid rgba(233,236,234,0.25); background: #0B1418; overflow: hidden; }
+  .contact .map iframe { position: relative; z-index: 1; display: block; width: 100%; height: 380px; border: 0; filter: grayscale(0.35) contrast(1.05); }
+  .contact .map-fb { position: absolute; inset: 0 0 auto 0; height: 380px; z-index: 0; }
+  .contact .map-fb svg { width: 100%; height: 100%; }
+  .contact .map-fb path { fill: none; stroke: rgba(233,236,234,0.12); stroke-width: 6; }
+  .contact .map-fb circle { fill: none; stroke: rgba(232,163,23,0.35); stroke-width: 1.5; }
+  .contact .map-fb .pin { fill: var(--amber); stroke: none; }
+  .contact .map-fb .pin-c { fill: #0B1418; stroke: none; }
+  .contact .map-bar { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; padding: 18px 20px; border-top: 1px solid rgba(233,236,234,0.25); background: var(--ink); }
+  .contact .map-bar .mono { display: block; color: var(--on-dark-2); }
+  .contact .map-bar b { display: block; margin-top: 6px; font-size: 19px; font-weight: 500; color: var(--on-dark); }
+  .contact .map-bar .sm { display: block; margin-top: 2px; font-size: 14.5px; color: var(--on-dark-2); }
+  @media (max-width: 700px) { .contact .map iframe, .contact .map-fb { height: 280px; } }
+
+  /* ---------- Familia de productos Solar ---------- */
+  .lines { background: var(--ink); border-top: 1px solid rgba(233,236,234,0.12); }
+  .lines .wrap { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+  .lines .wrap::-webkit-scrollbar { display: none; }
+  .lines a { flex: 0 0 auto; padding: 11px 16px; font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark-2); border-bottom: 2px solid transparent; transition: color .25s, border-color .25s; }
+  .lines a:hover { color: var(--on-dark); }
+  .lines a[aria-current="page"] { color: var(--on-dark); border-bottom-color: var(--amber); }
+
+  .mini { --stk: #24343A; --stk2: rgba(15,26,31,0.42); --stk3: rgba(15,26,31,0.22); --fillp: rgba(15,26,31,0.035); }
+  .mini .sig { stroke-width: 4; }
+  .mini .sig.cold, .tv .sig.cold { stroke: #2F7FC1; filter: drop-shadow(0 0 5px rgba(47,127,193,0.9)); }
+  .mini .chg { fill: var(--amber); transform-box: fill-box; transform-origin: left; animation: chg 3.2s ease-in-out infinite; }
+  @keyframes chg { 0% { transform: scaleX(0.15); } 70%, 100% { transform: scaleX(1); } }
+  .mini .led { fill: var(--amber); animation: blink 1.4s steps(2, jump-none) infinite; }
+
+  /* Portada distribuidora */
+  .pick-hero { padding: 64px 0 90px; border-bottom: 1px solid var(--line); }
+  .pick-hero h1 { font-size: clamp(42px, 5.6vw, 84px); margin-top: 22px; }
+  .pick-hero h1 em { font-style: normal; color: var(--brand); }
+  .pick-hero .lead { margin-top: 20px; font-size: clamp(17px, 1.4vw, 19.5px); line-height: 1.6; color: var(--steel); max-width: 56ch; }
+  .picks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+  @media (max-width: 960px) { .picks { grid-template-columns: 1fr; } }
+  .pk { display: flex; flex-direction: column; border: 1px solid var(--ink); background: var(--paper); transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s; }
+  .pk:hover { transform: translateY(-6px); box-shadow: 10px 10px 0 var(--amber); }
+  .pk .art { position: relative; aspect-ratio: 5 / 3; border-bottom: 1px solid var(--ink); background-color: var(--paper); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 20px 20px; }
+  .pk .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .pk .art .n { position: absolute; top: 12px; left: 12px; background: var(--ink); color: var(--paper); padding: 5px 9px; }
+  .pk .tx { padding: 22px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+  .pk h2 { font-size: clamp(26px, 2.3vw, 34px); }
+  .pk p { margin-top: 10px; font-size: 16.5px; line-height: 1.55; color: var(--steel); }
+  .pk .go { margin-top: auto; padding-top: 22px; display: flex; justify-content: space-between; align-items: center; font-weight: 500; }
+  .pk .go span:last-child { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--ink); transition: background .3s, color .3s; }
+  .pk:hover .go span:last-child { background: var(--amber); border-color: var(--amber); }
+  .pick-help { margin-top: 26px; font-size: 16px; color: var(--steel); }
+  .pick-help a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--amber); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+
+  .about-g { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 56px 80px; align-items: center; }
+  @media (max-width: 960px) { .about-g { grid-template-columns: 1fr; } }
+  .about-g h2 { font-size: clamp(34px, 4vw, 56px); margin-top: 18px; max-width: 16ch; }
+  .about-g p.b { margin-top: 20px; font-size: 17.5px; line-height: 1.7; color: var(--steel); max-width: 52ch; }
+  .about-g ul { margin-top: 28px; border-top: 1px solid var(--line); }
+  .about-g li { padding: 14px 0; border-bottom: 1px solid var(--line); display: flex; gap: 14px; font-size: 16px; }
+  .about-g li::before { content: ""; width: 9px; height: 9px; margin-top: 7px; background: var(--amber); flex: 0 0 auto; }
+
+  .bat-g { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px 80px; align-items: center; }
+  @media (max-width: 960px) { .bat-g { grid-template-columns: 1fr; } }
+  .bat-g h2 { font-size: clamp(34px, 4vw, 56px); margin-top: 18px; max-width: 14ch; }
+  .bat-g p.b { margin-top: 18px; font-size: 17.5px; line-height: 1.7; color: var(--steel); max-width: 50ch; }
+  .bat-g .uses { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .bat-g .uses span { padding: 8px 12px; border: 1px solid var(--line); background: var(--paper); font-size: 14.5px; }
+  .bat-g .art { border: 1px solid var(--ink); aspect-ratio: 5 / 3; position: relative; background-color: var(--paper); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 20px 20px; }
+  .bat-g .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* Termotanques */
+  .tv { --stk: #24343A; --stk2: rgba(15,26,31,0.42); --stk3: rgba(15,26,31,0.22); --fillp: rgba(15,26,31,0.035); }
+  .tv .sig.slow { animation-duration: 3s; }
+  .tv #tt-hot { fill: rgba(232,163,23,0.5); transition: fill .8s; }
+  .tv #tt-hot.mid { fill: rgba(232,163,23,0.32); }
+  .tv #tt-hot.low { fill: rgba(232,163,23,0.18); }
+  .tv #tt-res { fill: none; stroke: var(--stk2); stroke-width: 2; transition: stroke .4s; }
+  .tv #tt-res.on { stroke: #D92D20; filter: drop-shadow(0 0 6px rgba(217,45,32,0.8)); }
+  .tv #tt-cloud { fill: #FFFFFF; stroke: var(--stk); stroke-width: 1.3; opacity: 0; transition: opacity .6s; }
+  .tv .col-b .plate { fill: rgba(22,50,57,0.85); }
+  .tv .tube { stroke: #163239; stroke-width: 7; stroke-linecap: round; }
+  .tv .col-a, .tv .col-b { transition: opacity .5s; }
+  .lit-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
+  .lit-row button { padding: 13px 18px; border: 1px solid var(--ink); background: var(--paper); font-family: "IBM Plex Mono", monospace; font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; transition: background .25s, color .25s; }
+  .lit-row button:hover:not([aria-pressed="true"]) { background: var(--paper-2); }
+  .lit-row button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .lit-out { margin-top: 30px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px 36px; align-items: center; border-top: 1px solid var(--ink); padding-top: 26px; }
+  .lit-out .big { font-size: clamp(56px, 7vw, 96px); font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+  .lit-out .big small { font-size: 0.32em; letter-spacing: 0; color: var(--steel); margin-left: 6px; }
+  .lit-out .ppl { display: flex; flex-wrap: wrap; gap: 6px; }
+  .lit-out .ppl svg { width: 30px; height: 44px; fill: var(--ink); animation: pcIn .4s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes pcIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .types2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 52px; }
+  @media (max-width: 860px) { .types2 { grid-template-columns: 1fr; } }
+  .types2 article { border: 1px solid var(--ink); background: var(--paper); padding: 28px 26px 30px; }
+  .types2 .k { color: var(--brand); }
+  .types2 h3 { font-size: 30px; margin-top: 10px; }
+  .types2 p { margin-top: 12px; font-size: 16.5px; line-height: 1.65; color: var(--steel); }
+  .types2 ul { margin-top: 18px; border-top: 1px solid var(--line); }
+  .types2 li { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+  .types2 li span:first-child { color: var(--steel); }
+  .note2 { margin-top: 16px; color: var(--steel); font-size: 13.5px; }
+  .mini .pnl { fill: #163239; stroke: #0F1A1F; stroke-width: 1; }
+  .mini .tube { stroke: #163239; stroke-linecap: round; }
+  .scene .trk.cold { stroke: #2F7FC1; }
+  .pk .art .mini { pointer-events: none; }
+  @media (min-width: 961px) { .bat-g.flip > .art { order: -1; } }
+  #paneles-linea, #termotanques-linea, #baterias { scroll-margin-top: 80px; }
+  .tv .ptag rect { stroke: none; }
+  .tv .ptag.hot rect { fill: var(--amber); }
+  .tv .ptag.cold rect { fill: #2F7FC1; }
+  .tv .ptag text { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: 0.06em; fill: var(--ink); }
+  .tv .ptag.cold text { fill: #FFFFFF; }
+  .tv .wl { fill: rgba(47,127,193,0.3); }
+  .tv .drops { fill: none; stroke: #2F7FC1; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 4 6; animation: flow 0.8s linear infinite; }
+  .tv .g-pres, .tv .g-nopres { transition: opacity .5s; }
+  .tv .off { opacity: 0; pointer-events: none; }
+
+  /* ---------- Baterías portátiles ---------- */
+  .usos4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 48px; }
+  @media (max-width: 960px) { .usos4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .usos4 { grid-template-columns: 1fr; } }
+  .usos4 article { border: 1px solid var(--ink); background: var(--paper); padding: 22px 22px 24px; }
+  .usos4 svg { width: 120px; height: 80px; display: block; }
+  .usos4 h3 { font-size: 24px; margin-top: 14px; }
+  .usos4 p { margin-top: 8px; font-size: 15.5px; line-height: 1.6; color: var(--steel); }
+  .mini .win.lit { fill: rgba(232,163,23,0.55); }
+  .bc-body { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+  @media (max-width: 960px) { .bc-body { grid-template-columns: 1fr; } }
+  .bc-dev { padding: 22px 22px 26px; }
+  .bc-l { display: block; color: var(--steel); margin-bottom: 14px; }
+  .bc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  @media (max-width: 700px) { .bc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .bc-grid button { text-align: left; padding: 12px 12px; border: 1px solid var(--line); background: var(--paper); transition: background .2s, border-color .2s, opacity .2s; }
+  .bc-grid button b { display: block; font-weight: 500; font-size: 15px; }
+  .bc-grid button span { display: block; margin-top: 3px; font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--steel); }
+  .bc-grid button:hover { border-color: var(--ink); }
+  .bc-grid button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .bc-grid button[aria-pressed="true"] span { color: var(--on-dark-2); }
+  .bc-grid button.no { opacity: 0.55; }
+  .bc-grid button.no span::after { content: " · requiere 220 V"; color: #B42318; }
+  .bc-grid button[aria-pressed="true"].no span::after { color: #F97066; }
+  .bc-out { border-left: 1px solid var(--ink); padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 16px; }
+  @media (max-width: 960px) { .bc-out { border-left: 0; border-top: 1px solid var(--ink); } }
+  .bc-bat { width: 100%; max-width: 280px; height: auto; align-self: center; }
+  .bc-bat g { transition: opacity .4s; }
+  #bc-fill { fill: rgba(232,163,23,0.6); transform-box: fill-box; transform-origin: left; }
+  .bc-res > .mono { color: var(--steel); }
+  .bc-h { font-size: clamp(44px, 5vw, 68px); font-weight: 500; letter-spacing: -0.04em; line-height: 1.05; margin-top: 4px; }
+  .bc-meter { margin-top: 16px; display: grid; grid-template-columns: auto auto 1fr; gap: 4px 10px; align-items: baseline; }
+  .bc-meter .mono { color: var(--steel); }
+  .bc-meter b { font-weight: 500; font-size: 18px; }
+  .bc-meter i { grid-column: 1 / -1; height: 8px; background: var(--paper-2); border: 1px solid var(--line); overflow: hidden; }
+  .bc-meter em { display: block; height: 100%; width: 0; background: var(--brand); transition: width .4s, background .3s; }
+  .bc-meter em.over { background: #B42318; }
+  .bc-msg { margin-top: 12px; font-size: 15.5px; line-height: 1.55; color: var(--steel); }
+  .bc-msg.warn { color: #B42318; font-weight: 500; }
+  .models { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+  @media (max-width: 960px) { .models { grid-template-columns: 1fr; } }
+  .models article { border: 1px solid var(--ink); background: var(--paper); padding: 0 0 26px; display: flex; flex-direction: column; }
+  .models .m-art { aspect-ratio: 220 / 140; max-height: 240px; border-bottom: 1px solid var(--ink); background-color: var(--paper); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 20px 20px; }
+  .models .m-art svg { width: 100%; height: 100%; display: block; }
+  .models .k, .models h3, .models > article > p, .models .spec2, .models .btn { margin-left: 24px; margin-right: 24px; }
+  .models .k { margin-top: 22px; color: var(--brand); }
+  .models h3 { font-size: 30px; margin-top: 8px; }
+  .models article > p { margin-top: 10px; font-size: 16px; line-height: 1.6; color: var(--steel); }
+  .spec2 { margin-top: 18px; border-top: 1px solid var(--line); flex: 1; }
+  .spec2 li { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .spec2 li span { color: var(--steel); }
+  .spec2 li b { font-weight: 500; }
+  @media (max-width: 560px) { .spec2 li { grid-template-columns: 1fr; gap: 2px; } }
+  .models .btn { margin-top: 22px; align-self: flex-start; }
+</style>
+</head>
+<body>
+
+<div class="util"><div class="wrap">
+  <span class="mono">Meraki Services Solar Energy</span>
+  <span class="mono hide-m">Una unidad de Meraki Port &amp; Industrial Services S.A.</span>
+  <span class="mono live">Canning, Buenos Aires</span>
+</div></div>
+
+<div class="lines"><div class="wrap"><a href="index.html" aria-current="page">Inicio</a><a href="paneles.html">Paneles solares</a><a href="termotanques.html">Termotanques solares</a><a href="baterias.html">Baterías portátiles</a></div></div>
+
+<header class="nav"><div class="wrap">
+  <a href="index.html" class="brand" aria-label="Meraki Services Solar Energy — inicio"><img src="assets/logo-meraki.png" alt="Meraki Services"><span class="mono brand-sub">Solar Energy</span></a>
+  <nav class="nav-links" aria-label="Principal">
+    <a href="#paneles-linea">Paneles solares</a>
+    <a href="#termotanques-linea">Termotanques</a>
+    <a href="#baterias">Baterías portátiles</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <a class="btn btn-ink" href="#contacto">Pedir presupuesto <span class="arr" aria-hidden="true">→</span></a>
+</div></header>
+
+<main>
+  <section class="pick-hero" id="inicio">
+    <div class="wrap">
+      <span class="mono tick" data-rv>Meraki Services Solar Energy · Hogar · Comercio · Industria</span>
+      <h1 data-rv style="transition-delay:.1s">¿Qué está <em>buscando</em>?</h1>
+      <p class="lead" data-rv style="transition-delay:.2s">Elija una opción y le mostramos cómo funciona, qué le conviene y cómo pedir su presupuesto.</p>
+      <div class="picks">
+        <a class="pk" href="paneles.html" data-rv>
+          <span class="art"><svg class="scene mini" viewBox="0 0 300 180" aria-hidden="true">
+  <circle class="sun" cx="250" cy="34" r="14"/>
+  <line class="ground" x1="10" y1="160" x2="290" y2="160"/>
+  <path class="s f" d="M70 160 V100 H200 V160"/>
+  <path class="s" d="M58 100 L135 52 L212 100"/>
+  <path class="pnl" d="M142 60 L162 72 L158 80 L138 68 Z M166 75 L186 87 L182 95 L162 83 Z"/>
+  <rect class="s t" x="92" y="118" width="22" height="20"/><rect class="s t" x="156" y="118" width="22" height="20"/>
+  <path class="sig on" d="M172 90 L200 110 H230 V140 H200"/>
+  <rect class="s f" x="222" y="120" width="22" height="26"/>
+</svg><span class="n mono">01</span></span>
+          <span class="tx">
+            <h2>Paneles solares</h2>
+            <p>Para pagar menos de luz y no quedarse sin energía en los cortes. Sistemas on-grid, híbridos y off-grid.</p>
+            <span class="go"><span>Ver paneles solares</span><span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+        <a class="pk" href="termotanques.html" data-rv style="transition-delay:.1s">
+          <span class="art"><svg class="scene mini" viewBox="0 0 300 180" aria-hidden="true">
+  <circle class="sun" cx="250" cy="34" r="14"/>
+  <line class="ground" x1="10" y1="160" x2="290" y2="160"/>
+  <path class="s t" d="M60 160 L170 160 M80 160 V150 M190 160 V96"/>
+  <path class="s f" d="M60 150 L150 150 L196 92 L106 92 Z"/>
+  <path class="tube" d="M74 148 L118 94 M90 148 L134 94 M106 148 L150 94 M122 148 L166 94 M138 148 L182 94" style="stroke-width:4"/>
+  <rect class="s f" x="104" y="64" width="110" height="30" rx="15"/>
+  <rect x="110" y="70" width="98" height="18" rx="9" style="fill:rgba(232,163,23,.45)"/>
+  <path class="sig on" d="M98 146 L142 92"/><path class="sig on" d="M130 146 L174 92"/>
+  <path class="sig cold on" d="M214 80 H240 V150 H150"/>
+</svg><span class="n mono">02</span></span>
+          <span class="tx">
+            <h2>Termotanques solares</h2>
+            <p>Agua caliente con la energía del sol, para ahorrar gas o electricidad todos los días.</p>
+            <span class="go"><span>Ver termotanques</span><span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+        <a class="pk" href="baterias.html" data-rv style="transition-delay:.2s">
+          <span class="art"><svg class="scene mini" viewBox="0 0 300 180" aria-hidden="true">
+  <line class="ground" x1="10" y1="160" x2="290" y2="160"/>
+  <path class="s" d="M128 62 V48 H192 V62"/>
+  <rect class="s f" x="104" y="62" width="112" height="98" rx="8"/>
+  <rect class="s t" x="118" y="76" width="84" height="22" rx="3"/>
+  <rect class="chg" x="121" y="79" width="78" height="16" rx="2"/>
+  <circle class="s t" cx="128" cy="124" r="7"/><circle class="s t" cx="152" cy="124" r="7"/>
+  <rect class="s t" x="170" y="117" width="10" height="14"/><rect class="s t" x="186" y="117" width="10" height="14"/>
+  <circle class="led" cx="198" cy="146" r="3"/>
+  <path class="s" d="M24 120 H54 M54 112 V128 M54 115 H62 M54 125 H62"/>
+  <path class="sig on" d="M62 120 H104"/>
+  <path class="s" d="M232 100 h40 v26 h-40 z M246 126 v10 h12 v-10"/>
+  <path class="sig on" d="M216 112 H232"/>
+</svg><span class="n mono">03</span></span>
+          <span class="tx">
+            <h2>Baterías portátiles</h2>
+            <p>Energía para camping, cortes en casa, vacaciones o trabajo. Sin instalación: se cargan y se usan.</p>
+            <span class="go"><span>Ver baterías portátiles</span><span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+      </div>
+      <p class="pick-help" data-rv>¿No sabe cuál le conviene? <a href="https://wa.me/5491144136890?text=Hola%2C%20quisiera%20asesoramiento%20sobre%20energ%C3%ADa%20solar." target="_blank" rel="noopener">Escríbanos por WhatsApp</a> y lo asesoramos.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="nosotros">
+    <div class="wrap about-g">
+      <div>
+        <span class="mono tick" data-rv>Quiénes somos</span>
+        <h2 data-rv style="transition-delay:.1s">Energía solar con respaldo técnico.</h2>
+        <p class="b" data-rv style="transition-delay:.2s">Meraki Services Solar Energy es la unidad de energía solar de Meraki Port &amp; Industrial Services S.A. El mismo equipo técnico que mantiene equipos críticos en la industria se ocupa de asesorarlo, instalar y mantener su sistema.</p>
+        <ul data-rv style="transition-delay:.3s">
+          <li>Asesoramiento según su consumo, no paquetes cerrados</li>
+          <li>Instalación con personal propio</li>
+          <li>Mantenimiento posterior</li>
+        </ul>
+      </div>
+            <figure class="hero-ph car" id="car" data-rv style="transition-delay:.15s" aria-roledescription="carrusel" aria-label="Fotos de instalaciones">
+        <div class="car-s on" data-cap="Instalación de paneles sobre techo"><img src="assets/solar-techo.webp" alt="Técnicos de Meraki instalando paneles solares sobre un techo"></div>
+        <div class="car-s" data-cap="Vivienda con paneles solares"><img src="assets/solar-casa.webp" alt="Vivienda con paneles solares y vehículo de Meraki Services"></div>
+        <div class="car-s" data-cap="Paneles sobre techo de tejas"><img src="assets/card-solar.webp" alt="Paneles solares sobre un techo de tejas"></div>
+        <div class="car-bars" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i></div>
+        <figcaption class="mono" id="car-cap">Instalación de paneles sobre techo</figcaption>
+        <div class="car-nav mono">
+          <button type="button" id="car-prev" aria-label="Foto anterior">←</button>
+          <span id="car-n">01 / 03</span>
+          <button type="button" id="car-next" aria-label="Foto siguiente">→</button>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="paneles-linea">
+    <div class="wrap bat-g">
+      <div>
+        <span class="mono tick" data-rv>01 · Paneles solares</span>
+        <h2 data-rv style="transition-delay:.1s">Pague menos de luz.</h2>
+        <p class="b" data-rv style="transition-delay:.2s">Sistemas de paneles solares para hogares, comercios e industrias, dimensionados según su factura de luz. Con o sin baterías, según cuánto le afecten los cortes.</p>
+        <div class="uses" data-rv style="transition-delay:.25s"><span>On-grid · conectado a la red</span><span>Híbrido · con baterías</span><span>Off-grid · sin red</span><span>Mantenimiento</span></div>
+        <div data-rv style="display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;transition-delay:.3s">
+          <a class="btn btn-ink" href="paneles.html">Ver paneles solares <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn-line" href="paneles.html#explorador">Ver cómo funciona cada sistema</a>
+        </div>
+      </div>
+      <div class="art" data-rv style="transition-delay:.15s"><svg class="scene mini" viewBox="0 0 300 180" aria-hidden="true">
+  <circle class="sun" cx="250" cy="34" r="14"/>
+  <line class="ground" x1="10" y1="160" x2="290" y2="160"/>
+  <path class="s f" d="M70 160 V100 H200 V160"/>
+  <path class="s" d="M58 100 L135 52 L212 100"/>
+  <path class="pnl" d="M142 60 L162 72 L158 80 L138 68 Z M166 75 L186 87 L182 95 L162 83 Z"/>
+  <rect class="s t" x="92" y="118" width="22" height="20"/><rect class="s t" x="156" y="118" width="22" height="20"/>
+  <path class="sig on" d="M172 90 L200 110 H230 V140 H200"/>
+  <rect class="s f" x="222" y="120" width="22" height="26"/>
+</svg></div>
+    </div>
+  </section>
+
+  <section class="sec proc" id="termotanques-linea">
+    <div class="wrap bat-g flip">
+      <div>
+        <span class="mono tick" data-rv>02 · Termotanques solares</span>
+        <h2 data-rv style="transition-delay:.1s">Agua caliente con el sol.</h2>
+        <p class="b" data-rv style="transition-delay:.2s">El termotanque solar calienta el agua de su casa o comercio sin bomba y sin consumo, y ahorra gas o electricidad todos los días. Tiene respaldo para los días nublados.</p>
+        <div class="uses" data-rv style="transition-delay:.25s"><span>Tubos de vacío</span><span>Presurizado</span><span>Sin presión</span><span>Respaldo eléctrico</span></div>
+        <div data-rv style="display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;transition-delay:.3s">
+          <a class="btn btn-ink" href="termotanques.html">Ver termotanques solares <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn-line" href="termotanques.html#litros">¿Qué tamaño necesito?</a>
+        </div>
+      </div>
+      <div class="art" data-rv style="transition-delay:.15s"><svg class="scene mini" viewBox="0 0 300 180" aria-hidden="true">
+  <circle class="sun" cx="250" cy="34" r="14"/>
+  <line class="ground" x1="10" y1="160" x2="290" y2="160"/>
+  <path class="s t" d="M60 160 L170 160 M80 160 V150 M190 160 V96"/>
+  <path class="s f" d="M60 150 L150 150 L196 92 L106 92 Z"/>
+  <path class="tube" d="M74 148 L118 94 M90 148 L134 94 M106 148 L150 94 M122 148 L166 94 M138 148 L182 94" style="stroke-width:4"/>
+  <rect class="s f" x="104" y="64" width="110" height="30" rx="15"/>
+  <rect x="110" y="70" width="98" height="18" rx="9" style="fill:rgba(232,163,23,.45)"/>
+  <path class="sig on" d="M98 146 L142 92"/><path class="sig on" d="M130 146 L174 92"/>
+  <path class="sig cold on" d="M214 80 H240 V150 H150"/>
+</svg></div>
+    </div>
+  </section>
+
+  <section class="sec" id="baterias">
+    <div class="wrap bat-g">
+      <div>
+        <span class="mono tick" data-rv>03 · Baterías portátiles</span>
+        <h2 data-rv style="transition-delay:.1s">Energía donde la necesite.</h2>
+        <p class="b" data-rv style="transition-delay:.2s">Estaciones de energía que se cargan desde la pared, con paneles solares o en el auto, y entregan electricidad por enchufes de 220 V, USB y 12 V. Desde compactas para la mochila hasta equipos con ruedas que sostienen la heladera en un corte.</p>
+        <div class="uses" data-rv style="transition-delay:.25s"><span>Camping</span><span>Cortes en casa</span><span>Vacaciones y viajes</span><span>Trabajo y obra</span></div>
+        <div class="ctas" data-rv style="display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;transition-delay:.3s">
+          <a class="btn btn-ink" href="baterias.html">Ver baterías portátiles <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn-line" href="baterias.html#calculadora">¿Cuántas horas me dura?</a>
+        </div>
+      </div>
+      <div class="art" data-rv style="transition-delay:.15s"><svg class="scene mini" viewBox="0 0 300 180" aria-hidden="true">
+  <line class="ground" x1="10" y1="160" x2="290" y2="160"/>
+  <path class="s" d="M128 62 V48 H192 V62"/>
+  <rect class="s f" x="104" y="62" width="112" height="98" rx="8"/>
+  <rect class="s t" x="118" y="76" width="84" height="22" rx="3"/>
+  <rect class="chg" x="121" y="79" width="78" height="16" rx="2"/>
+  <circle class="s t" cx="128" cy="124" r="7"/><circle class="s t" cx="152" cy="124" r="7"/>
+  <rect class="s t" x="170" y="117" width="10" height="14"/><rect class="s t" x="186" y="117" width="10" height="14"/>
+  <circle class="led" cx="198" cy="146" r="3"/>
+  <path class="s" d="M24 120 H54 M54 112 V128 M54 115 H62 M54 125 H62"/>
+  <path class="sig on" d="M62 120 H104"/>
+  <path class="s" d="M232 100 h40 v26 h-40 z M246 126 v10 h12 v-10"/>
+  <path class="sig on" d="M216 112 H232"/>
+</svg></div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="contact">
+    <div class="wrap">
+      <div>
+        <span class="mono tick on-dark" data-rv>Contacto</span>
+        <h2 data-rv style="transition-delay:.1s">Pida su presupuesto.</h2>
+        <p class="lead" data-rv style="transition-delay:.2s">Cuéntenos qué necesita (paneles, termotanque o batería portátil) y le preparamos una propuesta. Si es para paneles, nos sirve tener sus últimas facturas de luz.</p>
+        <div data-rv style="display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;transition-delay:.3s">
+          <a class="btn btn-amber" href="https://wa.me/5491144136890?text=Hola%2C%20quisiera%20pedir%20un%20presupuesto%20de%20energ%C3%ADa%20solar." target="_blank" rel="noopener">Escribir por WhatsApp <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn-line-d" href="mailto:ventas@merakiservices.com.ar?subject=Estudio%20de%20consumo%20-%20Solar%20Energy">Enviar correo</a>
+        </div>
+      </div>
+      <div class="kv" data-rv style="transition-delay:.2s">
+        <div><span class="mono">Correo</span><a href="mailto:ventas@merakiservices.com.ar">ventas@merakiservices.com.ar</a></div>
+        <div><span class="mono">Teléfono</span><a href="tel:+5491144136890">+54 9 11 4413-6890</a></div>
+        <div><span class="mono">WhatsApp</span><a href="https://wa.me/5491144136890?text=Hola%2C%20quisiera%20pedir%20un%20presupuesto%20de%20energ%C3%ADa%20solar." target="_blank" rel="noopener">+54 9 11 4413-6890</a></div>
+        <div><span class="mono">Sede</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Mariano+Castex+5489%2C+Canning%2C+Provincia+de+Buenos+Aires%2C+Argentina" target="_blank" rel="noopener">Mariano Castex 5489, Canning, Provincia de Buenos Aires</a></div>
+        <div><span class="mono">Instagram</span><a href="https://www.instagram.com/merakiservices.solarenergy/" target="_blank" rel="noopener">@merakiservices.solarenergy</a></div>
+      </div>
+      <div class="map" data-rv>
+        <div class="map-fb" aria-hidden="true">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><path d="M0 120 H400 M0 210 H400 M110 0 V300 M270 0 V300 M0 40 L400 280" /><circle cx="200" cy="150" r="46" /><path class="pin" d="M200 118 a22 22 0 0 1 22 22 c0 18 -22 40 -22 40 s-22 -22 -22 -40 a22 22 0 0 1 22 -22 Z" /><circle class="pin-c" cx="200" cy="140" r="8" /></svg>
+        </div>
+        <iframe title="Mapa: Mariano Castex 5489, Canning" src="https://www.google.com/maps?q=Mariano+Castex+5489,+Canning,+Provincia+de+Buenos+Aires,+Argentina&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-bar">
+          <div><span class="mono">Dónde estamos</span><b>Mariano Castex 5489, Canning</b><span class="sm">Provincia de Buenos Aires, Argentina</span></div>
+          <a class="btn btn-amber" href="https://www.google.com/maps/search/?api=1&amp;query=Mariano+Castex+5489%2C+Canning%2C+Provincia+de+Buenos+Aires%2C+Argentina" target="_blank" rel="noopener">Abrir en Google Maps <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot"><div class="wrap">
+  <img src="assets/logo-meraki.png" alt="Meraki Services">
+  <nav aria-label="Enlaces">
+    <a href="https://www.instagram.com/merakiservices.solarenergy/" target="_blank" rel="noopener">Instagram Solar</a>
+    <a href="https://ar.linkedin.com/company/meraki-services-argentina" target="_blank" rel="noopener">LinkedIn</a>
+  </nav>
+  <span>Meraki Services Solar Energy es una unidad de Meraki Port &amp; Industrial Services S.A.</span>
+</div></footer>
+
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var pending = $$("[data-rv], .shot");
+  (function frame() {
+    var vh = window.innerHeight || 800;
+    pending = pending.filter(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.height > 0 && r.top < vh * 0.92 && r.bottom > 0) { el.classList.add("in"); return false; }
+      return true;
+    });
+    if (pending.length) requestAnimationFrame(frame);
+  })();
+
+  /* ---- Termotanque ---- */
+  if ($("#tt-canvas")) {
+    var s = { tipo: "pres", sit: "dia", sel: null };
+    var TIPO = { pres: "Presurizado", nopres: "Sin presión" }, SIT = { dia: "Día de sol", noche: "Noche", nublado: "Nublado" };
+    var ST = {
+      dia: { h: "Calienta sin bomba", p: "El sol calienta el agua dentro de los tubos. Como el agua caliente pesa menos, sube sola al tanque y la fría baja a ocupar su lugar. Es el termosifón: funciona sin bomba y sin electricidad.", up: 1, slow: 0, res: 0, hot: "", ban: "DÍA DE SOL · CALENTANDO", circ: "Termosifón activo", agua: "Caliente" },
+      noche: { h: "Guarda el calor para la noche", p: "Los tubos no calientan, pero el tanque aislado conserva el agua caliente acumulada durante el día para usarla a la noche y a la mañana.", up: 0, slow: 0, res: 0, hot: "mid", ban: "NOCHE · AGUA ACUMULADA", circ: "Detenida", agua: "Caliente, acumulada" },
+      nublado: { h: "El respaldo completa", p: "Con poco sol los tubos calientan menos. Si el agua no llega a la temperatura deseada, el respaldo eléctrico completa el resto.", up: 1, slow: 1, res: 1, hot: "low", ban: "NUBLADO · RESPALDO ENCENDIDO", circ: "Lenta", agua: "Tibia, se completa" }
+    };
+    var CMP = {
+      colector: function () { return ["Colector de tubos de vacío", "Tubos de vidrio de doble capa con vacío en el medio, que funciona como aislante: absorben el calor del sol y pierden muy poco. Por eso rinden bien en invierno."]; },
+      tanque: function () { return ["Tanque", "Acumula el agua caliente. Está aislado térmicamente para conservar la temperatura durante la noche." + (s.tipo === "pres" ? " En el presurizado, el tanque está preparado para trabajar con la presión de la red." : "")]; },
+      entrada: function () { return s.tipo === "pres"
+        ? ["Entrada de agua fría: red", "El agua fría llega directo de la red (o de una bomba presurizadora). Por eso el agua caliente sale con la misma presión que la fría."]
+        : ["Entrada de agua fría: tanque de reserva", "El agua fría baja por gravedad desde el tanque de reserva, que va más alto que el equipo. La presión en la ducha depende de esa altura."]; },
+      salida: function () { return ["Salida de agua caliente a la casa", "El agua caliente baja por la cañería existente y llega a las canillas de la cocina, el baño y el lavadero."]; },
+      respaldo: function () { return ["Respaldo eléctrico", "Una resistencia eléctrica dentro del tanque que completa la temperatura los días nublados. Puede tener termostato y programación horaria."]; },
+      valvula: function () { return ["Válvula de seguridad", "Solo en el presurizado: descarga un poco de agua si la presión o la temperatura del tanque suben demasiado. Protege el equipo y la instalación."]; },
+      estructura: function () { return ["Estructura", "Soporte con la inclinación adecuada, orientado al norte y fijado al techo."]; }
+    };
+    var cmp = {}; $$("#tt-canvas .cmp").forEach(function (g) { cmp[g.getAttribute("data-c")] = g; });
+    function stat(c, st) {
+      if (c === "colector") return st.up ? (st.slow ? "Ahora: calienta poco." : "Ahora: calentando.") : "Ahora: sin sol, no calienta.";
+      if (c === "tanque") return "Ahora: agua " + st.agua.toLowerCase() + ".";
+      if (c === "respaldo") return st.res ? "Ahora: encendido." : "Ahora: apagado.";
+      if (c === "entrada") return "Ahora: repone el agua que se usa.";
+      if (c === "salida") return "Ahora: entregando agua caliente.";
+      if (c === "valvula") return "Ahora: cerrada, presión normal.";
+      return "";
+    }
+    function render() {
+      var st = ST[s.sit], pres = s.tipo === "pres";
+      $$("[data-tt]").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-tt") === s.tipo ? "true" : "false"); });
+      $$("[data-ts]").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-ts") === s.sit ? "true" : "false"); });
+      $$("#tt-canvas .g-pres").forEach(function (g) { g.classList.toggle("off", !pres); });
+      $$("#tt-canvas .g-nopres").forEach(function (g) { g.classList.toggle("off", pres); });
+      if (!pres && s.sel === "valvula") s.sel = null;
+      var hx = pres ? 94 : 176, hy = pres ? 512 : 108;
+      $("#tt-hs3").setAttribute("cx", hx); $("#tt-hs3").setAttribute("cy", hy); $("#tt-hs3t").setAttribute("x", hx); $("#tt-hs3t").setAttribute("y", hy);
+      ["#tf-up1", "#tf-up2", "#tf-up3", "#tf-ret"].forEach(function (id) { var e = $(id); e.classList.toggle("on", !!st.up); e.classList.toggle("slow", !!st.slow); });
+      $("#tf-in-p").classList.toggle("on", pres); $("#tf-in-n").classList.toggle("on", !pres); $("#tf-out").classList.add("on");
+      $("#tt-hot").setAttribute("class", st.hot);
+      $("#tt-res").setAttribute("class", st.res ? "on" : "");
+      $("#tt-sun").style.opacity = s.sit === "dia" ? 1 : s.sit === "nublado" ? 0.35 : 0;
+      $("#xp-moon").style.opacity = s.sit === "noche" ? 1 : 0; $("#tt-cloud").style.opacity = s.sit === "nublado" ? 1 : 0;
+      $("#tt-canvas").classList.toggle("night", s.sit === "noche");
+      $("#tt-bant").textContent = st.ban;
+      $("#ti-k").textContent = TIPO[s.tipo] + " · " + SIT[s.sit]; $("#ti-h").textContent = st.h;
+      $("#ti-p").textContent = st.p + (pres ? " El agua fría entra desde la red, con presión." : " El agua fría baja por gravedad desde el tanque de reserva.");
+      $("#tt1").textContent = TIPO[s.tipo]; $("#tt2").textContent = st.circ; $("#tt3").textContent = st.agua; $("#tt4").textContent = st.res ? "Encendido" : "Apagado";
+      Object.keys(cmp).forEach(function (k) { cmp[k].classList.toggle("sel", k === s.sel); });
+      if (s.sel) { var c = CMP[s.sel](); $("#ti-cn").textContent = c[0]; $("#ti-cd").textContent = c[1]; $("#ti-cs").textContent = stat(s.sel, st); }
+      else { $("#ti-cn").textContent = "Toque una parte"; $("#ti-cd").textContent = "Cada número del dibujo es una parte del equipo. Tóquela para ver qué hace."; $("#ti-cs").textContent = ""; }
+    }
+    $$("[data-tt]").forEach(function (b) { b.addEventListener("click", function () { s.tipo = b.getAttribute("data-tt"); render(); }); });
+    $$("[data-ts]").forEach(function (b) { b.addEventListener("click", function () { s.sit = b.getAttribute("data-ts"); render(); }); });
+    Object.keys(cmp).forEach(function (k) {
+      var g = cmp[k], pick = function () { s.sel = s.sel === k ? null : k; render(); };
+      g.addEventListener("click", pick);
+      g.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
+    });
+    render();
+
+    /* Litros */
+    var person = '<svg viewBox="0 0 30 44"><circle cx="15" cy="9" r="7"/><path d="M3 44 V26 a12 12 0 0 1 24 0 V44 Z"/></svg>';
+    function lit(p) {
+      $$(".lit-row button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-p") === String(p) ? "true" : "false"); });
+      $("#lit-v").textContent = p * 50; var h = ""; for (var i = 0; i < p; i++) h += person; $("#lit-ppl").innerHTML = h;
+    }
+    $$(".lit-row button").forEach(function (b) { b.addEventListener("click", function () { lit(+b.getAttribute("data-p")); }); });
+    lit(3);
+  }
+
+  /* Pista tenue bajo cada flujo */
+  $$(".scene .sig").forEach(function (sg) { var c = sg.cloneNode(false); c.removeAttribute("id"); c.setAttribute("class", "trk" + (sg.classList.contains("cold") ? " cold" : "")); sg.parentNode.insertBefore(c, sg.nextSibling); });
+})();
+</script>
+<script>
+(function () {
+  var car = document.getElementById("car"); if (!car) return;
+  var S = Array.prototype.slice.call(car.querySelectorAll(".car-s")), B = Array.prototype.slice.call(car.querySelectorAll(".car-bars i"));
+  var cap = document.getElementById("car-cap"), num = document.getElementById("car-n"), i = 0, t = null;
+  var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function bars() { B.forEach(function (b, k) { b.className = k < i ? "done" : ""; }); void car.offsetWidth; if (!still) B[i].className = "run"; else B[i].className = "done"; }
+  function go(n) {
+    n = (n + S.length) % S.length; if (n === i) return;
+    S.forEach(function (s, k) { s.className = "car-s" + (k === i ? " prev" : ""); });
+    void car.offsetWidth; S[n].className = "car-s on"; i = n;
+    cap.textContent = S[i].getAttribute("data-cap"); num.textContent = "0" + (i + 1) + " / 0" + S.length;
+    bars(); arm();
+  }
+  function arm() { clearTimeout(t); if (!still && !car.classList.contains("hold")) t = setTimeout(function () { go(i + 1); }, 5500); }
+  document.getElementById("car-prev").addEventListener("click", function () { go(i - 1); });
+  document.getElementById("car-next").addEventListener("click", function () { go(i + 1); });
+  car.addEventListener("mouseenter", function () { car.classList.add("hold"); clearTimeout(t); });
+  car.addEventListener("mouseleave", function () { car.classList.remove("hold"); bars(); arm(); });
+  bars(); arm();
+})();
+</script>
+<a class="wa-fab" href="https://wa.me/5491144136890?text=Hola%2C%20quisiera%20pedir%20un%20presupuesto%20de%20energ%C3%ADa%20solar." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.500 6.500 0 0 1-3.200-2.800c-.2-.4.2-.4.600-1.200.1-.2 0-.3 0-.4l-.7-1.700c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.200-.8.800-.8 2s.8 2.300 1 2.500c.1.200 1.700 2.600 4.100 3.600 1.500.6 2.100.7 2.900.6.500-.1 1.400-.6 1.600-1.100.2-.600.2-1 .100-1.100l-.300-.200Z"/></svg>WhatsApp</a>
+</body>
+</html>

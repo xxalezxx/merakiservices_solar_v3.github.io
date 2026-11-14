@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meraki Services Solar Energy</title>
+<meta name="description" content="Diseño, suministro e instalación de sistemas fotovoltaicos para industria, comercio y vivienda, con respaldo de baterías y mantenimiento.">
+<meta property="og:title" content="Meraki Services Solar Energy">
+<meta property="og:description" content="Sistemas fotovoltaicos on-grid, híbridos y off-grid para industria, comercio y vivienda.">
+<meta property="og:image" content="assets/solar-techo.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0F1A1F">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F4F3EF;
+    --paper-2: #EAE9E3;
+    --ink: #0F1A1F;
+    --petrol: #10272D;
+    --petrol-2: #163239;
+    --steel: #56656C;
+    --line: #CDD0CA;
+    --grid: #E1E1DA;
+    --brand: #22453D;
+    --amber: #E8A317;
+    --on-dark: #E9ECEA;
+    --on-dark-2: #A9B5B8;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; }
+  p { margin: 0; text-wrap: pretty; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .tick { display: inline-flex; align-items: center; gap: 10px; color: var(--steel); }
+  .tick::before { content: ""; width: 18px; height: 1px; background: currentColor; }
+  .tick.on-dark { color: var(--on-dark-2); }
+  .amb { color: var(--amber); }
+  @media (max-width: 760px) { .wrap { padding: 0 18px; } }
+
+  /* ---------- Barra superior y navegación ---------- */
+  .util { background: var(--ink); color: var(--on-dark-2); }
+  .util .wrap { display: flex; justify-content: space-between; gap: 16px; padding-top: 9px; padding-bottom: 9px; flex-wrap: wrap; }
+  .util .mono { font-size: 11px; }
+  .util .live { display: inline-flex; align-items: center; gap: 8px; }
+  .util .live::before { content: ""; width: 6px; height: 6px; background: var(--amber); }
+  @media (max-width: 760px) { .util .hide-m { display: none; } }
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(244,243,239,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; gap: 28px; min-height: 72px; }
+  .nav img { height: 24px; width: auto; }
+  .nav-links { display: flex; gap: 4px; margin-left: auto; }
+  .nav-links a { padding: 10px 14px; font-size: 14.5px; color: var(--steel); position: relative; transition: color .2s; }
+  .nav-links a::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 4px; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .btn { display: inline-flex; align-items: center; gap: 14px; padding: 15px 22px; border-radius: 2px; font-size: 15px; font-weight: 500; border: 1px solid transparent; transition: background .25s, color .25s, border-color .25s; white-space: nowrap; }
+  .btn .arr { display: inline-block; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+  .btn:hover .arr { transform: translateX(5px); }
+  .btn-ink { background: var(--ink); color: var(--paper); }
+  .btn-ink:hover { background: var(--brand); color: #fff; }
+  .btn-line { border-color: var(--ink); color: var(--ink); }
+  .btn-line:hover { background: var(--ink); color: var(--paper); }
+  .btn-amber { background: var(--amber); color: var(--ink); }
+  .btn-amber:hover { background: #F5B937; color: var(--ink); }
+  .btn-line-d { border-color: rgba(233,236,234,0.4); color: var(--on-dark); }
+  .btn-line-d:hover { background: var(--on-dark); color: var(--ink); }
+  @media (max-width: 960px) { .nav-links { display: none; } .nav .btn { margin-left: auto; } }
+
+  /* ---------- Portada ---------- */
+  .hero { position: relative; padding: 64px 0 72px; border-bottom: 1px solid var(--line); overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr); gap: 56px; align-items: center; }
+  @media (max-width: 1080px) { .hero-grid { grid-template-columns: 1fr; } }
+  .hero h1 { font-size: clamp(42px, 5.2vw, 76px); margin-top: 26px; max-width: 14ch; }
+  .hero h1 em { font-style: normal; color: var(--brand); }
+  .hero .lead { margin-top: 26px; font-size: clamp(17px, 1.35vw, 19px); line-height: 1.65; color: var(--steel); max-width: 50ch; }
+  .hero .ctas { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+  .disc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; }
+  .disc span { padding: 8px 12px; border: 1px solid var(--line); color: var(--steel); }
+
+  .sheet { position: relative; border: 1px solid var(--ink); background: var(--paper); }
+  .sheet-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--ink); flex-wrap: wrap; }
+  .seg { display: inline-flex; border: 1px solid var(--ink); }
+  .seg button { background: none; border: 0; padding: 7px 14px; font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); transition: background .25s, color .25s; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .canvas { position: relative; aspect-ratio: 880 / 500; overflow: hidden;
+    background-color: var(--paper);
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), linear-gradient(#D6D7CF 1px, transparent 1px), linear-gradient(90deg, #D6D7CF 1px, transparent 1px);
+    background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px; }
+  .canvas svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .bp .d { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.3s cubic-bezier(.45,.05,.25,1); }
+  .bp .d.thin { stroke-width: 0.8; stroke: var(--steel); }
+  .bp .d.dim { stroke: var(--steel); stroke-width: 0.8; stroke-dasharray: 1; }
+  .bp.go .d { stroke-dashoffset: 0; }
+  .bp .lab { opacity: 0; transform: translateY(6px); transition: opacity .6s ease, transform .6s ease; transform-box: fill-box; }
+  .bp.go .lab { opacity: 1; transform: none; }
+  .bp .lab circle { fill: var(--amber); }
+  .bp .lab text { font-family: "IBM Plex Mono", monospace; font-size: 12px; fill: var(--ink); letter-spacing: 0.04em; }
+  .bp .lab .n { font-size: 11px; font-weight: 500; text-anchor: middle; dominant-baseline: central; }
+  .photo { position: absolute; inset: 0; clip-path: inset(0 0 100% 0); transition: clip-path 1.4s cubic-bezier(.7,0,.2,1); }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 62%; transform: scale(1.08); transition: transform 2.4s cubic-bezier(.2,.8,.2,1); }
+  .sheet.is-photo .photo { clip-path: inset(0 0 0 0); }
+  .sheet.is-photo .photo img { transform: scale(1); }
+  .scan { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--amber); box-shadow: 0 0 18px 2px rgba(232,163,23,0.55); opacity: 0; pointer-events: none; }
+  .sheet.scanning .scan { animation: scan 1.4s cubic-bezier(.7,0,.2,1) forwards; }
+  @keyframes scan { 0% { top: 0; opacity: 1; } 92% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+  .tblock { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+  .tblock div { padding: 9px 12px; border-left: 1px solid var(--ink); }
+  .tblock div:first-child { border-left: 0; }
+  .tblock .k { display: block; font-size: 10px; color: var(--steel); }
+  .tblock .v { display: block; margin-top: 3px; font-size: 12.5px; color: var(--ink); text-transform: none; letter-spacing: 0.02em; }
+  @media (max-width: 620px) { .tblock { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tblock div:nth-child(3) { border-left: 0; } .tblock div:nth-child(n+3) { border-top: 1px solid var(--ink); } .bp .lab text { font-size: 15px; } }
+
+  /* ---------- Cifras ---------- */
+  .facts { border-bottom: 1px solid var(--line); }
+  .facts .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .fact { padding: 34px 28px 34px 0; border-right: 1px solid var(--line); }
+  .fact + .fact { padding-left: 28px; }
+  .fact:last-child { border-right: 0; }
+  .fact .big { font-size: clamp(36px, 3.6vw, 52px); font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+  .fact .big sup { font-size: 0.45em; vertical-align: top; margin-left: 2px; color: var(--brand); }
+  .fact p { margin-top: 12px; font-size: 14.5px; line-height: 1.5; color: var(--steel); max-width: 26ch; }
+  @media (max-width: 860px) { .facts .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fact:nth-child(2) { border-right: 0; } .fact:nth-child(3) { padding-left: 0; } .fact:nth-child(n+3) { border-top: 1px solid var(--line); } }
+
+  /* ---------- Unidades (índice) ---------- */
+  .sec { padding: 120px 0; }
+  .sec-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 64px; align-items: end; }
+  .sec-head h2 { font-size: clamp(34px, 4vw, 58px); margin-top: 20px; max-width: 18ch; }
+  .sec-head p { font-size: 17px; line-height: 1.65; color: var(--steel); max-width: 48ch; }
+  @media (max-width: 860px) { .sec-head { grid-template-columns: 1fr; } .sec { padding: 84px 0; } }
+  .index { margin-top: 64px; border-top: 1px solid var(--ink); }
+  .row { position: relative; display: grid; grid-template-columns: 90px minmax(0, 1.1fr) minmax(0, 1.4fr) 200px 40px; gap: 24px; align-items: center; padding: 30px 0; border-bottom: 1px solid var(--line); transition: background .35s, padding .45s cubic-bezier(.2,.8,.2,1); }
+  .row:hover { padding-left: 20px; padding-right: 20px; background: var(--ink); color: var(--paper); }
+  .row .num { color: var(--steel); }
+  .row:hover .num { color: var(--amber); }
+  .row h3 { font-size: clamp(26px, 2.6vw, 38px); }
+  .row p { font-size: 15.5px; line-height: 1.55; color: var(--steel); }
+  .row:hover p { color: var(--on-dark-2); }
+  .row .thumb { height: 92px; overflow: hidden; clip-path: inset(0 100% 0 0); transition: clip-path .6s cubic-bezier(.2,.8,.2,1); }
+  .row:hover .thumb { clip-path: inset(0 0 0 0); }
+  .row .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .row .go { font-size: 22px; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+  .row:hover .go { transform: translateX(6px); color: var(--amber); }
+  @media (max-width: 960px) { .row { grid-template-columns: 56px minmax(0, 1fr) 30px; } .row p, .row .thumb { display: none; } }
+
+  /* ---------- Portuario: relato con scroll ---------- */
+  .story { position: relative; height: 420vh; background: var(--petrol); color: var(--on-dark);
+    --stk: #C9D3D4; --stk2: rgba(201,211,212,0.45); --stk3: rgba(201,211,212,0.28); --fillp: rgba(233,236,234,0.04); --gridc: rgba(233,236,234,0.05); --sep: rgba(233,236,234,0.12); --txt2: var(--on-dark-2); --txt1: var(--on-dark); --key: var(--amber); }
+  .story.ink { background: #0B1418; }
+  .story.light { background: var(--paper-2); color: var(--ink);
+    --stk: #24343A; --stk2: rgba(15,26,31,0.38); --stk3: rgba(15,26,31,0.22); --fillp: rgba(15,26,31,0.035); --gridc: rgba(15,26,31,0.055); --sep: var(--line); --txt2: var(--steel); --txt1: var(--ink); --key: var(--brand); }
+  .stage { position: sticky; top: 0; height: 100vh; min-height: 620px; overflow: hidden; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.3fr); }
+  .stage-grid { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(var(--gridc) 1px, transparent 1px), linear-gradient(90deg, var(--gridc) 1px, transparent 1px); background-size: 40px 40px; }
+  .copy { position: relative; padding: 110px 40px 48px max(40px, calc((100vw - 1400px) / 2 + 40px)); display: flex; flex-direction: column; border-right: 1px solid var(--sep); }
+  .copy .tick { color: var(--txt2); }
+  .copy h2 { font-size: clamp(30px, 3.2vw, 46px); margin-top: 18px; max-width: 16ch; }
+  .steps { position: relative; flex: 1; margin-top: 36px; min-height: 240px; }
+  .step { position: absolute; inset: 0; opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .6s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
+  .step.on { opacity: 1; transform: none; pointer-events: auto; }
+  .step .k { color: var(--key); }
+  .step h3 { font-size: clamp(24px, 2.2vw, 32px); margin-top: 12px; }
+  .step p { margin-top: 14px; font-size: 16.5px; line-height: 1.65; color: var(--txt2); max-width: 44ch; }
+  .step .ph { margin-top: 24px; width: min(100%, 360px); aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid var(--sep); }
+  .step .ph img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); transition: transform 1.6s cubic-bezier(.2,.8,.2,1); }
+  .step.on .ph img { transform: scale(1); }
+  .rail { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 24px; }
+  .rail span { height: 3px; background: var(--stk3); position: relative; overflow: hidden; }
+  .rail span i { position: absolute; inset: 0; background: var(--amber); transform-origin: left; transform: scaleX(0); }
+  .rail-l { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 10px; color: var(--txt2); }
+  .rail-l span { font-size: 10.5px; }
+  .viz { position: relative; display: flex; align-items: center; justify-content: center; padding: 80px 40px 40px; }
+  .viz svg { width: 100%; height: auto; max-height: 78vh; overflow: visible; }
+  .scene .s { fill: none; stroke: var(--stk); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; transition: stroke .5s, opacity .6s; }
+  .scene .s.t { stroke-width: 1; stroke: var(--stk2); }
+  .scene .f { fill: var(--fillp); transition: fill .5s; }
+  .scene .cont { fill: var(--fillp); stroke: var(--stk2); stroke-width: 1; }
+  .scene .cont-l { stroke: var(--stk3); stroke-width: 1; }
+  .scene .ground, .scene .arc { fill: none; stroke: var(--stk2); stroke-width: 1; stroke-dasharray: 6 6; }
+  .scene .lbl { font-family: "IBM Plex Mono", monospace; font-size: 11px; fill: var(--stk2); letter-spacing: 0.06em; }
+  .scene .lbl.dig { font-size: 15px; fill: var(--amber); }
+  .scene .part { transition: opacity .7s; }
+  .scene .part.ghost { opacity: 0.12; }
+  .scene .part.hot .s { stroke: var(--amber); }
+  .scene .part.hot .f { fill: rgba(232,163,23,0.10); }
+  .scene .part.hot .lbl { fill: var(--amber); }
+  .story.light .scene .part.hot .lbl { fill: #8A5A00; }
+  .scene #box rect.c { fill: rgba(232,163,23,0.14); stroke: var(--amber); stroke-width: 1.5; }
+  .scene #box line { stroke: rgba(232,163,23,0.6); stroke-width: 1; }
+  .scene .wire { stroke-dasharray: 1; stroke-dashoffset: 1; transition: none; }
+  .scene .sig { fill: none; stroke: var(--amber); stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 8 14; opacity: 0; transition: opacity .4s; animation: flow 1s linear infinite; }
+  .scene .sig.on { opacity: 1; }
+  .scene .sig.rev { animation-direction: reverse; }
+  @keyframes flow { to { stroke-dashoffset: -22; } }
+  .scene .led { fill: transparent; stroke: var(--stk2); stroke-width: 1; }
+  .scene .led.on { fill: var(--amber); stroke: var(--amber); animation: blink 1.4s steps(2, jump-none) infinite; }
+  @keyframes blink { 50% { opacity: 0.25; } }
+  .scene .bar { fill: var(--amber); opacity: 0.85; }
+  .scene .panel { fill: rgba(16,39,45,0.06); stroke: var(--stk); stroke-width: 1.3; stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .scene .sun { fill: var(--amber); }
+  .scene .ray { stroke: var(--amber); stroke-width: 2; stroke-linecap: round; }
+  .scene .tag { opacity: 0; transition: opacity .45s; }
+  .scene .tag.on { opacity: 1; }
+  .scene .tag rect { fill: var(--amber); }
+  .scene .tag text { font-family: "IBM Plex Mono", monospace; font-size: 13px; fill: var(--ink); letter-spacing: 0.04em; }
+  .scene .tag line { stroke: var(--amber); stroke-width: 1; }
+  .hud { position: absolute; top: 96px; right: 40px; text-align: right; color: var(--txt2); line-height: 1.8; }
+  .hud b { color: var(--txt1); font-weight: 500; }
+  @media (max-width: 960px) {
+    .stage { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+    .viz { order: -1; padding: 84px 18px 0; }
+    .viz svg { max-height: 40vh; }
+    .copy { padding: 18px 18px 28px; border-right: 0; }
+    .copy h2, .copy > .tick { display: none; }
+    .steps { margin-top: 0; }
+    .step .ph { display: none; }
+    .hud { display: none; }
+  }
+
+  /* ---------- Pestañas de alcance ---------- */
+  .tabs { display: flex; flex-wrap: wrap; gap: 0; margin-top: 48px; border: 1px solid var(--ink); width: fit-content; max-width: 100%; }
+  .tabs button { background: none; border: 0; border-left: 1px solid var(--ink); padding: 12px 18px; font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); transition: background .25s, color .25s; }
+  .tabs button:first-child { border-left: 0; }
+  .tabs button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+  .tabs button:hover:not([aria-selected="true"]) { color: var(--ink); background: var(--paper-2); }
+  .tabp[hidden] { display: none; }
+
+  /* ---------- Alcance técnico ---------- */
+  .scope-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px 80px; margin-top: 64px; align-items: start; }
+  @media (max-width: 960px) { .scope-grid { grid-template-columns: 1fr; } }
+  .spec { border-top: 1px solid var(--ink); }
+  .spec li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); font-size: 16.5px; line-height: 1.6; }
+  .spec li .mono { color: var(--steel); padding-top: 3px; }
+  .spec li b { font-weight: 500; }
+  .spec li span.d { color: var(--steel); }
+  .shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .shot { position: relative; height: 260px; overflow: hidden; background: var(--ink); }
+  .shot.wide { grid-column: 1 / -1; height: 300px; }
+  .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); transition: transform 1.8s cubic-bezier(.2,.8,.2,1); }
+  .shot .cap { position: absolute; left: 0; bottom: 0; background: var(--paper); color: var(--ink); padding: 8px 12px; }
+  .shot { clip-path: inset(100% 0 0 0); transition: clip-path 1.1s cubic-bezier(.7,0,.2,1); }
+  .shot.in { clip-path: inset(0 0 0 0); }
+  .shot.in img { transform: scale(1); }
+
+  /* ---------- Proceso ---------- */
+  .proc { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .wo { margin-top: 64px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--ink); background: var(--paper); }
+  .wo > div { padding: 28px 24px 30px; border-left: 1px solid var(--ink); position: relative; }
+  .wo > div:first-child { border-left: 0; }
+  .wo .st { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border: 1px solid var(--line); color: var(--steel); transition: all .4s; }
+  .wo .st::before { content: ""; width: 7px; height: 7px; border: 1px solid currentColor; }
+  .wo > div.done .st { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .wo > div.done .st::before { background: var(--amber); border-color: var(--amber); }
+  .wo h4 { font-size: 24px; margin-top: 22px; }
+  .wo p { margin-top: 10px; font-size: 15.5px; line-height: 1.6; color: var(--steel); }
+  .wo .n { position: absolute; top: 24px; right: 22px; color: var(--steel); }
+  @media (max-width: 960px) { .wo { grid-template-columns: 1fr 1fr; } .wo > div:nth-child(3) { border-left: 0; } .wo > div:nth-child(n+3) { border-top: 1px solid var(--ink); } }
+  @media (max-width: 560px) { .wo { grid-template-columns: 1fr; } .wo > div { border-left: 0; } .wo > div + div { border-top: 1px solid var(--ink); } }
+
+  /* ---------- Contacto y pie ---------- */
+  .contact { background: var(--ink); color: var(--on-dark); }
+  .contact .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px 80px; padding-top: 110px; padding-bottom: 110px; }
+  @media (max-width: 960px) { .contact .wrap { grid-template-columns: 1fr; padding-top: 80px; padding-bottom: 80px; } }
+  .contact h2 { font-size: clamp(36px, 4.4vw, 64px); margin-top: 20px; max-width: 14ch; }
+  .contact .lead { margin-top: 22px; font-size: 17px; line-height: 1.65; color: var(--on-dark-2); max-width: 46ch; }
+  .kv { border-top: 1px solid rgba(233,236,234,0.2); }
+  .kv div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-bottom: 1px solid rgba(233,236,234,0.2); font-size: 16.5px; }
+  .kv .mono { color: var(--on-dark-2); padding-top: 3px; }
+  .kv a, .kv span { min-width: 0; overflow-wrap: anywhere; }
+  @media (max-width: 560px) { .kv div { grid-template-columns: 1fr; gap: 6px; } }
+  .kv a:hover { color: var(--amber); }
+  .foot { background: var(--ink); color: var(--on-dark-2); border-top: 1px solid rgba(233,236,234,0.12); }
+  .foot .wrap { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding-top: 28px; padding-bottom: 28px; font-size: 13.5px; }
+  .foot img { height: 22px; width: auto; filter: brightness(0) invert(1); opacity: 0.85; }
+  .foot nav { display: flex; gap: 20px; flex-wrap: wrap; }
+  .foot a:hover { color: var(--on-dark); }
+
+  /* ---------- Aparición ---------- */
+  [data-rv] { opacity: 0; transform: translateY(22px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+  [data-rv].in { opacity: 1; transform: none; }
+  .line-rv { transform: scaleX(0); transform-origin: left; transition: transform 1.2s cubic-bezier(.7,0,.2,1); }
+  .line-rv.in { transform: scaleX(1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: 0s !important; animation: none !important; }
+    [data-rv], .shot { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+  }
+
+  /* ---------- Solar Energy: agregados ---------- */
+  .util a.live:hover { color: var(--on-dark); }
+  .brand { display: inline-flex; align-items: center; gap: 12px; }
+  .brand-sub { padding: 5px 8px; background: var(--amber); color: var(--ink); font-size: 11px; }
+  .uni { margin-top: 56px; border: 1px solid var(--ink); background: var(--paper); }
+  .uni-top { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--ink); }
+  .uni-body { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
+  .uni-body svg { width: 100%; height: auto; padding: 28px 24px; overflow: visible; }
+  .uni-cap { border-left: 1px solid var(--ink); padding: 28px 28px 32px; display: flex; flex-direction: column; justify-content: center; }
+  .uni-cap .k { color: var(--brand); }
+  .uni-cap p { margin-top: 14px; font-size: 16.5px; line-height: 1.65; color: var(--steel); }
+  @media (max-width: 960px) { .uni-body { grid-template-columns: 1fr; } .uni-cap { border-left: 0; border-top: 1px solid var(--ink); } }
+  .uni-svg { --stk: #24343A; --stk2: rgba(15,26,31,0.4); --stk3: rgba(15,26,31,0.22); --fillp: rgba(15,26,31,0.035); }
+  .uni-svg .u-n, .uni-svg .bat-n { transition: opacity .5s; }
+  .uni-svg.no-bat .bat-n { opacity: 0.14; }
+  .uni-svg .u-n.hot .s { stroke: var(--amber); }
+  .uni-svg .u-n.hot .f { fill: rgba(232,163,23,0.12); }
+  .uni-svg .u-n.hot .lbl { fill: #8A5A00; }
+  .scene .soc { fill: rgba(232,163,23,0.4); }
+  .mant { background: var(--ink); color: var(--on-dark); }
+  .mant-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px 80px; align-items: start; }
+  @media (max-width: 960px) { .mant-grid { grid-template-columns: 1fr; } }
+  .mant h2 { font-size: clamp(34px, 4vw, 58px); margin-top: 20px; max-width: 16ch; }
+  .mant .lead { margin-top: 22px; font-size: 17px; line-height: 1.65; color: var(--on-dark-2); max-width: 46ch; }
+  .check { border-top: 1px solid rgba(233,236,234,0.2); }
+  .check li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 16px; padding: 20px 0; border-bottom: 1px solid rgba(233,236,234,0.2); }
+  .check b { display: block; font-weight: 500; font-size: 18px; }
+  .check .d { display: block; margin-top: 4px; color: var(--on-dark-2); font-size: 15.5px; line-height: 1.55; }
+  .check .bx { width: 22px; height: 22px; margin-top: 2px; border: 1px solid rgba(233,236,234,0.45); position: relative; transition: background .35s, border-color .35s; }
+  .check .bx::after { content: ""; position: absolute; left: 7px; top: 3px; width: 6px; height: 11px; border: solid var(--ink); border-width: 0 2px 2px 0; transform: rotate(45deg) scale(0); transition: transform .35s cubic-bezier(.2,.8,.2,1) .1s; }
+  .check li.done .bx { background: var(--amber); border-color: var(--amber); }
+  .check li.done .bx::after { transform: rotate(45deg) scale(1); }
+
+  /* ---------- ¿Qué sistema necesito? ---------- */
+  #que-sistema { transition: background-color .8s; }
+  #que-sistema.night { background-color: #04080A; }
+  .sysv .moon { fill: #E9ECEA; opacity: 0; transition: opacity .8s; }
+  .sysv .sunS { transition: opacity .8s; }
+  .sysv .rural, .sysv .gridG, .sysv .sceneG, .sysv .batd, .sysv .banner, .sysv .batP { transition: opacity .7s; }
+  .sysv .cutx { fill: none; stroke: #E5484D; stroke-width: 3; stroke-linecap: round; opacity: 0; transition: opacity .3s; }
+  .sysv .gwire.cut { stroke-dasharray: 6 8; stroke: rgba(229,72,77,0.8); }
+  .sysv .win { fill: transparent; transition: fill .4s; }
+  .sysv .win.lit { fill: rgba(232,163,23,0.55); }
+  .sysv .wlbl { opacity: 0; transition: opacity .4s; }
+  .sysv .wlbl.on { opacity: 1; fill: var(--amber); }
+  .sysv .soc2 { fill: rgba(232,163,23,0.55); }
+  .sysv .banner rect { fill: var(--amber); transition: fill .3s; }
+  .sysv .banner text { font-family: "IBM Plex Mono", monospace; font-size: 13px; letter-spacing: 0.06em; fill: var(--ink); }
+  .sysv .banner.alert rect { fill: #B42318; }
+  .sysv .banner.alert text { fill: #FFFFFF; }
+  .sysv .bigsoc { fill: rgba(232,163,23,0.45); }
+  .sysv .bigpct { font-family: "IBM Plex Sans", sans-serif; font-weight: 500; font-size: 64px; fill: var(--on-dark); letter-spacing: -0.03em; }
+  .sysv .bigst { font-size: 12px; fill: var(--amber); }
+  .sysv .bl line { stroke: var(--amber); stroke-width: 1; }
+  .sysv .bl text { font-family: "IBM Plex Sans", sans-serif; font-size: 18px; fill: var(--on-dark); }
+  .sysv .bl text.sm { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; fill: var(--on-dark-2); letter-spacing: 0.04em; }
+  .sysv .invst.off { fill: #F97066; }
+
+  /* ---------- Comparativa ---------- */
+  .cmp-wrap { margin-top: 56px; overflow-x: auto; border: 1px solid var(--ink); background: var(--paper); }
+  .cmp { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 16px; }
+  .cmp th, .cmp td { text-align: left; padding: 18px 20px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.5; }
+  .cmp thead th { background: var(--ink); color: var(--paper); font-weight: 500; font-size: 18px; border-bottom: 0; }
+  .cmp thead th .mono { color: var(--on-dark-2); }
+  .cmp tbody th { font-weight: 500; width: 28%; }
+  .cmp td { color: var(--steel); }
+  .cmp tbody tr:last-child th, .cmp tbody tr:last-child td { border-bottom: 0; }
+  .cmp tbody tr { transition: background .25s; }
+  .cmp tbody tr:hover { background: var(--paper-2); }
+  .cmp .y, .cmp .n { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; color: var(--ink); }
+  .cmp .y::before, .cmp .n::before { content: ""; width: 9px; height: 9px; }
+  .cmp .y::before { background: var(--amber); }
+  .cmp .n::before { border: 1px solid var(--steel); }
+  .note { margin-top: 14px; color: var(--steel); font-size: 11px; text-transform: none; letter-spacing: 0.02em; }
+
+  /* ---------- Relatos: fijos (.pin) o automáticos ---------- */
+  .story.pin { height: 300vh; }
+  .story:not(.pin) { height: auto; }
+  .story:not(.pin) .stage { position: relative; height: auto; min-height: 720px; }
+  .story:not(.pin) .steps { min-height: 480px; }
+  .rail-l button { background: none; border: 0; padding: 8px 0 4px; text-align: left; font: inherit; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--txt2); cursor: pointer; transition: color .25s; }
+  .rail-l button:hover, .rail-l button.on { color: var(--txt1); }
+  .rail-l button.on { text-decoration: underline; text-decoration-color: var(--amber); text-underline-offset: 6px; text-decoration-thickness: 2px; }
+  .ctrl { display: flex; align-items: center; gap: 14px; margin-top: 18px; }
+  .ctrl .pp { width: 40px; height: 40px; flex: 0 0 auto; border: 1px solid var(--txt1); background: none; color: var(--txt1); font-size: 13px; display: grid; place-items: center; transition: background .25s, color .25s; }
+  .ctrl .pp:hover { background: var(--txt1); color: var(--paper); }
+  .ctrl input[type="range"] { flex: 1; accent-color: var(--amber); }
+  @media (max-width: 960px) {
+    .story.pin { height: auto; }
+    .story .stage { position: relative; height: auto; min-height: 0; }
+    .story .steps { min-height: 250px; }
+  }
+
+  /* ---------- Ajustes de revisión ---------- */
+  .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); }
+  .hero h1 { font-size: clamp(40px, 4.3vw, 64px); max-width: 17ch; }
+  @media (max-width: 1080px) { .hero-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) {
+    .nav .wrap { gap: 10px; min-height: 64px; }
+    .nav img { height: 20px; }
+    .nav .btn { padding: 11px 12px; font-size: 13.5px; }
+    .nav .btn .arr { display: none; }
+    .brand { gap: 8px; }
+    .brand-sub { font-size: 9.5px; padding: 4px 6px; }
+    .cmp { min-width: 0; font-size: 13px; table-layout: fixed; }
+    .cmp th, .cmp td { padding: 12px 8px; overflow-wrap: anywhere; }
+    .cmp thead th { font-size: 13.5px; }
+    .cmp tbody th { width: 31%; }
+    .cmp .y, .cmp .n { gap: 5px; }
+    .uni-body svg { padding: 16px 8px; }
+  }
+  .wa-fab { position: fixed; right: 20px; bottom: 20px; z-index: 70; display: inline-flex; align-items: center; gap: 10px; padding: 13px 18px 13px 14px; background: var(--ink); color: var(--paper); border: 1px solid rgba(233,236,234,0.25); border-radius: 2px; font-size: 14.5px; font-weight: 500; box-shadow: 0 14px 34px -14px rgba(0,0,0,0.55); transition: background .25s, transform .3s cubic-bezier(.2,.8,.2,1); }
+  .wa-fab:hover { background: var(--brand); color: #fff; transform: translateY(-3px); }
+  .wa-fab svg { width: 20px; height: 20px; fill: var(--amber); flex: 0 0 auto; }
+  @media (max-width: 560px) { .wa-fab { right: 14px; bottom: 14px; padding: 12px 14px; } }
+
+  /* ---------- Versión para público general ---------- */
+  .wo.wo3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 960px) { .wo.wo3 { grid-template-columns: 1fr; } .wo.wo3 > div { border-left: 0; } .wo.wo3 > div + div { border-top: 1px solid var(--ink); } }
+  .works { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 56px; }
+  .works .shot { height: 340px; }
+  @media (max-width: 860px) { .works { grid-template-columns: 1fr; } .works .shot { height: 260px; } }
+  .faq-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 48px 80px; align-items: start; }
+  @media (max-width: 960px) { .faq-grid { grid-template-columns: 1fr; } }
+  .faq-h { font-size: clamp(34px, 4vw, 58px); margin-top: 20px; max-width: 12ch; }
+  .faq-p { margin-top: 20px; font-size: 17px; line-height: 1.65; color: var(--steel); max-width: 34ch; }
+  .faq { border-top: 1px solid var(--ink); }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; font-size: 19px; font-weight: 500; letter-spacing: -0.01em; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; flex: 0 0 auto; width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid var(--ink); font-family: "IBM Plex Mono", monospace; font-size: 16px; transition: background .25s, color .25s, transform .3s; }
+  .faq details[open] summary::after { content: "–"; background: var(--amber); border-color: var(--amber); }
+  .faq summary:hover::after { background: var(--ink); color: var(--paper); }
+  .faq details p { padding: 0 50px 24px 0; font-size: 16.5px; line-height: 1.7; color: var(--steel); max-width: 62ch; }
+  .tech { border-top: 1px solid var(--line); background: var(--paper-2); }
+  .tech > summary { list-style: none; cursor: pointer; max-width: 1400px; margin: 0 auto; padding: 30px 40px; display: flex; justify-content: space-between; align-items: center; gap: 20px; font-size: 19px; font-weight: 500; }
+  .tech > summary::-webkit-details-marker { display: none; }
+  .tech > summary .mono { color: var(--steel); display: block; margin-bottom: 6px; }
+  .tech > summary::after { content: "Ver +"; font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 14px; border: 1px solid var(--ink); white-space: nowrap; }
+  .tech[open] > summary::after { content: "Cerrar –"; background: var(--ink); color: var(--paper); }
+  @media (max-width: 760px) { .tech > summary { padding: 24px 18px; } }
+  .cmp thead th small { display: block; margin-top: 3px; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; color: var(--on-dark-2); }
+
+  /* ---------- Animaciones: pulido ---------- */
+  .scene .sig { stroke-width: 4.5; stroke-linecap: round; stroke-dasharray: 1 25; animation: flow 1.25s linear infinite; filter: drop-shadow(0 0 5px rgba(232,163,23,0.95)); }
+  @keyframes flow { to { stroke-dashoffset: -26; } }
+  .scene .trk { fill: none; stroke: var(--amber); stroke-width: 1.5; opacity: 0; transition: opacity .6s; }
+  .scene .sig.on + .trk { opacity: 0.38; }
+  .scene.swap { animation: sceneIn .75s cubic-bezier(.2,.8,.2,1); }
+  @keyframes sceneIn { from { opacity: 0; transform: translateY(12px) scale(0.985); } to { opacity: 1; transform: none; } }
+  .scene .part { transition: opacity .7s, filter .6s; }
+  .scene .part.hot { filter: drop-shadow(0 0 10px rgba(232,163,23,0.32)); }
+  .scene .sun { filter: drop-shadow(0 0 12px rgba(232,163,23,0.75)); animation: sunPulse 3.2s ease-in-out infinite; }
+  @keyframes sunPulse { 50% { filter: drop-shadow(0 0 24px rgba(232,163,23,0.95)); } }
+  .scene .win.lit, .sysv .win.lit { filter: drop-shadow(0 0 8px rgba(232,163,23,0.6)); }
+  .scene .led.on { filter: drop-shadow(0 0 4px rgba(232,163,23,0.9)); }
+  .sysv .moon { filter: drop-shadow(0 0 10px rgba(233,236,234,0.5)); }
+  .sysv .cutx { filter: drop-shadow(0 0 6px rgba(229,72,77,0.8)); }
+  .step .ph { clip-path: inset(0 100% 0 0); transition: clip-path .9s cubic-bezier(.7,0,.2,1) .15s; }
+  .step.on .ph { clip-path: inset(0 0 0 0); }
+
+  /* ---------- Simulador ---------- */
+  .hero.sim { padding-top: 52px; }
+  .hero.sim .hero-grid { align-items: start; }
+  .hero.sim h1 { font-size: clamp(38px, 4vw, 60px); }
+  .hero.sim .lead { margin-top: 20px; }
+  .sim-ctl { margin-top: 30px; border-top: 1px solid var(--ink); }
+  .sim-row { padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .sim-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
+  @media (max-width: 560px) { .sim-two { grid-template-columns: 1fr; } }
+  .sim-l { display: block; color: var(--steel); margin-bottom: 12px; }
+  .sim .seg { flex-wrap: wrap; }
+  .sim .seg button { padding: 11px 16px; font-size: 12px; cursor: pointer; }
+  .sim .seg button:hover:not([aria-pressed="true"]) { background: var(--paper-2); color: var(--ink); }
+  .sim-val { font-size: 17px; color: var(--steel); }
+  .sim-val b { font-size: 40px; font-weight: 500; letter-spacing: -0.03em; color: var(--ink); margin-right: 6px; }
+  .sim input[type="range"] { width: 100%; margin-top: 10px; accent-color: var(--amber); height: 28px; }
+  .sim-h { display: block; margin-top: 4px; font-size: 13.5px; color: var(--steel); }
+  #row-cortes.off { opacity: 0.4; pointer-events: none; }
+  .sim-badge { padding: 6px 10px; background: var(--amber); color: var(--ink); }
+  .sim-out { margin-top: 18px; font-size: 17px; line-height: 1.6; color: var(--ink); }
+  .sim-out b { font-weight: 600; }
+  .simv { --stk: #24343A; --stk2: rgba(15,26,31,0.4); --stk3: rgba(15,26,31,0.22); --fillp: rgba(15,26,31,0.035); }
+  .simv .lbl.dk { fill: var(--ink); font-size: 13px; }
+  .simv .lbl.dim { fill: var(--steel); font-size: 12px; }
+  .simv .pc { fill: #163239; stroke: #0F1A1F; stroke-width: 1; transform-box: fill-box; transform-origin: center; animation: pcIn .45s cubic-bezier(.2,.8,.2,1) both; }
+  .simv .pcl { stroke: rgba(233,236,234,0.35); stroke-width: 0.8; pointer-events: none; }
+  @keyframes pcIn { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: none; } }
+  .simv .bm { fill: rgba(232,163,23,0.35); stroke: var(--stk); stroke-width: 1.3; animation: pcIn .4s cubic-bezier(.2,.8,.2,1) both; transform-box: fill-box; transform-origin: center; }
+  .simv #sim-batg, .simv #sim-grid, .simv #sim-wb, .simv #sim-wg { transition: opacity .5s; }
+
+  /* ---------- Explorador de sistemas ---------- */
+  .sec.xp .sec-head p { font-size: 18px; }
+  .xp-sheet { margin-top: 40px; border: 1px solid var(--ink); background: var(--paper); }
+  .xp-top { display: flex; flex-wrap: wrap; gap: 14px 36px; padding: 14px 16px; border-bottom: 1px solid var(--ink); }
+  .xp-g { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .xp-g > .mono { color: var(--steel); }
+  .xp .seg button { padding: 11px 16px; font-size: 12px; cursor: pointer; }
+  .xp .seg button:hover:not([aria-pressed="true"]):not(:disabled) { background: var(--paper-2); color: var(--ink); }
+  .xp .seg button:disabled { opacity: 0.35; cursor: not-allowed; }
+  .xp-body { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); }
+  .xp-canvas { position: relative; transition: background-color .7s;
+    background-color: var(--paper);
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 20px 20px; }
+  .xp-canvas.night { background-color: #D5D7D4; }
+  .xp-canvas svg { display: block; width: 100%; height: auto; }
+  .xp-info { border-left: 1px solid var(--ink); padding: 28px 28px 30px; display: flex; flex-direction: column; }
+  .xp-info .k { color: var(--brand); }
+  .xp-info h2 { font-size: clamp(24px, 2.2vw, 32px); margin-top: 12px; }
+  .xp-info > p { margin-top: 14px; font-size: 16.5px; line-height: 1.65; color: var(--steel); }
+  .xp-cmp { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line); }
+  .xp-cmp .mono { color: var(--ink); display: inline-flex; align-items: center; gap: 10px; }
+  .xp-cmp .mono::before { content: ""; width: 9px; height: 9px; background: var(--amber); }
+  .xp-cmp p { margin-top: 10px; font-size: 15.5px; line-height: 1.6; color: var(--steel); }
+  .xp-cmp p.st { color: var(--ink); font-weight: 500; }
+  .xp-cmp p.st:empty { display: none; }
+  .sec.xp .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  @media (max-width: 1000px) { .xp-body { grid-template-columns: 1fr; } .xp-info { border-left: 0; border-top: 1px solid var(--ink); } }
+  .xpv { --stk: #24343A; --stk2: rgba(15,26,31,0.42); --stk3: rgba(15,26,31,0.22); --fillp: rgba(15,26,31,0.035); }
+  .xpv .banner rect { fill: var(--amber); transition: fill .3s; }
+  .xpv .banner text { font-family: "IBM Plex Mono", monospace; font-size: 13px; letter-spacing: 0.06em; fill: var(--ink); }
+  .xpv .banner.alert rect { fill: #B42318; } .xpv .banner.alert text { fill: #fff; }
+  .xpv #xp-moon { fill: #FFFFFF; stroke: var(--stk); stroke-width: 1.2; opacity: 0; transition: opacity .6s; }
+  .xpv #xp-sun { transition: opacity .6s; }
+  .xpv .xcut { fill: none; stroke: #D92D20; stroke-width: 4; stroke-linecap: round; opacity: 0; transition: opacity .3s; }
+  .xpv #xw-grid.cut { stroke: #D92D20; stroke-dasharray: 6 8; }
+  .xpv .cmp { cursor: pointer; transition: opacity .5s; outline: none; }
+  .xpv .cmp .hit { fill: transparent; stroke: none; }
+  .xpv .cmp:hover .s, .xpv .cmp:focus-visible .s { stroke: #8A5A00; }
+  .xpv .cmp.sel .s { stroke: var(--amber); stroke-width: 2.4; }
+  .xpv .cmp.sel .f { fill: rgba(232,163,23,0.14); }
+  .xpv .cmp.gone { opacity: 0.1; pointer-events: none; }
+  .xpv .cmp.off .ld { fill: rgba(15,26,31,0.03); }
+  .xpv .cmp .ld { fill: rgba(232,163,23,0.4); transition: fill .4s; }
+  .xpv .cmp:not(.off) .bulb { fill: var(--amber); filter: drop-shadow(0 0 8px rgba(232,163,23,0.9)); }
+  .xpv .hs circle { fill: var(--amber); stroke: var(--paper); stroke-width: 2; transition: transform .25s; transform-box: fill-box; transform-origin: center; }
+  .xpv .cmp:hover .hs circle, .xpv .cmp.sel .hs circle { transform: scale(1.25); }
+  .xpv .hs text { font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 500; fill: var(--ink); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+  .xpv .pnl { fill: #163239; stroke: #0F1A1F; stroke-width: 1; transition: fill .5s; }
+  .xpv .pnl.gen { fill: #1F4A52; }
+  .xpv #xp-soc { fill: rgba(232,163,23,0.55); transition: y .8s, height .8s; }
+  .xpv #xp-inv.off { fill: #D92D20; }
+  .xpv .lbl { font-size: 12px; }
+  @media (max-width: 700px) { .xpv .lbl { display: none; } .xpv .lbl.dig { display: block; font-size: 22px; } .xpv .hs circle { r: 20px; } .xpv .hs text { font-size: 20px; } .xpv .banner text { font-size: 20px; } .xpv .banner rect { x: 160px; width: 720px; height: 44px; y: 10px; } }
+
+  /* ---------- Portada con foto ---------- */
+  .hero-ph { margin: 0; position: relative; border: 1px solid var(--ink); overflow: hidden; aspect-ratio: 5 / 4; background: var(--ink); }
+  .hero-ph img { width: 100%; height: 100%; object-fit: cover; animation: heroZoom 18s ease-out both; }
+  @keyframes heroZoom { from { transform: scale(1.12); } to { transform: scale(1); } }
+  .hero-ph figcaption { position: absolute; left: 0; bottom: 0; background: var(--paper); color: var(--ink); padding: 9px 13px; border-top: 1px solid var(--ink); border-right: 1px solid var(--ink); }
+
+  /* ---------- Carrusel de la portada ---------- */
+  .car .car-s { position: absolute; inset: 0; clip-path: inset(0 0 0 100%); z-index: 0; }
+  .car .car-s img { width: 100%; height: 100%; object-fit: cover; animation: none; transform: scale(1.16); }
+  .car .car-s.prev { clip-path: inset(0); z-index: 1; }
+  .car .car-s.prev img { transform: scale(1); }
+  .car .car-s.on { clip-path: inset(0); z-index: 2; transition: clip-path 1.1s cubic-bezier(.7,0,.2,1); }
+  .car .car-s.on img { transform: scale(1); transition: transform 6.5s cubic-bezier(.2,.7,.2,1); }
+  .car .car-s.on::after { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 3px; background: var(--amber); box-shadow: 0 0 18px 3px rgba(232,163,23,0.7); animation: carLine 1.1s cubic-bezier(.7,0,.2,1) both; }
+  @keyframes carLine { 0% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; } }
+  .car figcaption, .car .car-nav, .car .car-bars { z-index: 3; }
+  .car .car-bars { position: absolute; left: 14px; right: 14px; top: 14px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .car .car-bars i { height: 3px; background: rgba(255,255,255,0.4); overflow: hidden; }
+  .car .car-bars b { display: block; height: 100%; width: 0; background: var(--amber); }
+  .car .car-bars i.done b { width: 100%; }
+  .car .car-bars i.run b { animation: carBar 5.5s linear forwards; }
+  .car.hold .car-bars i.run b { animation-play-state: paused; }
+  @keyframes carBar { to { width: 100%; } }
+  .car .car-nav { position: absolute; right: 0; bottom: 0; display: flex; align-items: center; background: var(--paper); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+  .car .car-nav span { padding: 0 12px; }
+  .car .car-nav button { width: 40px; height: 36px; background: none; border: 0; font-size: 16px; transition: background .25s, color .25s; }
+  .car .car-nav button:hover { background: var(--ink); color: var(--paper); }
+  @media (prefers-reduced-motion: reduce) { .car .car-s.on, .car .car-s.on img { transition: none; } .car .car-s.on::after { display: none; } }
+
+  /* ---------- Trabajos: galería ---------- */
+  .works.works7 { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 240px; }
+  .works.works7 .shot { height: auto; }
+  .works.works7 .g22 { grid-column: span 2; grid-row: span 2; }
+  .works.works7 .g21 { grid-column: span 2; }
+  .works.works7 .shot:hover img { transform: scale(1.06); transition-duration: 1.2s; }
+  @media (max-width: 860px) { .works.works7 { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 170px; } }
+
+  /* ---------- Mapa de ubicación ---------- */
+  .contact .map { grid-column: 1 / -1; position: relative; border: 1px solid rgba(233,236,234,0.25); background: #0B1418; overflow: hidden; }
+  .contact .map iframe { position: relative; z-index: 1; display: block; width: 100%; height: 380px; border: 0; filter: grayscale(0.35) contrast(1.05); }
+  .contact .map-fb { position: absolute; inset: 0 0 auto 0; height: 380px; z-index: 0; }
+  .contact .map-fb svg { width: 100%; height: 100%; }
+  .contact .map-fb path { fill: none; stroke: rgba(233,236,234,0.12); stroke-width: 6; }
+  .contact .map-fb circle { fill: none; stroke: rgba(232,163,23,0.35); stroke-width: 1.5; }
+  .contact .map-fb .pin { fill: var(--amber); stroke: none; }
+  .contact .map-fb .pin-c { fill: #0B1418; stroke: none; }
+  .contact .map-bar { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; padding: 18px 20px; border-top: 1px solid rgba(233,236,234,0.25); background: var(--ink); }
+  .contact .map-bar .mono { display: block; color: var(--on-dark-2); }
+  .contact .map-bar b { display: block; margin-top: 6px; font-size: 19px; font-weight: 500; color: var(--on-dark); }
+  .contact .map-bar .sm { display: block; margin-top: 2px; font-size: 14.5px; color: var(--on-dark-2); }
+  @media (max-width: 700px) { .contact .map iframe, .contact .map-fb { height: 280px; } }
+</style>
+</head>
+<body>
+
+<div class="util"><div class="wrap">
+  <span class="mono">Meraki Services Solar Energy</span>
+  <span class="mono hide-m">Una unidad de Meraki Port &amp; Industrial Services S.A.</span>
+  <span class="mono live">Canning, Buenos Aires</span>
+</div></div>
+
+<div class="lines"><div class="wrap"><a href="index.html">Inicio</a><a href="paneles.html" aria-current="page">Paneles solares</a><a href="termotanques.html">Termotanques solares</a><a href="baterias.html">Baterías portátiles</a></div></div>
+
+<header class="nav"><div class="wrap">
+  <a href="index.html" class="brand" aria-label="Meraki Services Solar Energy — inicio"><img src="assets/logo-meraki.png" alt="Meraki Services"><span class="mono brand-sub">Solar Energy</span></a>
+  <nav class="nav-links" aria-label="Principal">
+    <a href="#explorador">Qué sistema necesito</a>
+    <a href="#soluciones">Soluciones</a>
+    <a href="#proceso">Cómo empiezo</a>
+    <a href="#trabajos">Trabajos</a>
+    <a href="#preguntas">Preguntas</a>
+  </nav>
+  <a class="btn btn-ink" href="#contacto">Pedir presupuesto <span class="arr" aria-hidden="true">→</span></a>
+</div></header>
+
+<main id="inicio">
+
+  <!-- PORTADA: corte de instalación que se dibuja y revela la foto -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="mono tick" data-rv>Meraki Services Solar Energy · Hogar · Comercio · Industria</span>
+        <h1 data-rv style="transition-delay:.1s">Pague menos de luz y no se quede sin energía en los <em>cortes</em>.</h1>
+        <p class="lead" data-rv style="transition-delay:.2s">Instalamos paneles solares para hogares, comercios e industrias. Estudiamos su factura de luz y le proponemos el sistema que le conviene, con o sin baterías, y nos ocupamos del mantenimiento. Somos la unidad de energía solar de Meraki Port &amp; Industrial Services S.A.</p>
+        <div class="ctas" data-rv style="transition-delay:.3s">
+          <a class="btn btn-ink" href="#contacto">Pedir presupuesto <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn-line" href="#explorador">¿Qué sistema necesito?</a>
+        </div>
+      </div>
+
+      <figure class="hero-ph car" id="car" data-rv style="transition-delay:.15s" aria-roledescription="carrusel" aria-label="Fotos de instalaciones">
+        <div class="car-s on" data-cap="Instalación de paneles sobre techo"><img src="assets/solar-techo.webp" alt="Técnicos de Meraki instalando paneles solares sobre un techo"></div>
+        <div class="car-s" data-cap="Vivienda con paneles solares"><img src="assets/solar-casa.webp" alt="Vivienda con paneles solares y vehículo de Meraki Services"></div>
+        <div class="car-s" data-cap="Paneles sobre techo de tejas"><img src="assets/card-solar.webp" alt="Paneles solares sobre un techo de tejas"></div>
+        <div class="car-bars" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i></div>
+        <figcaption class="mono" id="car-cap">Instalación de paneles sobre techo</figcaption>
+        <div class="car-nav mono">
+          <button type="button" id="car-prev" aria-label="Foto anterior">←</button>
+          <span id="car-n">01 / 03</span>
+          <button type="button" id="car-next" aria-label="Foto siguiente">→</button>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- CIFRAS -->
+  <section class="facts" aria-label="Datos de la unidad">
+    <div class="wrap">
+      <div class="fact" data-rv><div class="big"><span data-count="3">0</span></div><p>Segmentos: industria, comercio y vivienda</p></div>
+      <div class="fact" data-rv style="transition-delay:.08s"><div class="big"><span data-count="3">0</span></div><p>Tipos de sistema: on-grid, híbrido y off-grid</p></div>
+      <div class="fact" data-rv style="transition-delay:.16s"><div class="big"><span data-count="4">0</span></div><p>Etapas: estudio, diseño, instalación y mantenimiento</p></div>
+      <div class="fact" data-rv style="transition-delay:.24s"><div class="big"><span data-count="10">0</span><sup>+</sup></div><p>Años de experiencia del equipo técnico de Meraki</p></div>
+    </div>
+  </section>
+
+  <!-- EXPLORADOR DE SISTEMAS -->
+  <section class="sec xp proc" id="explorador">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="mono tick" data-rv>¿Qué sistema necesito?</span>
+          <h2 data-rv style="transition-delay:.1s">Vea cómo funciona cada sistema.</h2>
+        </div>
+        <p data-rv style="transition-delay:.2s">Elija el sistema y la situación, y siga el recorrido de la energía. Toque cualquier componente del plano para saber qué hace.</p>
+      </div>
+
+      <div class="xp-sheet" data-rv style="transition-delay:.25s">
+        <div class="xp-top">
+          <div class="xp-g"><span class="mono" id="xl-sys">Sistema</span>
+            <div class="seg" role="group" aria-labelledby="xl-sys">
+              <button type="button" data-xs="og" aria-pressed="true">On-grid</button>
+              <button type="button" data-xs="hy" aria-pressed="false">Híbrido</button>
+              <button type="button" data-xs="of" aria-pressed="false">Off-grid</button>
+            </div></div>
+          <div class="xp-g"><span class="mono" id="xl-sit">Situación</span>
+            <div class="seg" role="group" aria-labelledby="xl-sit">
+              <button type="button" data-xt="dia" aria-pressed="true">Día</button>
+              <button type="button" data-xt="noche" aria-pressed="false">Noche</button>
+              <button type="button" data-xt="corte" aria-pressed="false">Corte de luz</button>
+            </div></div>
+        </div>
+        <div class="xp-body">
+          <div class="xp-canvas" id="xp-canvas">
+            <svg class="scene xpv" id="xpv" viewBox="0 0 1000 560" role="group" aria-label="Plano de una casa con sistema solar: paneles, inversor, baterías, tablero, medidor, red y consumos">
+              <g class="banner" id="xp-ban"><rect x="330" y="18" width="430" height="32"/><text id="xp-bant" x="545" y="39" text-anchor="middle">ON-GRID · DÍA</text></g>
+              <g id="xp-sun"><circle class="sun" cx="880" cy="96" r="24"/><g class="rays" id="xp-rays"><line class="ray" x1="0" y1="-33" x2="0" y2="-43"/><line class="ray" x1="0" y1="33" x2="0" y2="43"/><line class="ray" x1="-33" y1="0" x2="-43" y2="0"/><line class="ray" x1="33" y1="0" x2="43" y2="0"/><line class="ray" x1="23" y1="23" x2="30" y2="30"/><line class="ray" x1="-23" y1="-23" x2="-30" y2="-30"/><line class="ray" x1="23" y1="-23" x2="30" y2="-30"/><line class="ray" x1="-23" y1="23" x2="-30" y2="30"/></g></g>
+              <path id="xp-moon" d="M872 70 A30 30 0 1 0 902 112 A24 24 0 1 1 872 70 Z"/>
+              <line class="ground" x1="10" y1="480" x2="990" y2="480"/>
+              <!-- casa -->
+              <path class="s f" d="M150 480 V258 H550 V480"/>
+              <path class="s" d="M125 258 L350 130 L575 258"/>
+              <path class="s t" d="M150 275 H550"/>
+
+              <!-- conductores -->
+              <path class="s t" d="M560 250 H660 V285 M642 285 V275 H198 V295 M642 369 V395 M226 350 H284 V380 M226 318 H321 M226 338 H470 V326 M470 338 V400"/>
+              <path class="s t" id="xw-grid" d="M50 190 Q90 230 112 312 M130 330 H170"/>
+              <path class="xcut" id="xp-cut" d="M68 232 L92 256 M92 232 L68 256"/>
+              <!-- flujos -->
+              <path class="sig" id="xf-pv" d="M560 250 H660 V285"/>
+              <path class="sig" id="xf-bus" d="M642 285 V275 H198 V295"/>
+              <path class="sig" id="xf-bat" d="M642 369 V395"/>
+              <path class="sig" id="xf-crit" d="M226 350 H284 V380 M226 318 H321"/>
+              <path class="sig" id="xf-otr" d="M226 338 H470 V326 M470 338 V400"/>
+              <path class="sig" id="xf-grid" d="M50 190 Q90 230 112 312 M130 330 H170"/>
+
+              <!-- componentes -->
+              <g class="cmp" data-c="red" tabindex="0" role="button" aria-label="Red eléctrica">
+                <rect class="hit" x="14" y="140" width="76" height="340"/>
+                <path class="s" d="M50 480 V170 M28 186 H72 M34 186 V194 M66 186 V194"/>
+                <text class="lbl" x="30" y="158">RED</text>
+                <g class="hs"><circle cx="50" cy="420" r="13"/><text x="50" y="420">6</text></g>
+              </g>
+              <g class="cmp" data-c="medidor" tabindex="0" role="button" aria-label="Medidor bidireccional">
+                <rect class="hit" x="84" y="304" width="56" height="80"/>
+                <circle class="s f" cx="112" cy="330" r="18"/><path class="s t" d="M103 334 H121 M107 326 l5 -6 l5 6"/>
+                <text class="lbl" x="82" y="368">MEDIDOR</text>
+                <g class="hs"><circle cx="112" cy="392" r="13"/><text x="112" y="392">5</text></g>
+              </g>
+              <g class="cmp" data-c="tablero" tabindex="0" role="button" aria-label="Tablero">
+                <rect class="hit" x="164" y="290" width="68" height="130"/>
+                <rect class="s f" x="170" y="295" width="56" height="90"/><path class="s t" d="M182 312 H214 M182 328 H214 M182 344 H214 M182 360 H214"/>
+                <text class="lbl" x="168" y="402">TABLERO</text>
+                <g class="hs"><circle cx="198" cy="424" r="13"/><text x="198" y="424">4</text></g>
+              </g>
+              <g class="cmp" data-c="criticas" tabindex="0" role="button" aria-label="Cargas críticas">
+                <rect class="hit" x="250" y="296" width="100" height="184"/>
+                <rect class="s f ld" x="262" y="380" width="44" height="100"/><path class="s t" d="M262 414 H306 M298 392 V404 M298 424 V444"/>
+                <path class="s t" d="M330 275 V309"/><circle class="s f ld bulb" cx="330" cy="318" r="9"/>
+                <text class="lbl" x="232" y="500">CARGAS CRÍTICAS</text>
+                <g class="hs"><circle cx="334" cy="452" r="13"/><text x="334" y="452">7</text></g>
+              </g>
+              <g class="cmp" data-c="otros" tabindex="0" role="button" aria-label="Otros consumos">
+                <rect class="hit" x="424" y="294" width="96" height="186"/>
+                <rect class="s f ld" x="435" y="300" width="70" height="26"/><path class="s t" d="M443 318 H497"/>
+                <rect class="s f ld" x="440" y="400" width="60" height="40"/><path class="s t" d="M470 440 V456 M454 456 H486"/>
+                <text class="lbl" x="412" y="500">OTROS CONSUMOS</text>
+                <g class="hs"><circle cx="522" cy="452" r="13"/><text x="522" y="452">8</text></g>
+              </g>
+              <g class="cmp" data-c="paneles" tabindex="0" role="button" aria-label="Paneles solares">
+                <path class="hit" d="M360 120 L570 238 L560 262 L350 144 Z"/>
+                <g id="xp-pn"></g>
+                <text class="lbl" x="470" y="150">PANELES</text>
+                <g class="hs"><circle cx="452" cy="150" r="13"/><text x="452" y="150">1</text></g>
+              </g>
+              <g class="cmp" data-c="inversor" tabindex="0" role="button" aria-label="Inversor">
+                <rect class="hit" x="594" y="280" width="150" height="94"/>
+                <rect class="s f" x="600" y="285" width="84" height="84"/><path class="s" d="M616 336 q7 -13 14 0 t14 0 t14 0 t14 0"/>
+                <text class="lbl" x="606" y="304">INVERSOR</text>
+                <text class="lbl dig" id="xp-inv" x="696" y="332">ON</text>
+                <g class="hs"><circle cx="722" cy="300" r="13"/><text x="722" y="300">2</text></g>
+              </g>
+              <g class="cmp" data-c="bateria" tabindex="0" role="button" aria-label="Baterías">
+                <rect class="hit" x="594" y="390" width="150" height="92"/>
+                <rect class="s f" x="600" y="395" width="84" height="85"/><rect id="xp-soc" x="605" y="476" width="74" height="0"/>
+                <path class="s t" d="M600 416 H684 M600 437 H684 M600 458 H684"/>
+                <text class="lbl" x="606" y="410">BATERÍAS</text>
+                <g class="hs"><circle cx="722" cy="440" r="13"/><text x="722" y="440">3</text></g>
+              </g>
+            </svg>
+          </div>
+          <aside class="xp-info" aria-live="polite">
+            <span class="mono k" id="xi-k">On-grid · Día</span>
+            <h2 id="xi-h">Paga menos de luz</h2>
+            <p id="xi-p"></p>
+            <div class="xp-cmp" id="xi-c">
+              <span class="mono" id="xi-cn">Toque un componente</span>
+              <p id="xi-cd">Cada número del plano es un componente. Tóquelo para ver qué hace y en qué estado está ahora.</p>
+              <p class="st" id="xi-cs"></p>
+            </div>
+          </aside>
+        </div>
+        <div class="tblock mono">
+          <div><span class="k">Sistema</span><span class="v" id="xt-sys">On-grid</span></div>
+          <div><span class="k">Red eléctrica</span><span class="v" id="xt-red">Conectada</span></div>
+          <div><span class="k">Baterías</span><span class="v" id="xt-bat">No lleva</span></div>
+          <div><span class="k">Consumo</span><span class="v" id="xt-con">Con energía</span></div>
+        </div>
+      </div>
+      <div class="ctas" data-rv>
+        <a class="btn btn-ink" href="#contacto">Pedir presupuesto <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn-line" href="#comparativa">Comparar los tres sistemas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUCIONES -->
+  <section id="soluciones" class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="mono tick" data-rv>Soluciones</span>
+          <h2 data-rv style="transition-delay:.1s">Un sistema para cada tipo de consumo.</h2>
+        </div>
+        <p data-rv style="transition-delay:.2s">El tamaño del sistema, la ubicación de los paneles y la necesidad de baterías se definen según el consumo de cada cliente.</p>
+      </div>
+      <div class="index">
+        <a class="row" href="#contacto" data-rv>
+          <span class="num mono">S—01</span>
+          <h3>Industrial</h3>
+          <p>Plantas, talleres y depósitos con consumo diurno alto. Sistemas sobre cubierta, con protecciones y tablería dimensionadas para la instalación existente.</p>
+          <span class="thumb"><img src="assets/solar-techo.webp" alt="" loading="lazy"></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+        <a class="row" href="#contacto" data-rv style="transition-delay:.08s">
+          <span class="num mono">S—02</span>
+          <h3>Comercial</h3>
+          <p>Locales, oficinas y comercios que quieren reducir su compra de energía a la red durante el horario de atención.</p>
+          <span class="thumb"><img src="assets/card-solar.webp" alt="" loading="lazy"></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+        <a class="row" href="#contacto" data-rv style="transition-delay:.16s">
+          <span class="num mono">S—03</span>
+          <h3>Residencial</h3>
+          <p>Viviendas, con opción de baterías para mantener cargas críticas en funcionamiento durante cortes.</p>
+          <span class="thumb"><img src="assets/solar-casa.webp" alt="" loading="lazy"></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARATIVA -->
+  <section id="comparativa" class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="mono tick" data-rv>Comparativa</span>
+          <h2 data-rv style="transition-delay:.1s">Los tres sistemas, lado a lado.</h2>
+        </div>
+        <p data-rv style="transition-delay:.2s">La elección depende de su consumo, de la red disponible y de cuánto le afecta un corte de luz. El estudio de consumo define cuál conviene.</p>
+      </div>
+      <div class="cmp-wrap" data-rv>
+        <table class="cmp">
+          <thead><tr><th scope="col"><span class="mono">Dato</span></th><th scope="col">On-grid<small>Conectado a la red</small></th><th scope="col">Híbrido<small>Red + baterías</small></th><th scope="col">Off-grid<small>Sin red</small></th></tr></thead>
+          <tbody>
+            <tr><th scope="row">¿Necesita red eléctrica?</th><td><span class="y">Sí</span></td><td><span class="y">Sí</span></td><td><span class="n">No</span></td></tr>
+            <tr><th scope="row">¿Funciona en un corte de luz?</th><td><span class="n">No</span></td><td><span class="y">Sí</span>, cargas críticas</td><td><span class="y">Sí</span>, no depende de la red</td></tr>
+            <tr><th scope="row">¿Lleva baterías?</th><td><span class="n">No</span></td><td><span class="y">Sí</span></td><td><span class="y">Sí</span></td></tr>
+            <tr><th scope="row">¿Entrega excedente a la red?</th><td><span class="y">Sí</span>*</td><td><span class="y">Sí</span>*</td><td><span class="n">No</span></td></tr>
+            <tr><th scope="row">Inversión inicial</th><td>Menor</td><td>Media</td><td>Mayor</td></tr>
+            <tr><th scope="row">Ideal para</th><td>Reducir la factura de luz</td><td>Reducir la factura y tener respaldo</td><td>Campos y lugares sin red</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mono note">* Según la normativa de generación distribuida y las condiciones de cada distribuidora.</p>
+    </div>
+  </section>
+
+  <!-- CÓMO EMPIEZO -->
+  <section id="proceso" class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="mono tick" data-rv>Cómo empiezo</span>
+          <h2 data-rv style="transition-delay:.1s">Tres pasos para empezar.</h2>
+        </div>
+        <p data-rv style="transition-delay:.2s">No necesita saber de energía solar. Con su factura de luz alcanza para empezar.</p>
+      </div>
+      <div class="wo wo3" id="wo" data-rv>
+        <div><span class="mono n">Paso 1</span><span class="mono st">Su factura</span><h4>Nos envía su factura de luz</h4><p>Por WhatsApp o por correo, junto con la ubicación y una foto del techo o del lugar.</p></div>
+        <div><span class="mono n">Paso 2</span><span class="mono st">Propuesta</span><h4>Le preparamos la propuesta</h4><p>Le indicamos qué sistema le conviene, qué equipos lleva, el costo y el ahorro estimado, por escrito.</p></div>
+        <div><span class="mono n">Paso 3</span><span class="mono st">Instalación</span><h4>Instalamos y ponemos en marcha</h4><p>Nuestro equipo hace el montaje, la conexión y las pruebas, y le explica cómo funciona.</p></div>
+      </div>
+      <div style="margin-top:36px" data-rv><a class="btn btn-ink" href="#contacto">Enviar mi factura <span class="arr" aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+
+  <!-- TRABAJOS -->
+  <section id="trabajos" class="sec proc">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="mono tick" data-rv>Trabajos realizados</span>
+          <h2 data-rv style="transition-delay:.1s">Instalaciones hechas por nuestro equipo.</h2>
+        </div>
+        <p data-rv style="transition-delay:.2s">Cada techo es distinto. Adaptamos la estructura y la ubicación de los paneles a cada lugar.</p>
+      </div>
+      <div class="works works7">
+        <figure class="shot g22" style="margin:0"><img src="assets/solar-techo.webp" alt="Vista aérea de una instalación de paneles sobre techo" loading="lazy"><figcaption class="cap mono">Instalación sobre techo</figcaption></figure>
+        <figure class="shot" style="margin:0;transition-delay:.08s"><img src="assets/solar-det-tecnicos.webp" alt="Técnicos colocando paneles solares" loading="lazy"><figcaption class="cap mono">Montaje de paneles</figcaption></figure>
+        <figure class="shot" style="margin:0;transition-delay:.16s"><img src="assets/solar-det-casa.webp" alt="Paneles solares sobre el techo de una vivienda" loading="lazy"><figcaption class="cap mono">Vivienda</figcaption></figure>
+        <figure class="shot" style="margin:0;transition-delay:.24s"><img src="assets/solar-det-teja.webp" alt="Detalle de paneles sobre techo de tejas" loading="lazy"><figcaption class="cap mono">Detalle sobre tejas</figcaption></figure>
+        <figure class="shot" style="margin:0;transition-delay:.32s"><img src="assets/solar-det-camioneta.webp" alt="Vehículo de Meraki Services en una obra" loading="lazy"><figcaption class="cap mono">Equipo en obra</figcaption></figure>
+        <figure class="shot g21" style="margin:0;transition-delay:.1s"><img src="assets/card-solar.webp" alt="Paneles solares sobre techo de tejas" loading="lazy"><figcaption class="cap mono">Techo de tejas</figcaption></figure>
+        <figure class="shot g21" style="margin:0;transition-delay:.2s"><img src="assets/solar-casa.webp" alt="Vivienda con paneles solares" loading="lazy"><figcaption class="cap mono">Instalación residencial</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANTENIMIENTO -->
+  <section id="mantenimiento" class="sec mant">
+    <div class="wrap mant-grid">
+      <div>
+        <span class="mono tick on-dark" data-rv>Mantenimiento</span>
+        <h2 data-rv style="transition-delay:.1s">Una instalación que rinde año tras año.</h2>
+        <p class="lead" data-rv style="transition-delay:.2s">El sistema necesita seguimiento para sostener su rendimiento. Después de la puesta en marcha, ofrecemos un plan de mantenimiento periódico.</p>
+        <a class="btn btn-amber" href="#contacto" data-rv style="margin-top:34px;transition-delay:.3s">Consultar plan de mantenimiento <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <ul class="check" id="check" data-rv>
+        <li><span class="bx" aria-hidden="true"></span><span><b>Limpieza de paneles</b><span class="d">Suciedad y polvo reducen la generación.</span></span></li>
+        <li><span class="bx" aria-hidden="true"></span><span><b>Inspección de estructura</b><span class="d">Fijaciones, soportes y estado de la cubierta.</span></span></li>
+        <li><span class="bx" aria-hidden="true"></span><span><b>Verificación eléctrica</b><span class="d">Conexiones, protecciones y tablería.</span></span></li>
+        <li><span class="bx" aria-hidden="true"></span><span><b>Inversor y baterías</b><span class="d">Estado de los equipos y registro de alarmas.</span></span></li>
+        <li><span class="bx" aria-hidden="true"></span><span><b>Seguimiento de rendimiento</b><span class="d">Comparación de la generación con lo esperado.</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PREGUNTAS FRECUENTES -->
+  <section id="preguntas" class="sec">
+    <div class="wrap faq-grid">
+      <div>
+        <span class="mono tick" data-rv>Preguntas frecuentes</span>
+        <h2 class="faq-h" data-rv style="transition-delay:.1s">Lo que más nos consultan.</h2>
+        <p class="faq-p" data-rv style="transition-delay:.2s">Si su duda no está acá, escríbanos y le responde un técnico.</p>
+      </div>
+      <div class="faq" data-rv>
+        <details><summary>¿Cuánto voy a ahorrar?</summary><p>Depende de su consumo, de su tarifa y del tamaño del sistema. Por eso empezamos por su factura de luz: con ese dato le indicamos el ahorro estimado antes de que tome una decisión.</p></details>
+        <details><summary>Si se corta la luz, ¿sigo teniendo energía?</summary><p>Solo si el sistema tiene baterías (híbrido u off-grid). Un sistema conectado a la red sin baterías se apaga por seguridad durante el corte, aunque haya sol.</p></details>
+        <details><summary>¿Los paneles funcionan en días nublados?</summary><p>Sí. Generan menos que con sol pleno, pero siguen produciendo. El sistema se calcula con el promedio de todo el año, no con el mejor día.</p></details>
+        <details><summary>¿Cuánto duran los paneles?</summary><p>Son equipos de larga vida: los fabricantes suelen garantizar su rendimiento por unos 25 años. Los inversores y las baterías tienen una vida útil menor, que le detallamos en la propuesta.</p></details>
+        <details><summary>¿Qué mantenimiento necesitan?</summary><p>Poco: limpieza periódica de los paneles y una revisión de conexiones, estructura y equipos. Ofrecemos un plan de mantenimiento para que la instalación rinda como el primer día.</p></details>
+        <details><summary>¿Puedo usar aire acondicionado y equipos de alto consumo?</summary><p>Sí, siempre que el sistema se calcule para eso. En los sistemas con baterías se define de antemano qué equipos quedan respaldados durante un corte.</p></details>
+        <details><summary>¿Sirve para un campo o un lugar sin red eléctrica?</summary><p>Sí. Para eso están los sistemas off-grid: paneles y baterías calculados para abastecer el consumo de día y de noche, sin depender de la red.</p></details>
+        <details><summary>¿Qué necesitan para darme un presupuesto?</summary><p>Sus últimas facturas de luz, la ubicación y una foto del techo o del lugar donde irían los paneles. Con eso preparamos una primera propuesta.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <details class="tech">
+    <summary><span><span class="mono">Para los más técnicos</span>Ver la simulación de un día completo de la instalación</span></summary>
+  <!-- CÓMO FUNCIONA: un día de la instalación -->
+  <section id="funciona" class="story light" aria-label="Cómo funciona un sistema a lo largo del día">
+    <div class="stage">
+      <div class="stage-grid" aria-hidden="true"></div>
+      <div class="copy">
+        <span class="mono tick">Cómo funciona</span>
+        <h2>Un día de su instalación.</h2>
+        <div class="steps">
+          <article class="step on">
+            <span class="mono k">06:00 — Mañana</span>
+            <h3>El sistema arranca con el sol</h3>
+            <p>Con poca radiación, la generación es baja y la red completa lo que falta. El inversor sincroniza y empieza a entregar energía al tablero.</p>
+            <div class="ph"><img src="assets/solar-casa.webp" alt="Instalación fotovoltaica" loading="lazy"></div>
+          </article>
+          <article class="step">
+            <span class="mono k">12:00 — Mediodía</span>
+            <h3>Pico de generación</h3>
+            <p>Los módulos llegan a su mayor producción. Los consumos se abastecen con energía propia y se reduce la compra a la red.</p>
+            <div class="ph"><img src="assets/solar-techo.webp" alt="Módulos sobre techo" loading="lazy"></div>
+          </article>
+          <article class="step">
+            <span class="mono k">16:00 — Tarde</span>
+            <h3>Carga de baterías</h3>
+            <p>En sistemas con respaldo, la energía que no se consume carga el banco de baterías para usarla más tarde.</p>
+            <div class="ph"><img src="assets/card-solar.webp" alt="Módulos fotovoltaicos" loading="lazy"></div>
+          </article>
+          <article class="step">
+            <span class="mono k">20:00 — Noche</span>
+            <h3>Respaldo para cargas críticas</h3>
+            <p>Sin sol, las baterías alimentan las cargas críticas. En un sistema sin baterías, la planta vuelve a tomar energía de la red.</p>
+            <div class="ph"><img src="assets/solar-casa.webp" alt="Vivienda con sistema solar" loading="lazy"></div>
+          </article>
+        </div>
+        <div class="rail" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+        <div class="rail-l mono" role="group" aria-label="Etapas"><button type="button" aria-pressed="false">Mañana</button><button type="button" aria-pressed="false">Mediodía</button><button type="button" aria-pressed="false">Tarde</button><button type="button" aria-pressed="false">Noche</button></div>
+        <div class="ctrl"><button type="button" class="pp" aria-label="Pausar">❚❚</button><input type="range" min="0" max="1000" value="0" aria-label="Hora del día"></div>
+      </div>
+
+      <div class="viz">
+        <div class="hud mono" aria-hidden="true">Simulación de un día<br>Hora <b class="hora-hud">06:00</b><br>Generación FV <b class="fv-hud">0</b>%</div>
+        <svg class="scene solar" viewBox="0 0 900 560" role="img" aria-label="Planta con paneles solares, inversor y baterías, mostrando el flujo de energía a lo largo de un día">
+          <path class="arc" d="M60 300 Q450 -120 840 300"/>
+          <g class="sunG"><circle class="sun" r="22"/>
+            <g class="rays"><line class="ray" x1="0" y1="-31" x2="0" y2="-40"/><line class="ray" x1="0" y1="31" x2="0" y2="40"/><line class="ray" x1="-31" y1="0" x2="-40" y2="0"/><line class="ray" x1="31" y1="0" x2="40" y2="0"/><line class="ray" x1="22" y1="22" x2="28" y2="28"/><line class="ray" x1="-22" y1="-22" x2="-28" y2="-28"/><line class="ray" x1="22" y1="-22" x2="28" y2="-28"/><line class="ray" x1="-22" y1="22" x2="-28" y2="28"/></g>
+          </g>
+          <line class="ground" x1="20" y1="500" x2="880" y2="500"/>
+          <g class="part" data-step="0">
+            <path class="s" d="M860 500 V300 M836 316 H884 M842 316 V324 M878 316 V324"/>
+            <text class="lbl" x="838" y="292">RED</text>
+          </g>
+          <g class="part" data-step="3">
+            <path class="s f" d="M300 500 V330 L500 250 L700 330 V500"/>
+            <path class="s t" d="M288 335 L500 250 L712 335"/>
+            <path class="s t" d="M460 500 V410 H540 V500 M460 425 H540 M460 440 H540 M460 455 H540 M460 470 H540 M460 485 H540"/>
+            <path class="s t" d="M560 370 H680 V392 H560 Z M600 370 V392 M640 370 V392"/>
+            <path class="s t" d="M380 470 h50 v30 h-50 Z M560 460 h70 v40 h-70 Z"/>
+            <rect class="s f" x="320" y="380" width="42" height="56"/>
+            <text class="lbl" x="326" y="452">TG</text>
+          </g>
+          <g class="part" data-step="0 1">
+            <g class="panels"></g>
+          </g>
+          <g class="part" data-step="1">
+            <rect class="s f" x="720" y="350" width="56" height="64"/>
+            <path class="s" d="M732 390 q6 -10 12 0 t12 0 t12 0"/>
+            <text class="lbl" x="730" y="372">INV</text>
+          </g>
+          <g class="part" data-step="2 3">
+            <rect class="s f" x="720" y="430" width="56" height="70"/>
+            <path class="s t batlvl" d="M720 447 H776 M720 464 H776 M720 481 H776"/>
+            <rect class="soc" x="724" y="496" width="48" height="0"/>
+            <text class="lbl" x="730" y="443">BAT</text>
+          </g>
+          <path class="sig" data-flow="pv" d="M486 256 L500 250 L706 332 H748 V350"/>
+          <path class="sig" data-flow="ac" d="M720 392 H362"/>
+          <path class="sig" data-flow="bat" d="M748 414 V430"/>
+          <path class="sig" data-flow="grid" d="M860 316 Q790 330 712 344 H341 V380"/>
+          <path class="sig" data-flow="load" d="M362 420 H405 V470 M362 428 H595 V460"/>
+          <g class="tag" data-step="0"><line x1="400" y1="268" x2="380" y2="202"/><rect x="290" y="176" width="200" height="26"/><text x="300" y="194">Arreglo fotovoltaico</text></g>
+          <g class="tag" data-step="1"><line x1="748" y1="350" x2="760" y2="252"/><rect x="706" y="226" width="110" height="26"/><text x="716" y="244">Inversor</text></g>
+          <g class="tag" data-step="2"><line x1="748" y1="500" x2="748" y2="528"/><rect x="660" y="528" width="180" height="26"/><text x="670" y="546">Banco de baterías</text></g>
+          <g class="tag" data-step="3"><line x1="405" y1="470" x2="300" y2="530"/><rect x="120" y="518" width="180" height="26"/><text x="130" y="536">Cargas críticas</text></g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  </details>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="contact">
+    <div class="wrap">
+      <div>
+        <span class="mono tick on-dark" data-rv>Contacto</span>
+        <h2 data-rv style="transition-delay:.1s">Pida su presupuesto.</h2>
+        <p class="lead" data-rv style="transition-delay:.2s">Para empezar nos sirve tener sus últimas facturas de energía, la ubicación y una foto del techo o del lugar donde iría la instalación.</p>
+        <div data-rv style="display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;transition-delay:.3s">
+          <a class="btn btn-amber" href="https://wa.me/5491144136890?text=Hola%2C%20quisiera%20pedir%20un%20presupuesto%20de%20energ%C3%ADa%20solar." target="_blank" rel="noopener">Escribir por WhatsApp <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn-line-d" href="mailto:ventas@merakiservices.com.ar?subject=Estudio%20de%20consumo%20-%20Solar%20Energy">Enviar correo</a>
+        </div>
+      </div>
+      <div class="kv" data-rv style="transition-delay:.2s">
+        <div><span class="mono">Correo</span><a href="mailto:ventas@merakiservices.com.ar">ventas@merakiservices.com.ar</a></div>
+        <div><span class="mono">Teléfono</span><a href="tel:+5491144136890">+54 9 11 4413-6890</a></div>
+        <div><span class="mono">WhatsApp</span><a href="https://wa.me/5491144136890?text=Hola%2C%20quisiera%20pedir%20un%20presupuesto%20de%20energ%C3%ADa%20solar." target="_blank" rel="noopener">+54 9 11 4413-6890</a></div>
+        <div><span class="mono">Sede</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Mariano+Castex+5489%2C+Canning%2C+Provincia+de+Buenos+Aires%2C+Argentina" target="_blank" rel="noopener">Mariano Castex 5489, Canning, Provincia de Buenos Aires</a></div>
+        <div><span class="mono">Instagram</span><a href="https://www.instagram.com/merakiservices.solarenergy/" target="_blank" rel="noopener">@merakiservices.solarenergy</a></div>
+      </div>
+      <div class="map" data-rv>
+        <div class="map-fb" aria-hidden="true">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><path d="M0 120 H400 M0 210 H400 M110 0 V300 M270 0 V300 M0 40 L400 280" /><circle cx="200" cy="150" r="46" /><path class="pin" d="M200 118 a22 22 0 0 1 22 22 c0 18 -22 40 -22 40 s-22 -22 -22 -40 a22 22 0 0 1 22 -22 Z" /><circle class="pin-c" cx="200" cy="140" r="8" /></svg>
+        </div>
+        <iframe title="Mapa: Mariano Castex 5489, Canning" src="https://www.google.com/maps?q=Mariano+Castex+5489,+Canning,+Provincia+de+Buenos+Aires,+Argentina&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-bar">
+          <div><span class="mono">Dónde estamos</span><b>Mariano Castex 5489, Canning</b><span class="sm">Provincia de Buenos Aires, Argentina</span></div>
+          <a class="btn btn-amber" href="https://www.google.com/maps/search/?api=1&amp;query=Mariano+Castex+5489%2C+Canning%2C+Provincia+de+Buenos+Aires%2C+Argentina" target="_blank" rel="noopener">Abrir en Google Maps <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot"><div class="wrap">
+  <img src="assets/logo-meraki.png" alt="Meraki Services">
+  <nav aria-label="Enlaces">
+    <a href="https://www.instagram.com/merakiservices.solarenergy/" target="_blank" rel="noopener">Instagram Solar</a>
+    <a href="https://ar.linkedin.com/company/meraki-services-argentina" target="_blank" rel="noopener">LinkedIn</a>
+  </nav>
+  <span>Meraki Services Solar Energy es una unidad de Meraki Port &amp; Industrial Services S.A.</span>
+</div></footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
+  var lerp = function (a, b, t) { return a + (b - a) * t; };
+  var ease = function (t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; };
+  var seg = function (p, a, b) { return ease(clamp((p - a) / (b - a), 0, 1)); };
+  /* ---- Reloj de relatos: fijo con scroll (solo .pin en escritorio) o automático con botones ---- */
+  var RM = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var MOB = window.matchMedia("(max-width: 960px)");
+  function makeClock(sec, opts) {
+    var o = { t: 0, last: null, dur: (opts && opts.dur) || 5000, paused: false, drag: false };
+    var T = function () { return 4 * o.dur; };
+    var pinned = function () { return sec.classList.contains("pin") && !MOB.matches; };
+    var btns = Array.prototype.slice.call(sec.querySelectorAll(".rail-l button"));
+    var pp = sec.querySelector(".ctrl .pp"), rng = sec.querySelector(".ctrl input");
+    function setPaused(v) {
+      o.paused = v;
+      if (pp) { pp.textContent = v ? "▶" : "❚❚"; pp.setAttribute("aria-label", v ? "Reproducir" : "Pausar"); }
+    }
+    btns.forEach(function (b, i) {
+      b.addEventListener("click", function () {
+        if (pinned()) {
+          var r = sec.getBoundingClientRect(), vh = window.innerHeight || 800;
+          window.scrollTo({ top: window.scrollY + r.top + (r.height - vh) * (i / 4 + 0.02), behavior: "smooth" });
+        } else { o.t = i * o.dur + 1; }
+      });
+    });
+    if (pp) pp.addEventListener("click", function () { setPaused(!o.paused); });
+    if (rng) {
+      rng.addEventListener("input", function () { o.t = (+rng.value / 1000) * T() * 0.999; setPaused(true); });
+    }
+    if (RM) setPaused(true);
+    var lastS = -1, scn = sec.querySelector(".scene");
+    o.getP = function (vh, now) {
+      var r = sec.getBoundingClientRect();
+      if (r.top > vh || r.bottom < 0) { o.last = null; return null; }
+      var p;
+      if (pinned()) {
+        p = Math.max(0, Math.min(1, -r.top / (r.height - vh)));
+      } else {
+        if (o.last === null) o.last = now;
+        var dt = Math.min(80, now - o.last); o.last = now;
+        if (!o.paused) o.t += dt;
+        p = (o.t % T()) / T();
+        if (rng && document.activeElement !== rng) rng.value = Math.round(p * 1000);
+      }
+      var s = Math.min(3, Math.floor(p * 4));
+      if (s !== lastS) { if (lastS !== -1 && scn && !RM) { scn.classList.remove("swap"); void scn.getBoundingClientRect(); scn.classList.add("swap"); } lastS = s; btns.forEach(function (b, i) { b.classList.toggle("on", i === s); b.setAttribute("aria-pressed", i === s ? "true" : "false"); }); }
+      return p;
+    };
+    return o;
+  }
+  var NS = "http://www.w3.org/2000/svg";
+  var pad2 = function (n) { return (n < 10 ? "0" : "") + n; };
+
+  /* ================= Relato: un día de la instalación ================= */
+  var S = $("#funciona");
+  var steps = $$(".step", S), bars = $$(".rail i", S), parts = $$(".part", S), tags = $$(".tag", S), cur = -1;
+  var inStep = function (el, s) { return (el.getAttribute("data-step") || "").split(" ").indexOf(String(s)) > -1; };
+  var roofY = function (x) { return 334 - 0.4 * (x - 290); };
+  var panelsG = $(".panels", S), panels = [];
+  for (var i = 0; i < 4; i++) {
+    var x0 = 306 + i * 46, x1 = x0 + 40;
+    var pth = document.createElementNS(NS, "path");
+    pth.setAttribute("class", "panel");
+    pth.setAttribute("d", "M" + x0 + " " + (roofY(x0) - 6) + " L" + x1 + " " + (roofY(x1) - 6) + " L" + x1 + " " + (roofY(x1) - 22) + " L" + x0 + " " + (roofY(x0) - 22) + " Z M" + (x0 + 20) + " " + (roofY(x0 + 20) - 6) + " V" + (roofY(x0 + 20) - 22));
+    pth.style.strokeDasharray = "none";
+    panelsG.appendChild(pth); panels.push(pth);
+  }
+  var sunG = $(".sunG", S), rays = $(".rays", S), soc = $(".soc", S);
+  var fl = {}; $$("[data-flow]", S).forEach(function (el) { fl[el.getAttribute("data-flow")] = el; });
+  var horaHud = $(".hora-hud", S), fvHud = $(".fv-hud", S);
+
+  function day(p, now) {
+    var s = Math.min(3, Math.floor(p * 4));
+    if (s !== cur) {
+      cur = s;
+      steps.forEach(function (el, i) { el.classList.toggle("on", i === s); });
+      parts.forEach(function (el) { el.classList.toggle("hot", inStep(el, s)); });
+      tags.forEach(function (el) { el.classList.toggle("on", inStep(el, s)); });
+    }
+    bars.forEach(function (b, i) { b.style.transform = "scaleX(" + clamp(p * 4 - i, 0, 1) + ")"; });
+
+    var t = clamp(p / 0.74, 0, 1);
+    var sx = (1 - t) * (1 - t) * 60 + 2 * (1 - t) * t * 450 + t * t * 840;
+    var sy = (1 - t) * (1 - t) * 300 + 2 * (1 - t) * t * -120 + t * t * 300;
+    var e = Math.sin(Math.PI * t), isDay = t < 1 && e > 0.12;
+    sunG.setAttribute("transform", "translate(" + sx.toFixed(1) + "," + sy.toFixed(1) + ")");
+    sunG.style.opacity = t >= 1 ? 0 : clamp(e * 3, 0, 1);
+    rays.setAttribute("transform", "rotate(" + ((now / 40) % 360).toFixed(1) + ")");
+    panels.forEach(function (pn) { pn.style.fill = isDay ? "rgba(232,163,23," + (0.06 + 0.34 * e).toFixed(2) + ")" : "rgba(16,39,45,0.06)"; });
+
+    var lvl = p < 0.5 ? 0.25 : (p < 0.75 ? lerp(0.25, 1, seg(p, 0.5, 0.72)) : lerp(1, 0.55, seg(p, 0.76, 1)));
+    var h = 60 * lvl; soc.setAttribute("y", 496 - h); soc.setAttribute("height", h);
+
+    fl.load.classList.add("on");
+    fl.pv.classList.toggle("on", isDay);
+    fl.ac.classList.toggle("on", isDay || s === 3);
+    fl.grid.classList.toggle("on", s === 0 && e < 0.75);
+    fl.bat.classList.toggle("on", s >= 2);
+    fl.bat.classList.toggle("rev", s === 3);
+
+    var hr = t < 1 ? 6 + 14 * t : 20 + 3 * clamp((p - 0.74) / 0.26, 0, 1);
+    var hh = Math.floor(hr), mm = Math.floor((hr - hh) * 60);
+    horaHud.textContent = pad2(hh) + ":" + pad2(mm);
+    fvHud.textContent = isDay ? Math.round(e * 100) : 0;
+  }
+
+  /* ================= Aparición, contadores, orden de trabajo y checklist ================= */
+  var pending = $$("[data-rv], .shot");
+  function countUp(el) {
+    var to = +el.getAttribute("data-count"), t0 = performance.now();
+    if (reduce) { el.textContent = to; return; }
+    (function tick(n) {
+      var k = clamp((n - t0) / 1200, 0, 1);
+      el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
+      if (k < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+  function sequence(sel) {
+    $$(sel).forEach(function (d, i) { setTimeout(function () { d.classList.add("done"); }, reduce ? 0 : 500 + i * 550); });
+  }
+
+  function frame(now) {
+    var vh = window.innerHeight || 800;
+    if (pending.length) {
+      pending = pending.filter(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.height > 0 && r.top < vh * 0.9 && r.bottom > 0) {
+          el.classList.add("in");
+          $$("[data-count]", el).forEach(countUp);
+          if (el.id === "wo") sequence("#wo > div");
+          if (el.id === "check") sequence("#check li");
+          return false;
+        }
+        return true;
+      });
+    }
+    var pd = clockD.getP(vh, now);
+    if (pd !== null) day(pd, now);
+    requestAnimationFrame(frame);
+  }
+  var clockD = makeClock(S, { dur: 6000 });
+  day(0, 0);
+  requestAnimationFrame(frame);
+})();
+</script>
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
+  var lerp = function (a, b, t) { return a + (b - a) * t; };
+  var NS = "http://www.w3.org/2000/svg";
+  var S = $("#que-sistema");
+  if (!S) return;
+  /* ---- Reloj de relatos: fijo con scroll (solo .pin en escritorio) o automático con botones ---- */
+  var RM = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var MOB = window.matchMedia("(max-width: 960px)");
+  function makeClock(sec, opts) {
+    var o = { t: 0, last: null, dur: (opts && opts.dur) || 5000, paused: false, drag: false };
+    var T = function () { return 4 * o.dur; };
+    var pinned = function () { return sec.classList.contains("pin") && !MOB.matches; };
+    var btns = Array.prototype.slice.call(sec.querySelectorAll(".rail-l button"));
+    var pp = sec.querySelector(".ctrl .pp"), rng = sec.querySelector(".ctrl input");
+    function setPaused(v) {
+      o.paused = v;
+      if (pp) { pp.textContent = v ? "▶" : "❚❚"; pp.setAttribute("aria-label", v ? "Reproducir" : "Pausar"); }
+    }
+    btns.forEach(function (b, i) {
+      b.addEventListener("click", function () {
+        if (pinned()) {
+          var r = sec.getBoundingClientRect(), vh = window.innerHeight || 800;
+          window.scrollTo({ top: window.scrollY + r.top + (r.height - vh) * (i / 4 + 0.02), behavior: "smooth" });
+        } else { o.t = i * o.dur + 1; }
+      });
+    });
+    if (pp) pp.addEventListener("click", function () { setPaused(!o.paused); });
+    if (rng) {
+      rng.addEventListener("input", function () { o.t = (+rng.value / 1000) * T() * 0.999; setPaused(true); });
+    }
+    if (RM) setPaused(true);
+    var lastS = -1, scn = sec.querySelector(".scene");
+    o.getP = function (vh, now) {
+      var r = sec.getBoundingClientRect();
+      if (r.top > vh || r.bottom < 0) { o.last = null; return null; }
+      var p;
+      if (pinned()) {
+        p = Math.max(0, Math.min(1, -r.top / (r.height - vh)));
+      } else {
+        if (o.last === null) o.last = now;
+        var dt = Math.min(80, now - o.last); o.last = now;
+        if (!o.paused) o.t += dt;
+        p = (o.t % T()) / T();
+        if (rng && document.activeElement !== rng) rng.value = Math.round(p * 1000);
+      }
+      var s = Math.min(3, Math.floor(p * 4));
+      if (s !== lastS) { if (lastS !== -1 && scn && !RM) { scn.classList.remove("swap"); void scn.getBoundingClientRect(); scn.classList.add("swap"); } lastS = s; btns.forEach(function (b, i) { b.classList.toggle("on", i === s); b.setAttribute("aria-pressed", i === s ? "true" : "false"); }); }
+      return p;
+    };
+    return o;
+  }
+  var clockS = makeClock(S, { dur: 7000 });
+  var steps = $$(".step", S), bars = $$(".rail i", S), parts = $$(".part", S);
+  var inStep = function (el, s) { return (el.getAttribute("data-step") || "").split(" ").indexOf(String(s)) > -1; };
+
+  /* paneles sobre el faldón derecho */
+  var g = $(".pnl", S), ry = function (x) { return 270 + 0.643 * (x - 450); };
+  for (var i = 0; i < 3; i++) {
+    var x0 = 466 + i * 40, x1 = x0 + 34, p = document.createElementNS(NS, "path");
+    p.setAttribute("class", "s f");
+    p.setAttribute("d", "M" + x0 + " " + (ry(x0) - 6) + " L" + x1 + " " + (ry(x1) - 6) + " L" + x1 + " " + (ry(x1) - 20) + " L" + x0 + " " + (ry(x0) - 20) + " Z");
+    g.appendChild(p);
+  }
+
+  var q = {}; $$("[data-q]", S).forEach(function (el) { q[el.getAttribute("data-q")] = el; });
+  var sceneG = $(".sceneG", S), batd = $(".batd", S), banner = $(".banner", S), bnT = $(".bnT", S);
+  var sunS = $(".sunS", S), moon = $(".moon", S), rural = $(".rural", S), gridG = $(".gridG", S);
+  var gwire = $(".gwire", S), cutx = $(".cutx", S), w1 = $(".w1", S), w2 = $(".w2", S), wlbl = $(".wlbl", S);
+  var invst = $(".invst", S), batP = $(".batP", S), soc2 = $(".soc2", S), rays = $(".rays", S);
+  var bigsoc = $(".bigsoc", S), bigpct = $(".bigpct", S), bigst = $(".bigst", S);
+  var hSys = $(".h-sys", S), hRed = $(".h-red", S), hPow = $(".h-pow", S);
+  var cur = -1;
+
+  function upd(p, now) {
+    var st = Math.min(3, Math.floor(p * 4)), lq = clamp(p * 4 - st, 0, 1);
+    if (st !== cur) {
+      cur = st;
+      steps.forEach(function (el, i) { el.classList.toggle("on", i === st); });
+      parts.forEach(function (el) { el.classList.toggle("hot", inStep(el, st)); });
+    }
+    bars.forEach(function (b, i) { b.style.transform = "scaleX(" + clamp(p * 4 - i, 0, 1) + ")"; });
+
+    var outage = st < 2 && lq > 0.55, night = st === 2 && lq > 0.55;
+    var powered = !(st === 0 && outage);
+    S.classList.toggle("night", night);
+    sunS.style.opacity = night ? 0 : 1; moon.style.opacity = night ? 1 : 0;
+    rays.setAttribute("transform", "translate(140,120) rotate(" + ((now / 45) % 360).toFixed(1) + ")");
+    gridG.style.opacity = st < 2 ? 1 : 0;
+    rural.style.opacity = st >= 2 ? 1 : 0;
+    batP.style.opacity = st >= 1 ? 1 : 0.12;
+    gwire.classList.toggle("cut", outage); cutx.style.opacity = outage ? 1 : 0;
+
+    q.pv.classList.toggle("on", !night && powered);
+    q.house.classList.toggle("on", powered);
+    q.grid.classList.toggle("on", st < 2 && !outage);
+    q.bat.classList.toggle("on", st === 1 || st === 2);
+    q.bat.classList.toggle("rev", (st === 1 && outage) || (st === 2 && night));
+
+    w1.classList.toggle("lit", powered);
+    w2.classList.toggle("lit", powered && !(st === 1 && outage));
+    wlbl.classList.toggle("on", st === 1 && outage);
+    invst.textContent = powered ? "ON" : "OFF"; invst.classList.toggle("off", !powered);
+
+    var soc = st === 1 ? (lq < 0.55 ? lerp(0.4, 0.9, lq / 0.55) : lerp(0.9, 0.6, (lq - 0.55) / 0.45))
+            : st === 2 ? (lq < 0.55 ? lerp(0.5, 1, lq / 0.55) : lerp(1, 0.45, (lq - 0.55) / 0.45)) : 0.5;
+    var h = 42 * soc; soc2.setAttribute("y", 496 - h); soc2.setAttribute("height", h);
+
+    var txt, alert = false;
+    if (st === 0) { txt = outage ? "CORTE DE RED · SIN ENERGÍA" : "ON-GRID · DÍA NORMAL"; alert = outage; }
+    else if (st === 1) txt = outage ? "CORTE DE RED · RESPALDO ACTIVO" : "HÍBRIDO · CARGANDO BATERÍAS";
+    else if (st === 2) txt = night ? "OFF-GRID · NOCHE · BATERÍAS" : "OFF-GRID · DÍA · CARGANDO";
+    else txt = "";
+    bnT.textContent = txt; banner.classList.toggle("alert", alert);
+    banner.style.opacity = st === 3 ? 0 : 1;
+
+    sceneG.style.opacity = st === 3 ? 0.1 : 1;
+    batd.style.opacity = st === 3 ? 1 : 0;
+    if (st === 3) {
+      var ph = now / 1800, s3 = 0.55 + 0.4 * Math.sin(ph), charging = Math.cos(ph) > 0;
+      var bh = 300 * s3; bigsoc.setAttribute("y", 464 - bh); bigsoc.setAttribute("height", bh);
+      bigpct.textContent = Math.round(s3 * 100) + "%";
+      bigst.textContent = charging ? "CARGANDO · DÍA" : "DESCARGANDO · NOCHE";
+    }
+
+    hSys.textContent = ["ON-GRID", "HÍBRIDO", "OFF-GRID", "BATERÍAS"][st];
+    hRed.textContent = st >= 2 ? "SIN RED" : (outage ? "CORTE" : "CONECTADA");
+    hPow.textContent = !powered ? "SIN ENERGÍA" : (st === 1 && outage ? "CARGAS CRÍTICAS" : "CON ENERGÍA");
+  }
+
+  function frame(now) {
+    var vh = window.innerHeight || 800, ps = clockS.getP(vh, now);
+    if (ps !== null) upd(ps, now);
+    requestAnimationFrame(frame);
+  }
+  upd(0, 0);
+  requestAnimationFrame(frame);
+})();
+</script>
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var NS = "http://www.w3.org/2000/svg";
+  var rays = $("#xp-rays"), still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  rays.setAttribute("transform", "translate(880,96)");
+  if (!still) (function spin(now) { rays.setAttribute("transform", "translate(880,96) rotate(" + (((now || 0) / 45) % 360).toFixed(1) + ")"); requestAnimationFrame(spin); })(0);
+  /* ---- Explorador ---- */
+  var pg = $("#xp-pn"), ry = function (x) { return 130 + 0.569 * (x - 350); };
+  for (var i = 0; i < 4; i++) {
+    var x0 = 372 + i * 46, x1 = x0 + 40, p = document.createElementNS(NS, "path");
+    p.setAttribute("class", "pnl");
+    p.setAttribute("d", "M" + x0 + " " + (ry(x0) - 5) + " L" + x1 + " " + (ry(x1) - 5) + " L" + x1 + " " + (ry(x1) - 22) + " L" + x0 + " " + (ry(x0) - 22) + " Z");
+    pg.appendChild(p);
+  }
+  var SYS = { og: "On-grid", hy: "Híbrido", of: "Off-grid" }, SIT = { dia: "Día", noche: "Noche", corte: "Corte de luz" };
+  var ST = {
+    "og-dia":   { h: "Paga menos de luz", p: "Los paneles abastecen la casa. Lo que sobra se entrega a la red y el medidor lo registra.", f: { pv: 1, bus: 1, crit: 1, otr: 1, grid: -1 }, inv: "ON", crit: 1, otr: 1, soc: 0 },
+    "og-noche": { h: "De noche, usa la red", p: "Sin sol, los paneles no generan. La casa toma la energía de la red, como siempre.", f: { crit: 1, otr: 1, grid: 1 }, inv: "EN ESPERA", crit: 1, otr: 1, soc: 0 },
+    "og-corte": { h: "Sin baterías, se apaga", p: "Se cortó la red y el inversor se desconecta por seguridad, para no enviar energía a una línea en reparación. Aunque haya sol, la casa queda sin luz.", f: {}, inv: "OFF", crit: 0, otr: 0, soc: 0, alert: 1, ban: "ON-GRID · CORTE DE LUZ · SIN ENERGÍA" },
+    "hy-dia":   { h: "Ahorra y carga las baterías", p: "Los paneles abastecen la casa y cargan las baterías. El excedente se entrega a la red.", f: { pv: 1, bus: 1, bat: 1, crit: 1, otr: 1, grid: -1 }, inv: "ON", crit: 1, otr: 1, soc: 0.8 },
+    "hy-noche": { h: "Usa lo que guardó de día", p: "Las baterías entregan la energía que guardaron durante el día. Si no alcanza, la red completa el resto.", f: { bat: -1, bus: 1, crit: 1, otr: 1, grid: 1 }, inv: "ON", crit: 1, otr: 1, soc: 0.45 },
+    "hy-corte": { h: "El corte no lo apaga", p: "Se cortó la red, pero el inversor se aísla y sigue funcionando con los paneles y las baterías. Las cargas críticas no se apagan.", f: { pv: 1, bat: -1, bus: 1, crit: 1 }, inv: "ON", crit: 1, otr: 0, soc: 0.65, ban: "HÍBRIDO · CORTE DE LUZ · RESPALDO ACTIVO" },
+    "of-dia":   { h: "Energía propia, sin red", p: "No hay red eléctrica. Los paneles abastecen todo el consumo y cargan las baterías para la noche.", f: { pv: 1, bus: 1, bat: 1, crit: 1, otr: 1 }, inv: "ON", crit: 1, otr: 1, soc: 0.85 },
+    "of-noche": { h: "Las baterías hacen el trabajo", p: "Las baterías abastecen la casa hasta que vuelve a salir el sol. Por eso su tamaño se calcula con cuidado.", f: { bat: -1, bus: 1, crit: 1, otr: 1 }, inv: "ON", crit: 1, otr: 1, soc: 0.4 }
+  };
+  var CMP = {
+    paneles: ["Paneles solares", "Convierten la luz del sol en electricidad. Generan más cuanto más sol reciben; de noche no producen."],
+    inversor: ["Inversor", "Convierte la corriente continua de los paneles en la corriente alterna que usan sus equipos. En los sistemas con baterías también administra su carga y descarga."],
+    bateria: ["Baterías", "Guardan la energía que sobra para usarla de noche o en un corte. Se eligen por su capacidad (kWh), la autonomía que dan, sus ciclos de vida y la profundidad de descarga. Hoy lo más usado es el litio (LiFePO4)."],
+    tablero: ["Tablero", "Reparte la energía entre los consumos. En un sistema híbrido se separan las cargas críticas, que son las que quedan respaldadas por las baterías."],
+    medidor: ["Medidor bidireccional", "Mide la energía que usted toma de la red y la que entrega cuando le sobra. Depende de la distribuidora y de la normativa de generación distribuida."],
+    red: ["Red eléctrica", "Es el suministro de la distribuidora. Completa lo que los paneles no cubren y recibe el excedente."],
+    criticas: ["Cargas críticas", "Los equipos que no pueden apagarse: heladera, iluminación, bombas, servidores. En un sistema híbrido siguen funcionando durante un corte."],
+    otros: ["Otros consumos", "El resto de los equipos, como el aire acondicionado o el televisor. En un corte, un sistema híbrido los deja sin energía para cuidar las baterías."]
+  };
+  var s = { sys: "og", sit: "dia", sel: null };
+  var cmpEl = {}; $$(".cmp").forEach(function (g) { cmpEl[g.getAttribute("data-c")] = g; });
+
+  function status(c, st) {
+    var day = s.sit !== "noche", cut = s.sit === "corte";
+    if (c === "paneles") return day ? (st.f.pv ? "Ahora: generando." : "Ahora: hay sol, pero el sistema está apagado.") : "Ahora: sin generación, es de noche.";
+    if (c === "inversor") return "Ahora: " + (st.inv === "ON" ? "funcionando." : st.inv === "OFF" ? "apagado por seguridad." : "en espera, sin generación.");
+    if (c === "bateria") return st.f.bat === 1 ? "Ahora: cargando." : "Ahora: entregando energía a la casa.";
+    if (c === "tablero") return (st.crit || st.otr) ? "Ahora: con energía." : "Ahora: sin energía.";
+    if (c === "medidor") return cut ? "Ahora: sin servicio." : (st.f.grid === -1 ? "Ahora: registra energía entregada a la red." : "Ahora: registra energía tomada de la red.");
+    if (c === "red") return cut ? "Ahora: cortada." : (st.f.grid === -1 ? "Ahora: recibe su excedente." : "Ahora: abastece la casa.");
+    if (c === "criticas") return st.crit ? "Ahora: funcionando." : "Ahora: apagadas.";
+    if (c === "otros") return st.otr ? "Ahora: funcionando." : "Ahora: apagados.";
+    return "";
+  }
+
+  function render() {
+    if (s.sys === "of" && s.sit === "corte") s.sit = "dia";
+    var st = ST[s.sys + "-" + s.sit], grid = s.sys !== "of", bat = s.sys !== "og", cut = s.sit === "corte", night = s.sit === "noche";
+    $$("[data-xs]").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-xs") === s.sys ? "true" : "false"); });
+    $$("[data-xt]").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-xt") === s.sit ? "true" : "false"); if (b.getAttribute("data-xt") === "corte") b.disabled = !grid; });
+    ["pv", "bus", "bat", "crit", "otr", "grid"].forEach(function (k) {
+      var el = $("#xf-" + k), v = st.f[k] || 0; el.classList.toggle("on", !!v); el.classList.toggle("rev", v === -1);
+    });
+    cmpEl.red.classList.toggle("gone", !grid); cmpEl.medidor.classList.toggle("gone", !grid); cmpEl.bateria.classList.toggle("gone", !bat);
+    $("#xw-grid").style.opacity = grid ? 1 : 0.1; $("#xw-grid").classList.toggle("cut", cut); $("#xp-cut").style.opacity = cut ? 1 : 0;
+    cmpEl.criticas.classList.toggle("off", !st.crit); cmpEl.otros.classList.toggle("off", !st.otr);
+    $$(".pnl").forEach(function (pn) { pn.classList.toggle("gen", !!st.f.pv); });
+    var inv = $("#xp-inv"); inv.textContent = st.inv; inv.classList.toggle("off", st.inv === "OFF");
+    var h = 76 * st.soc, soc = $("#xp-soc"); soc.setAttribute("y", 476 - h); soc.setAttribute("height", h);
+    $("#xp-sun").style.opacity = night ? 0 : 1; $("#xp-moon").style.opacity = night ? 1 : 0; $("#xp-canvas").classList.toggle("night", night);
+    $("#xp-bant").textContent = st.ban || (SYS[s.sys].toUpperCase() + " · " + SIT[s.sit].toUpperCase()); $("#xp-ban").classList.toggle("alert", !!st.alert);
+    $("#xi-k").textContent = SYS[s.sys] + " · " + SIT[s.sit]; $("#xi-h").textContent = st.h; $("#xi-p").textContent = st.p;
+    $("#xt-sys").textContent = SYS[s.sys];
+    $("#xt-red").textContent = !grid ? "No tiene" : cut ? "Cortada" : "Conectada";
+    $("#xt-bat").textContent = !bat ? "No lleva" : st.f.bat === 1 ? "Cargando" : "Entregando";
+    $("#xt-con").textContent = st.crit && st.otr ? "Con energía" : st.crit ? "Solo cargas críticas" : "Sin energía";
+    if (s.sel && cmpEl[s.sel].classList.contains("gone")) s.sel = null;
+    Object.keys(cmpEl).forEach(function (k) { cmpEl[k].classList.toggle("sel", k === s.sel); });
+    if (s.sel) { $("#xi-cn").textContent = CMP[s.sel][0]; $("#xi-cd").textContent = CMP[s.sel][1]; $("#xi-cs").textContent = status(s.sel, st); }
+    else { $("#xi-cn").textContent = "Toque un componente"; $("#xi-cd").textContent = "Cada número del plano es un componente. Tóquelo para ver qué hace y en qué estado está ahora."; $("#xi-cs").textContent = ""; }
+  }
+  $$("[data-xs]").forEach(function (b) { b.addEventListener("click", function () { s.sys = b.getAttribute("data-xs"); render(); }); });
+  $$("[data-xt]").forEach(function (b) { b.addEventListener("click", function () { s.sit = b.getAttribute("data-xt"); render(); }); });
+  Object.keys(cmpEl).forEach(function (k) {
+    var g = cmpEl[k], pick = function () { s.sel = s.sel === k ? null : k; render(); };
+    g.addEventListener("click", pick);
+    g.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
+  });
+  render();
+
+})();
+</script>
+<script>
+(function () {
+  var car = document.getElementById("car"); if (!car) return;
+  var S = Array.prototype.slice.call(car.querySelectorAll(".car-s")), B = Array.prototype.slice.call(car.querySelectorAll(".car-bars i"));
+  var cap = document.getElementById("car-cap"), num = document.getElementById("car-n"), i = 0, t = null;
+  var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function bars() { B.forEach(function (b, k) { b.className = k < i ? "done" : ""; }); void car.offsetWidth; if (!still) B[i].className = "run"; else B[i].className = "done"; }
+  function go(n) {
+    n = (n + S.length) % S.length; if (n === i) return;
+    S.forEach(function (s, k) { s.className = "car-s" + (k === i ? " prev" : ""); });
+    void car.offsetWidth; S[n].className = "car-s on"; i = n;
+    cap.textContent = S[i].getAttribute("data-cap"); num.textContent = "0" + (i + 1) + " / 0" + S.length;
+    bars(); arm();
+  }
+  function arm() { clearTimeout(t); if (!still && !car.classList.contains("hold")) t = setTimeout(function () { go(i + 1); }, 5500); }
+  document.getElementById("car-prev").addEventListener("click", function () { go(i - 1); });
+  document.getElementById("car-next").addEventListener("click", function () { go(i + 1); });
+  car.addEventListener("mouseenter", function () { car.classList.add("hold"); clearTimeout(t); });
+  car.addEventListener("mouseleave", function () { car.classList.remove("hold"); bars(); arm(); });
+  bars(); arm();
+})();
+</script>
+<a class="wa-fab" href="https://wa.me/5491144136890?text=Hola%2C%20quisiera%20pedir%20un%20presupuesto%20de%20energ%C3%ADa%20solar." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.500 6.500 0 0 1-3.200-2.800c-.2-.4.2-.4.600-1.200.1-.2 0-.3 0-.4l-.7-1.700c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.200-.8.800-.8 2s.8 2.300 1 2.500c.1.200 1.700 2.600 4.100 3.600 1.500.6 2.100.7 2.900.6.500-.1 1.400-.6 1.600-1.100.2-.600.2-1 .100-1.100l-.300-.200Z"/></svg>WhatsApp</a>
+<script>
+/* === Número de WhatsApp: solo dígitos con código de país, ej. "5491112345678" === */
+
+/* Los enlaces de WhatsApp ya tienen el número cargado (5491144136890). */
+</script>
+<script>
+/* Pista tenue bajo cada flujo de energía */
+Array.prototype.forEach.call(document.querySelectorAll(".scene .sig"), function (s) {
+  var c = s.cloneNode(false);
+  ["id", "data-q", "data-flow", "data-f", "data-sig", "style"].forEach(function (a) { c.removeAttribute(a); });
+  c.setAttribute("class", "trk");
+  s.parentNode.insertBefore(c, s.nextSibling);
+});
+</script>
+</body>
+</html>
