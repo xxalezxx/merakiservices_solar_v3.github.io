@@ -7,7 +7,7 @@
 <meta name="description" content="Paneles solares, termotanques solares y baterías portátiles para hogares, comercios e industrias. Canning, Provincia de Buenos Aires.">
 <meta property="og:title" content="Meraki Services Solar Energy">
 <meta property="og:description" content="Sistemas fotovoltaicos on-grid, híbridos y off-grid para industria, comercio y vivienda.">
-<meta property="og:image" content="assets/solar-techo.jpg">
+<meta property="og:image" content="assets/sol-dron-techo.jpg">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0F1A1F">
 <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -590,6 +590,165 @@
   .contact .map-bar .sm { display: block; margin-top: 2px; font-size: 14.5px; color: var(--on-dark-2); }
   @media (max-width: 700px) { .contact .map iframe, .contact .map-fb { height: 280px; } }
 
+  /* ---------- Confianza y combinaciones ---------- */
+  .trust3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+  @media (max-width: 960px) { .trust3 { grid-template-columns: 1fr; } }
+  .trust3 article { border: 1px solid var(--ink); background: var(--paper); padding: 24px 24px 26px; }
+  .trust3 svg { width: 120px; height: 80px; display: block; }
+  .trust3 .k { display: block; margin-top: 12px; color: var(--brand); }
+  .trust3 h3 { font-size: 26px; margin-top: 8px; }
+  .trust3 p { margin-top: 10px; font-size: 16px; line-height: 1.6; color: var(--steel); }
+  .trust3 p.sm { font-size: 14.5px; }
+  .trust3 p.sm a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--amber); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .trust3 .tl { margin-top: 14px; border-top: 1px solid var(--line); }
+  .trust3 .tl li { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+  .trust3 .tl li::before { content: ""; width: 8px; height: 8px; margin-top: 7px; background: var(--amber); flex: 0 0 auto; }
+  .trust3 .tl b { font-weight: 600; }
+  .cross-h { font-size: clamp(30px, 3.4vw, 46px); margin-top: 16px; }
+  .cross2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 36px; }
+  @media (max-width: 860px) { .cross2 { grid-template-columns: 1fr; } }
+  .cx { display: grid; grid-template-columns: 200px minmax(0, 1fr); border: 1px solid var(--ink); background: var(--paper); transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s; }
+  .cx:hover { transform: translateY(-4px); box-shadow: 8px 8px 0 var(--amber); }
+  .cx .art { border-right: 1px solid var(--ink); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 20px 20px; }
+  .cx .art svg { width: 100%; height: 100%; display: block; }
+  .cx .tx { padding: 20px 22px; display: flex; flex-direction: column; gap: 8px; }
+  .cx b { font-size: 24px; font-weight: 500; letter-spacing: -0.02em; }
+  .cx .tx > span:not(.go) { font-size: 15.5px; line-height: 1.55; color: var(--steel); }
+  .cx .go { margin-top: auto; padding-top: 6px; color: var(--ink); }
+  @media (max-width: 560px) { .cx { grid-template-columns: 120px minmax(0, 1fr); } .cx b { font-size: 20px; } }
+
+  /* ---------- Familia de productos Solar ---------- */
+  .lines { background: var(--ink); border-top: 1px solid rgba(233,236,234,0.12); }
+  .lines .wrap { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+  .lines .wrap::-webkit-scrollbar { display: none; }
+  .lines a { flex: 0 0 auto; padding: 11px 16px; font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark-2); border-bottom: 2px solid transparent; transition: color .25s, border-color .25s; }
+  .lines a:hover { color: var(--on-dark); }
+  .lines a[aria-current="page"] { color: var(--on-dark); border-bottom-color: var(--amber); }
+
+  .mini { --stk: #24343A; --stk2: rgba(15,26,31,0.42); --stk3: rgba(15,26,31,0.22); --fillp: rgba(15,26,31,0.035); }
+  .mini .sig { stroke-width: 4; }
+  .mini .sig.cold, .tv .sig.cold { stroke: #2F7FC1; filter: drop-shadow(0 0 5px rgba(47,127,193,0.9)); }
+  .mini .chg { fill: var(--amber); transform-box: fill-box; transform-origin: left; animation: chg 3.2s ease-in-out infinite; }
+  @keyframes chg { 0% { transform: scaleX(0.15); } 70%, 100% { transform: scaleX(1); } }
+  .mini .led { fill: var(--amber); animation: blink 1.4s steps(2, jump-none) infinite; }
+
+  /* Portada distribuidora */
+  .pick-hero { padding: 64px 0 90px; border-bottom: 1px solid var(--line); }
+  .pick-hero h1 { font-size: clamp(42px, 5.6vw, 84px); margin-top: 22px; }
+  .pick-hero h1 em { font-style: normal; color: var(--brand); }
+  .pick-hero .lead { margin-top: 20px; font-size: clamp(17px, 1.4vw, 19.5px); line-height: 1.6; color: var(--steel); max-width: 56ch; }
+  .picks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+  @media (max-width: 960px) { .picks { grid-template-columns: 1fr; } }
+  .pk { display: flex; flex-direction: column; border: 1px solid var(--ink); background: var(--paper); transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s; }
+  .pk:hover { transform: translateY(-6px); box-shadow: 10px 10px 0 var(--amber); }
+  .pk .art { position: relative; aspect-ratio: 5 / 3; border-bottom: 1px solid var(--ink); background-color: var(--paper); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 20px 20px; }
+  .pk .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .pk .art .n { position: absolute; top: 12px; left: 12px; background: var(--ink); color: var(--paper); padding: 5px 9px; }
+  .pk .tx { padding: 22px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+  .pk h2 { font-size: clamp(26px, 2.3vw, 34px); }
+  .pk p { margin-top: 10px; font-size: 16.5px; line-height: 1.55; color: var(--steel); }
+  .pk .go { margin-top: auto; padding-top: 22px; display: flex; justify-content: space-between; align-items: center; font-weight: 500; }
+  .pk .go span:last-child { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--ink); transition: background .3s, color .3s; }
+  .pk:hover .go span:last-child { background: var(--amber); border-color: var(--amber); }
+  .pick-help { margin-top: 26px; font-size: 16px; color: var(--steel); }
+  .pick-help a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--amber); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+
+  .about-g { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 56px 80px; align-items: center; }
+  @media (max-width: 960px) { .about-g { grid-template-columns: 1fr; } }
+  .about-g h2 { font-size: clamp(34px, 4vw, 56px); margin-top: 18px; max-width: 16ch; }
+  .about-g p.b { margin-top: 20px; font-size: 17.5px; line-height: 1.7; color: var(--steel); max-width: 52ch; }
+  .about-g ul { margin-top: 28px; border-top: 1px solid var(--line); }
+  .about-g li { padding: 14px 0; border-bottom: 1px solid var(--line); display: flex; gap: 14px; font-size: 16px; }
+  .about-g li::before { content: ""; width: 9px; height: 9px; margin-top: 7px; background: var(--amber); flex: 0 0 auto; }
+
+  .bat-g { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px 80px; align-items: center; }
+  @media (max-width: 960px) { .bat-g { grid-template-columns: 1fr; } }
+  .bat-g h2 { font-size: clamp(34px, 4vw, 56px); margin-top: 18px; max-width: 14ch; }
+  .bat-g p.b { margin-top: 18px; font-size: 17.5px; line-height: 1.7; color: var(--steel); max-width: 50ch; }
+  .bat-g .uses { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .bat-g .uses span { padding: 8px 12px; border: 1px solid var(--line); background: var(--paper); font-size: 14.5px; }
+  .bat-g .art { border: 1px solid var(--ink); aspect-ratio: 5 / 3; position: relative; background-color: var(--paper); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 20px 20px; }
+  .bat-g .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* Termotanques */
+  .tv { --stk: #24343A; --stk2: rgba(15,26,31,0.42); --stk3: rgba(15,26,31,0.22); --fillp: rgba(15,26,31,0.035); }
+  .tv .sig.slow { animation-duration: 3s; }
+  .tv #tt-hot { fill: rgba(232,163,23,0.5); transition: fill .8s; }
+  .tv #tt-hot.mid { fill: rgba(232,163,23,0.32); }
+  .tv #tt-hot.low { fill: rgba(232,163,23,0.18); }
+  .tv #tt-res { fill: none; stroke: var(--stk2); stroke-width: 2; transition: stroke .4s; }
+  .tv #tt-res.on { stroke: #D92D20; filter: drop-shadow(0 0 6px rgba(217,45,32,0.8)); }
+  .tv #tt-cloud { fill: #FFFFFF; stroke: var(--stk); stroke-width: 1.3; opacity: 0; transition: opacity .6s; }
+  .tv .col-b .plate { fill: rgba(22,50,57,0.85); }
+  .tv .tube { stroke: #163239; stroke-width: 7; stroke-linecap: round; }
+  .tv .col-a, .tv .col-b { transition: opacity .5s; }
+  .lit-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
+  .lit-row button { padding: 13px 18px; border: 1px solid var(--ink); background: var(--paper); font-family: "IBM Plex Mono", monospace; font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; transition: background .25s, color .25s; }
+  .lit-row button:hover:not([aria-pressed="true"]) { background: var(--paper-2); }
+  .lit-row button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .lit-out { margin-top: 30px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px 36px; align-items: center; border-top: 1px solid var(--ink); padding-top: 26px; }
+  .lit-out .big { font-size: clamp(56px, 7vw, 96px); font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+  .lit-out .big small { font-size: 0.32em; letter-spacing: 0; color: var(--steel); margin-left: 6px; }
+  .lit-out .ppl { display: flex; flex-wrap: wrap; gap: 6px; }
+  .lit-out .ppl svg { width: 30px; height: 44px; fill: var(--ink); animation: pcIn .4s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes pcIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .types2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 52px; }
+  @media (max-width: 860px) { .types2 { grid-template-columns: 1fr; } }
+  .types2 article { border: 1px solid var(--ink); background: var(--paper); padding: 28px 26px 30px; }
+  .types2 .k { color: var(--brand); }
+  .types2 h3 { font-size: 30px; margin-top: 10px; }
+  .types2 p { margin-top: 12px; font-size: 16.5px; line-height: 1.65; color: var(--steel); }
+  .types2 ul { margin-top: 18px; border-top: 1px solid var(--line); }
+  .types2 li { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+  .types2 li span:first-child { color: var(--steel); }
+  .note2 { margin-top: 16px; color: var(--steel); font-size: 13.5px; }
+  .mini .pnl { fill: #163239; stroke: #0F1A1F; stroke-width: 1; }
+  .mini .tube { stroke: #163239; stroke-linecap: round; }
+  .scene .trk.cold { stroke: #2F7FC1; }
+  .pk .art .mini { pointer-events: none; }
+  @media (min-width: 961px) { .bat-g.flip > .art { order: -1; } }
+  #paneles-linea, #termotanques-linea, #baterias { scroll-margin-top: 80px; }
+  .tv .ptag rect { stroke: none; }
+  .tv .ptag.hot rect { fill: var(--amber); }
+  .tv .ptag.cold rect { fill: #2F7FC1; }
+  .tv .ptag text { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: 0.06em; fill: var(--ink); }
+  .tv .ptag.cold text { fill: #FFFFFF; }
+  .tv .wl { fill: rgba(47,127,193,0.3); }
+  .tv .drops { fill: none; stroke: #2F7FC1; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 4 6; animation: flow 0.8s linear infinite; }
+  .tv .g-pres, .tv .g-nopres { transition: opacity .5s; }
+  .tv .off { opacity: 0; pointer-events: none; }
+
+  /* Galería de trabajos */
+  .gf { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 44px; }
+  .gf button { padding: 11px 16px; border: 1px solid var(--ink); background: var(--paper); font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: background .25s, color .25s; }
+  .gf button span { opacity: .55; margin-left: 4px; }
+  .gf button:hover:not([aria-pressed="true"]) { background: var(--paper-2); }
+  .gf button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .gal { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 190px; grid-auto-flow: dense; gap: 10px; margin-top: 18px; }
+  .gi { position: relative; padding: 0; border: 0; overflow: hidden; background: var(--ink); cursor: zoom-in; animation: giIn .6s cubic-bezier(.2,.8,.2,1) both; }
+  .gi.w { grid-column: span 2; grid-row: span 2; }
+  .gi.t { grid-row: span 2; }
+  .gi[hidden] { display: none; }
+  .gi img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.8,.2,1), filter .4s; }
+  .gi:hover img, .gi:focus-visible img { transform: scale(1.06); }
+  .gi .cap { position: absolute; left: 0; bottom: 0; background: var(--paper); color: var(--ink); padding: 7px 11px; font-size: 11px; text-align: left; transform: translateY(101%); transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+  .gi:hover .cap, .gi:focus-visible .cap { transform: none; }
+  .gi::after { content: ""; position: absolute; inset: 0; border: 2px solid var(--amber); opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .gi:hover::after, .gi:focus-visible::after { opacity: 1; }
+  @keyframes giIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @media (max-width: 860px) { .gal { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 150px; } .gi .cap { transform: none; } }
+  .lb { position: fixed; inset: 0; z-index: 200; background: rgba(10,18,22,0.94); display: grid; grid-template-columns: 64px minmax(0, 1fr) 64px; align-items: center; padding: 24px 12px; }
+  .lb[hidden] { display: none; }
+  .lb figure { margin: 0; height: 100%; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+  .lb img { max-width: 100%; max-height: calc(100vh - 110px); object-fit: contain; margin: 0 auto; animation: lbIn .45s cubic-bezier(.2,.8,.2,1); }
+  @keyframes lbIn { from { opacity: 0; transform: scale(.97); } to { opacity: 1; transform: none; } }
+  .lb figcaption { display: flex; justify-content: space-between; gap: 16px; color: #E9ECEA; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; margin-top: 14px; }
+  .lb figcaption #lb-n { color: var(--amber); }
+  .lb button { width: 48px; height: 48px; border: 1px solid rgba(233,236,234,0.35); background: transparent; color: #fff; font-size: 20px; cursor: pointer; transition: background .25s, border-color .25s; justify-self: center; }
+  .lb button:hover { background: var(--amber); border-color: var(--amber); color: var(--ink); }
+  .lb .lb-x { position: absolute; top: 16px; right: 16px; font-size: 26px; }
+  @media (max-width: 640px) { .lb { grid-template-columns: 1fr; padding: 70px 12px 80px; } .lb .lb-a { position: absolute; bottom: 18px; } .lb .lb-p { left: calc(50% - 60px); } .lb .lb-n { right: calc(50% - 60px); } }
+
   /* ---------- Familia de productos Solar ---------- */
   .lines { background: var(--ink); border-top: 1px solid rgba(233,236,234,0.12); }
   .lines .wrap { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
@@ -696,7 +855,35 @@
   @media (max-width: 960px) { .usos4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 560px) { .usos4 { grid-template-columns: 1fr; } }
   .usos4 article { border: 1px solid var(--ink); background: var(--paper); padding: 22px 22px 24px; }
-  .usos4 svg { width: 120px; height: 80px; display: block; }
+  .usos4 svg { width: 100%; height: auto; aspect-ratio: 200 / 110; display: block; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+  .usos4 .pp { fill: var(--paper); }
+  .usos4 .chg { fill: var(--amber); }
+  .usos4 .glow { fill: rgba(232,163,23,0.4); transform-box: fill-box; transform-origin: center; animation: uGlow 2.4s ease-in-out infinite; }
+  .usos4 .lamp, .usos4 .usun { fill: var(--amber); }
+  @keyframes uGlow { 0%, 100% { opacity: .3; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.12); } }
+  .usos4 .tw { fill: var(--amber); animation: uTw 2.2s ease-in-out infinite; }
+  @keyframes uTw { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
+  .usos4 .win2 { fill: rgba(232,163,23,0.55); animation: uWin 3s ease-in-out infinite; }
+  @keyframes uWin { 0%, 100% { fill: rgba(232,163,23,0.4); } 50% { fill: rgba(232,163,23,0.8); } }
+  .usos4 .cut { fill: none; stroke: #D92D20; stroke-width: 1.6; stroke-dasharray: 4 4; }
+  .usos4 .cutx { fill: none; stroke: #D92D20; stroke-width: 2.4; stroke-linecap: round; animation: uBlink 1.1s steps(2, jump-none) infinite; }
+  .usos4 .cutt { font-family: "IBM Plex Mono", monospace; font-size: 9px; letter-spacing: .08em; fill: #D92D20; animation: uBlink 1.1s steps(2, jump-none) infinite; }
+  @keyframes uBlink { 0% { opacity: 1; } 100% { opacity: .15; } }
+  .usos4 .rays { transform-box: fill-box; transform-origin: center; animation: uSpin 9s linear infinite; }
+  .usos4 .whl, .usos4 .blade { transform-box: fill-box; transform-origin: center; animation: uSpin .9s linear infinite; }
+  .usos4 .blade { animation-duration: .35s; }
+  @keyframes uSpin { to { transform: rotate(360deg); } }
+  .usos4 .bob { animation: uBob .45s ease-in-out infinite alternate; }
+  @keyframes uBob { to { transform: translateY(-1.4px); } }
+  .usos4 .pass { animation: uPass 4.4s linear infinite; }
+  @keyframes uPass { from { transform: translateX(70px); } to { transform: translateX(-190px); } }
+  .usos4 .road { fill: none; stroke: var(--stk); stroke-width: 1.6; stroke-dasharray: 14 10; animation: uRoad .5s linear infinite; }
+  @keyframes uRoad { to { stroke-dashoffset: 24; } }
+  .usos4 .spark { fill: none; stroke: var(--amber); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 5 22; animation: uSpark .38s linear infinite; filter: drop-shadow(0 0 3px rgba(232,163,23,0.9)); }
+  @keyframes uSpark { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -27; } }
+  .usos4 svg { overflow: hidden; }
+  .usos4 article:hover svg .sig.on { animation-duration: .6s; }
+  @media (prefers-reduced-motion: reduce) { .usos4 svg * { animation: none !important; } }
   .usos4 h3 { font-size: 24px; margin-top: 14px; }
   .usos4 p { margin-top: 8px; font-size: 15.5px; line-height: 1.6; color: var(--steel); }
   .mini .win.lit { fill: rgba(232,163,23,0.55); }
@@ -745,6 +932,38 @@
   .spec2 li b { font-weight: 500; }
   @media (max-width: 560px) { .spec2 li { grid-template-columns: 1fr; gap: 2px; } }
   .models .btn { margin-top: 22px; align-self: flex-start; }
+
+  .models .m-art.ph { position: relative; overflow: hidden; background: var(--ink); max-height: 300px; aspect-ratio: 16 / 10; }
+  .models .m-art.ph img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s cubic-bezier(.2,.8,.2,1); }
+  .models article:hover .m-art.ph img { transform: scale(1.05); }
+  .models .m-art.ph span { position: absolute; left: 0; bottom: 0; background: var(--paper); padding: 6px 10px; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
+
+  /* ---------- Confianza y combinaciones ---------- */
+  .trust3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+  @media (max-width: 960px) { .trust3 { grid-template-columns: 1fr; } }
+  .trust3 article { border: 1px solid var(--ink); background: var(--paper); padding: 24px 24px 26px; }
+  .trust3 svg { width: 120px; height: 80px; display: block; }
+  .trust3 .k { display: block; margin-top: 12px; color: var(--brand); }
+  .trust3 h3 { font-size: 26px; margin-top: 8px; }
+  .trust3 p { margin-top: 10px; font-size: 16px; line-height: 1.6; color: var(--steel); }
+  .trust3 p.sm { font-size: 14.5px; }
+  .trust3 p.sm a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--amber); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .trust3 .tl { margin-top: 14px; border-top: 1px solid var(--line); }
+  .trust3 .tl li { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+  .trust3 .tl li::before { content: ""; width: 8px; height: 8px; margin-top: 7px; background: var(--amber); flex: 0 0 auto; }
+  .trust3 .tl b { font-weight: 600; }
+  .cross-h { font-size: clamp(30px, 3.4vw, 46px); margin-top: 16px; }
+  .cross2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 36px; }
+  @media (max-width: 860px) { .cross2 { grid-template-columns: 1fr; } }
+  .cx { display: grid; grid-template-columns: 200px minmax(0, 1fr); border: 1px solid var(--ink); background: var(--paper); transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s; }
+  .cx:hover { transform: translateY(-4px); box-shadow: 8px 8px 0 var(--amber); }
+  .cx .art { border-right: 1px solid var(--ink); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 20px 20px; }
+  .cx .art svg { width: 100%; height: 100%; display: block; }
+  .cx .tx { padding: 20px 22px; display: flex; flex-direction: column; gap: 8px; }
+  .cx b { font-size: 24px; font-weight: 500; letter-spacing: -0.02em; }
+  .cx .tx > span:not(.go) { font-size: 15.5px; line-height: 1.55; color: var(--steel); }
+  .cx .go { margin-top: auto; padding-top: 6px; color: var(--ink); }
+  @media (max-width: 560px) { .cx { grid-template-columns: 120px minmax(0, 1fr); } .cx b { font-size: 20px; } }
 </style>
 </head>
 <body>
@@ -849,14 +1068,16 @@
         </ul>
       </div>
             <figure class="hero-ph car" id="car" data-rv style="transition-delay:.15s" aria-roledescription="carrusel" aria-label="Fotos de instalaciones">
-        <div class="car-s on" data-cap="Instalación de paneles sobre techo"><img src="assets/solar-techo.webp" alt="Técnicos de Meraki instalando paneles solares sobre un techo"></div>
-        <div class="car-s" data-cap="Vivienda con paneles solares"><img src="assets/solar-casa.webp" alt="Vivienda con paneles solares y vehículo de Meraki Services"></div>
-        <div class="car-s" data-cap="Paneles sobre techo de tejas"><img src="assets/card-solar.webp" alt="Paneles solares sobre un techo de tejas"></div>
-        <div class="car-bars" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i></div>
-        <figcaption class="mono" id="car-cap">Instalación de paneles sobre techo</figcaption>
+        <div class="car-s on" data-cap="Vivienda con paneles sobre tejas"><img src="assets/sol-dron-techo.webp" alt="Vista aérea de una vivienda con paneles solares sobre techo de tejas"></div>
+        <div class="car-s" data-cap="Instalación terminada"><img src="assets/sol-casa-camioneta.webp" alt="Vivienda con paneles solares y la camioneta de Meraki Services" loading="lazy"></div>
+        <div class="car-s" data-cap="Montaje de paneles"><img src="assets/sol-montaje.webp" alt="Técnico de Meraki colocando un panel solar sobre el techo" loading="lazy"></div>
+        <div class="car-s" data-cap="Trabajo en altura con línea de vida"><img src="assets/sol-equipo-techo.webp" alt="Técnicos de Meraki trabajando sobre un techo con arneses" loading="lazy"></div>
+        <div class="car-s" data-cap="Dos campos de paneles en un mismo techo"><img src="assets/sol-dron-techo2.webp" alt="Vista aérea de paneles solares en dos sectores del techo" loading="lazy"></div>
+        <div class="car-bars" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+        <figcaption class="mono" id="car-cap">Vivienda con paneles sobre tejas</figcaption>
         <div class="car-nav mono">
           <button type="button" id="car-prev" aria-label="Foto anterior">←</button>
-          <span id="car-n">01 / 03</span>
+          <span id="car-n">01 / 05</span>
           <button type="button" id="car-next" aria-label="Foto siguiente">→</button>
         </div>
       </figure>
@@ -940,6 +1161,46 @@
   <path class="s" d="M232 100 h40 v26 h-40 z M246 126 v10 h12 v-10"/>
   <path class="sig on" d="M216 112 H232"/>
 </svg></div>
+    </div>
+  </section>
+
+  <section class="sec proc" id="confianza">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="mono tick" data-rv>Por qué Meraki Solar</span>
+          <h2 data-rv style="transition-delay:.1s">Instalación, pago y garantía, claros desde el principio.</h2>
+        </div>
+        <p data-rv style="transition-delay:.2s">Somos la unidad solar de Meraki Port &amp; Industrial Services S.A.: el mismo equipo técnico que mantiene equipos industriales se ocupa de su instalación.</p>
+      </div>
+      <div class="trust3">
+        <article data-rv>
+          <svg class="scene mini" viewBox="0 0 120 80" aria-hidden="true"><path class="s f" d="M30 70 C30 40 60 40 60 14 C60 40 90 40 90 70 Z" style="display:none"/><path class="s f" d="M60 72 C60 72 34 46 34 30 a26 26 0 0 1 52 0 C86 46 60 72 60 72 Z"/><circle class="sun" cx="60" cy="30" r="9"/><path class="s t" d="M8 74 H112"/></svg>
+          <span class="mono k">Cobertura</span>
+          <h3>Instalamos en todo Buenos Aires</h3>
+          <p>Nuestro equipo técnico va a su casa, comercio, campo o planta. Tenemos base en Canning.</p>
+        </article>
+        <article data-rv style="transition-delay:.1s">
+          <svg class="scene mini" viewBox="0 0 120 80" aria-hidden="true"><rect class="s f" x="18" y="18" width="84" height="50" rx="6"/><path class="s" d="M18 32 H102"/><rect class="chg" x="28" y="44" width="30" height="10" rx="2"/><path class="s t" d="M70 50 H92"/></svg>
+          <span class="mono k">Formas de pago</span>
+          <h3>Pague como le resulte cómodo</h3>
+          <ul class="tl">
+            <li>Transferencia</li>
+            <li><span>Efectivo, <b>con descuento</b></span></li>
+            <li>Tarjeta en cuotas, según el banco</li>
+          </ul>
+        </article>
+        <article data-rv style="transition-delay:.2s">
+          <svg class="scene mini" viewBox="0 0 120 80" aria-hidden="true"><path class="s f" d="M60 8 L92 20 V40 C92 58 78 68 60 74 C42 68 28 58 28 40 V20 Z"/><path class="s" d="M46 40 L56 50 L76 30" style="stroke:var(--amber);stroke-width:3"/></svg>
+          <span class="mono k">Garantía</span>
+          <h3>Equipos y mano de obra garantizados</h3>
+          <ul class="tl">
+            <li>Equipos de primer nivel, con la garantía del fabricante</li>
+            <li>Garantía de mano de obra en la instalación</li>
+          </ul>
+          <p class="sm">Las condiciones dependen del tipo de trabajo. <a href="https://wa.me/5491144136890?text=Hola%2C%20quisiera%20consultar%20por%20la%20garant%C3%ADa%20de%20equipos%20e%20instalaci%C3%B3n." target="_blank" rel="noopener">Consúltenos por WhatsApp</a>.</p>
+        </article>
+      </div>
     </div>
   </section>
 
