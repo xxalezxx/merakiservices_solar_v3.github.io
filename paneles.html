@@ -4,13 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Meraki Services Solar Energy</title>
+<link rel="canonical" href="https://merakiservicessolarenergy.ar/paneles.html">
+<meta property="og:url" content="https://merakiservicessolarenergy.ar/paneles.html">
 <meta name="description" content="Diseño, suministro e instalación de sistemas fotovoltaicos para industria, comercio y vivienda, con respaldo de baterías y mantenimiento.">
 <meta property="og:title" content="Meraki Services Solar Energy">
 <meta property="og:description" content="Sistemas fotovoltaicos on-grid, híbridos y off-grid para industria, comercio y vivienda.">
-<meta property="og:image" content="assets/sol-dron-techo.jpg">
+<meta property="og:image" content="https://merakiservicessolarenergy.ar/assets/sol-dron-techo.jpg">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0F1A1F">
-<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="icon" type="image/png" href="assets/favicon-solar.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -769,6 +771,48 @@
   @keyframes waBob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -4px; } }
   @keyframes waWig { 0%, 80%, 100% { transform: rotate(0); } 84% { transform: rotate(-14deg); } 88% { transform: rotate(12deg); } 92% { transform: rotate(-8deg); } 96% { transform: rotate(4deg); } }
   @media (prefers-reduced-motion: reduce) { .btn-wa, .btn-wa::after, .btn-wa .arr, .wa-fab, .wa-fab svg { animation: none !important; } }
+
+  /* Íconos animados de confianza */
+  .ta .pp { fill: var(--paper); }
+  .ta .pinc { fill: var(--amber); }
+  .ta .pinb { animation: tPin 2s cubic-bezier(.3,0,.3,1) infinite; }
+  @keyframes tPin { 0%, 100% { transform: translateY(0); } 45% { transform: translateY(-9px); } 60% { transform: translateY(0); } 70% { transform: translateY(-2px); } }
+  .ta .shd { fill: rgba(15,26,31,0.18); transform-box: fill-box; transform-origin: center; animation: tShd 2s cubic-bezier(.3,0,.3,1) infinite; }
+  @keyframes tShd { 0%, 100% { transform: scaleX(1); } 45% { transform: scaleX(.55); opacity: .5; } 60% { transform: scaleX(1); } }
+  .ta .rip { fill: none; stroke: var(--amber); stroke-width: 1.4; transform-box: fill-box; transform-origin: center; animation: tRip 2s ease-out infinite; opacity: 0; }
+  @keyframes tRip { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(3.2); opacity: 0; } }
+  .ta .dotb { fill: var(--brand); animation: uTw 1.6s ease-in-out infinite; }
+  .ta .cardf { transform-box: fill-box; transform-origin: center; animation: tCard 3.6s ease-in-out infinite; }
+  @keyframes tCard { 0%, 100% { transform: rotate(-3deg) translateY(1px); } 50% { transform: rotate(3deg) translateY(-3px); } }
+  .ta .chg2 { fill: var(--amber); }
+  .ta .shine { fill: rgba(255,255,255,0.75); transform: skewX(-20deg); animation: tShine 3.6s ease-in-out infinite; }
+  @keyframes tShine { 0%, 50% { transform: translateX(-20px) skewX(-20deg); } 100% { transform: translateX(130px) skewX(-20deg); } }
+  .ta .wv { fill: none; stroke: var(--brand); stroke-width: 1.6; stroke-linecap: round; animation: uTw 1.4s ease-in-out infinite; }
+  .ta .shglow { fill: rgba(232,163,23,0.35); transform-box: fill-box; transform-origin: center; animation: uGlow 2.6s ease-in-out infinite; }
+  .ta .chk { fill: none; stroke: var(--amber); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 46; animation: tChk 2.6s ease-in-out infinite; }
+  @keyframes tChk { 0% { stroke-dashoffset: 46; } 35%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -46; } }
+  .ta .spk { fill: none; stroke: var(--amber); stroke-width: 1.6; stroke-linecap: round; transform-box: fill-box; transform-origin: center; animation: tSpk 2s ease-in-out infinite; }
+  @keyframes tSpk { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
+  @media (prefers-reduced-motion: reduce) { .ta * { animation: none !important; } .ta .chk { stroke-dashoffset: 0; } }
+  @keyframes uGlow { 0%, 100% { opacity: .3; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.12); } }
+  @keyframes uTw { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
+  @keyframes uSpin { to { transform: rotate(360deg); } }
+
+  /* Marcas */
+  .brands { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 44px; }
+  .brand-t { position: relative; display: flex; flex-direction: column; justify-content: center; gap: 8px; min-height: 130px; padding: 24px 26px; border: 1px solid var(--ink); background: var(--paper); overflow: hidden; transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s; }
+  .brand-t:hover { transform: translateY(-4px); box-shadow: 8px 8px 0 var(--amber); }
+  .brand-t .bn { font-size: clamp(28px, 2.6vw, 36px); font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+  .brand-t .bk { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--steel); }
+  .brand-t .nw { position: absolute; top: 14px; right: 14px; background: var(--amber); color: var(--ink); padding: 4px 8px; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
+  .brand-t .bl { height: 44px; width: auto; max-width: 75%; object-fit: contain; object-position: left; margin-bottom: 6px; }
+  .brand-t .bl-l { height: 84px; margin: -8px 0 0; }
+  .brand-t .bl-d { height: 40px; }
+  .brand-t .bl-a { height: 58px; }
+  .brands-note { margin-top: 16px; color: var(--steel); font-size: 14px; }
+  .nav .brand-logo { height: 42px; }
+  .foot .foot-logo { height: 36px; }
+  @media (max-width: 760px) { .nav .brand-logo { height: 34px; } }
 </style>
 </head>
 <body>
@@ -776,13 +820,13 @@
 <div class="util"><div class="wrap">
   <span class="mono">Meraki Services Solar Energy</span>
   <span class="mono hide-m">Una unidad de Meraki Port &amp; Industrial Services S.A.</span>
-  <span class="mono live">Canning · Avellaneda, Buenos Aires</span>
+  <a class="mono live" href="https://merakiservices.com.ar/">Ir a Meraki Services ↗</a>
 </div></div>
 
 <div class="lines"><div class="wrap"><a href="index.html">Inicio</a><a href="paneles.html" aria-current="page">Paneles solares</a><a href="termotanques.html">Termotanques solares</a><a href="baterias.html">Baterías portátiles</a></div></div>
 
 <header class="nav"><div class="wrap">
-  <a href="index.html" class="brand" aria-label="Meraki Services Solar Energy — inicio"><img src="assets/logo-meraki.png" alt="Meraki Services"><span class="mono brand-sub">Solar Energy</span></a>
+  <a href="index.html" class="brand" aria-label="Meraki Services Solar Energy — inicio"><img class="brand-logo" src="assets/logo-solar.png" alt="Meraki Services Solar Energy"></a>
   <nav class="nav-links" aria-label="Principal">
     <a href="#explorador">Qué sistema necesito</a>
     <a href="#soluciones">Soluciones</a>
@@ -1083,6 +1127,24 @@
     </div>
   </section>
 
+  <!-- MARCAS -->
+  <section id="marcas" class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="mono tick" data-rv>Marcas</span>
+          <h2 data-rv style="transition-delay:.1s">Equipos de fabricantes reconocidos.</h2>
+        </div>
+        <p data-rv style="transition-delay:.2s">Inversores y baterías de marcas con respaldo y garantía del fabricante. Elegimos el equipo según su instalación.</p>
+      </div>
+      <div class="brands" data-rv>
+        <div class="brand-t"><img class="bl bl-g" src="assets/logo-growatt.png" alt="Growatt"><span class="mono bk">Inversores y baterías</span></div>
+        <div class="brand-t"><img class="bl bl-d" src="assets/logo-deye.png" alt="Deye"><span class="mono bk">Inversores y baterías</span><span class="mono nw">Nuevo</span></div>
+        <div class="brand-t"><img class="bl bl-l" src="assets/logo-leoch.png" alt="Leoch"><span class="mono bk">Baterías</span></div>
+      </div>
+    </div>
+  </section>
+
   <!-- MANTENIMIENTO -->
   <section id="mantenimiento" class="sec mant">
     <div class="wrap mant-grid">
@@ -1223,6 +1285,7 @@
         <div><span class="mono">Sede</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Mariano+Castex+5489%2C+Canning%2C+Provincia+de+Buenos+Aires%2C+Argentina" target="_blank" rel="noopener">Mariano Castex 5489, Canning, Provincia de Buenos Aires</a></div>
         <div><span class="mono">Instagram</span><a class="soc" href="https://www.instagram.com/merakiservices.solarenergy/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle class="dot" cx="17.3" cy="6.7" r="1.2"/></svg>@merakiservices.solarenergy</a></div>
         <div><span class="mono">Facebook</span><a class="soc" href="https://www.facebook.com/merakiservices.solarenergy/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M13.2 21.4 V13.6 H15.6 L16 10.8 H13.2 V9.2 c0-.8.3-1.4 1.4-1.4 H16 V5.4 c-.3 0-1.2-.1-2.2-.1 -2.2 0-3.6 1.3-3.6 3.7 V10.8 H8 V13.6 H10.2 V21.4"/></svg>Meraki Services Solar Energy</a></div>
+        <div><span class="mono">LinkedIn</span><a class="soc" href="https://www.linkedin.com/company/merakiservices-solarenergy" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5 V17 M8 7.2 V7.4 M11.5 17 V10.5 M11.5 13.2 c0-1.6 1-2.8 2.6-2.8 s2.4 1.1 2.4 2.8 V17"/></svg>Meraki Services Solar Energy</a></div>
       </div>
       <div class="map" data-rv>
         <div class="map-fb" aria-hidden="true">
@@ -1239,11 +1302,12 @@
 </main>
 
 <footer class="foot"><div class="wrap">
-  <img src="assets/logo-meraki.png" alt="Meraki Services">
+  <img class="foot-logo" src="assets/logo-solar.png" alt="Meraki Services Solar Energy">
   <nav aria-label="Enlaces">
+    <a href="https://merakiservices.com.ar/">Meraki Services</a>
     <a class="soc" href="https://www.instagram.com/merakiservices.solarenergy/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle class="dot" cx="17.3" cy="6.7" r="1.2"/></svg>Instagram</a>
     <a class="soc" href="https://www.facebook.com/merakiservices.solarenergy/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M13.2 21.4 V13.6 H15.6 L16 10.8 H13.2 V9.2 c0-.8.3-1.4 1.4-1.4 H16 V5.4 c-.3 0-1.2-.1-2.2-.1 -2.2 0-3.6 1.3-3.6 3.7 V10.8 H8 V13.6 H10.2 V21.4"/></svg>Facebook</a>
-    <a href="https://ar.linkedin.com/company/meraki-services-argentina" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="soc" href="https://www.linkedin.com/company/merakiservices-solarenergy" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5 V17 M8 7.2 V7.4 M11.5 17 V10.5 M11.5 13.2 c0-1.6 1-2.8 2.6-2.8 s2.4 1.1 2.4 2.8 V17"/></svg>LinkedIn</a>
   </nav>
   <span>Meraki Services Solar Energy es una unidad de Meraki Port &amp; Industrial Services S.A.</span>
 </div></footer>
